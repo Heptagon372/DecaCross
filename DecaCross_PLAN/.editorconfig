@@ -1,0 +1,55 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{kt,kts}]
+ktlint_code_style = ktlint_official
+max_line_length = 120
+# Compose 함수는 PascalCase 가 관례
+ktlint_function_naming_ignore_when_annotated_with = Composable
+# 테스트에서 backtick 이름 허용은 기본. 아래는 팀 결정으로 끈 규칙:
+ktlint_standard_no-wildcard-imports = disabled
+ktlint_standard_multiline-expression-wrapping = disabled
+ktlint_standard_string-template-indent = disabled
+ktlint_standard_function-signature = disabled
+ktlint_standard_class-signature = disabled
+ktlint_standard_chain-method-continuation = disabled
+ktlint_standard_property-naming = disabled
+ktlint_standard_function-naming = disabled
+ktlint_standard_blank-line-before-declaration = disabled
+ktlint_standard_no-empty-first-line-in-class-body = disabled
+ktlint_standard_no-consecutive-comments = disabled
+ktlint_standard_comment-wrapping = disabled
+ktlint_standard_annotation = disabled
+ktlint_standard_trailing-comma-on-call-site = disabled
+ktlint_standard_trailing-comma-on-declaration-site = disabled
+ktlint_standard_max-line-length = disabled
+ktlint_standard_argument-list-wrapping = disabled
+ktlint_standard_parameter-list-wrapping = disabled
+ktlint_standard_wrapping = disabled
+ktlint_standard_if-else-wrapping = disabled
+ktlint_standard_condition-wrapping = disabled
+ktlint_standard_when-entry-bracing = disabled
+ktlint_standard_binary-expression-wrapping = disabled
+ktlint_standard_spacing-between-declarations-with-comments = disabled
+ktlint_standard_kdoc = disabled
+# 파일 이름은 명세 §1 트리를 따른다 (Solver.kt 에 resolve()+SolverResult 등)
+ktlint_standard_filename = disabled
+
+[*.{yml,yaml,json,toml,md}]
+indent_size = 2
+
+[*.{ts,tsx,js,jsx,css}]
+indent_size = 2
+
+[*.sql]
+indent_size = 2
+
+[*.bat]
+end_of_line = crlf

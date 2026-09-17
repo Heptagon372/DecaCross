@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 수집기 테스트 로깅 (WP0). 모든 WP 사본에 같은 파일이 있어야 logback 이 DEBUG 기본값으로 떨어지지 않는다. -->
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{24} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <logger name="io.ktor" level="WARN"/>
+  <logger name="org.postgresql" level="WARN"/>
+  <logger name="io.zonky" level="INFO"/>
+  <root level="INFO">
+    <appender-ref ref="STDOUT"/>
+  </root>
+</configuration>

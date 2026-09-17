@@ -1,0 +1,91 @@
+# ★ 모든 의존성 버전은 여기 한 곳. build 파일에 버전 문자열 금지 (CLAUDE.md 코딩 규칙).
+#
+# 버전 고정 정책 (docs/03_구현명세_v2.md §0): major/minor 는 명세를 따르고, patch 는
+# 스캐폴딩 시점(2026-09-17) Maven Central / Gradle Plugin Portal 최신 안정판으로 잡았다.
+#
+# 호환성 확인 근거 (2026-09-17 실확인):
+# - Kotlin 2.4.20  ↔ Gradle 7.6.3~9.7.0  (kotlinlang.org/docs/gradle-configure-project.html)
+# - Compose Multiplatform 1.12.0 ↔ "최신 Kotlin 과 항상 호환", 컴파일러 플러그인은 Kotlin 과 동일 버전 사용
+# - Ktor 3.4.x 최신 patch = 3.4.3
+
+[versions]
+kotlin = "2.4.20"
+compose = "1.12.0"
+ktor = "3.4.3"
+kotlinx-serialization = "1.11.0"
+kotlinx-coroutines = "1.11.0"
+asm = "9.10.1"
+clikt = "5.1.0"
+sqldelight = "2.3.2"
+# 명세 표기는 "Exposed 1.0" 이지만 1.x 최신 안정판을 쓴다 (API 호환, 버그픽스 포함)
+exposed = "1.5.0"
+logback = "1.6.3"
+# Bukkit 이 쓰는 YAML 구현과 동일 — plugin.yml 시맨틱 재현용 (jvm-analysis 전용)
+snakeyaml = "2.7"
+sqlite-jdbc = "3.53.4.0"
+postgresql = "42.7.13"
+ktlint-plugin = "14.2.0"
+ktlint = "1.8.0"
+jmh-plugin = "0.7.3"
+shadow = "9.6.1"
+# 02 수집기 개발용 임베디드 Postgres (Apache-2.0). 운영 DB 에는 쓰지 않는다.
+embedded-postgres = "2.2.2"
+# 바이너리 major 는 Supabase 현재 major(17)에 맞춘다. 2026-09-17 zonky 2.2.2 + 17.11.0 Windows 기동·0001~0008 적용 실확인
+embedded-pgbin = "17.11.0"
+
+[libraries]
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin" }
+
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
+
+ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
+ktor-server-cio = { module = "io.ktor:ktor-server-cio", version.ref = "ktor" }
+ktor-server-websockets = { module = "io.ktor:ktor-server-websockets", version.ref = "ktor" }
+ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor" }
+ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktor" }
+ktor-server-auth = { module = "io.ktor:ktor-server-auth", version.ref = "ktor" }
+ktor-server-test-host = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-websockets = { module = "io.ktor:ktor-client-websockets", version.ref = "ktor" }
+ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+asm = { module = "org.ow2.asm:asm", version.ref = "asm" }
+asm-tree = { module = "org.ow2.asm:asm-tree", version.ref = "asm" }
+asm-commons = { module = "org.ow2.asm:asm-commons", version.ref = "asm" }
+asm-analysis = { module = "org.ow2.asm:asm-analysis", version.ref = "asm" }
+
+clikt = { module = "com.github.ajalt.clikt:clikt", version.ref = "clikt" }
+
+sqldelight-driver-sqlite = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqldelight" }
+sqldelight-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
+
+exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
+exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposed" }
+exposed-json = { module = "org.jetbrains.exposed:exposed-json", version.ref = "exposed" }
+
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
+sqlite-jdbc = { module = "org.xerial:sqlite-jdbc", version.ref = "sqlite-jdbc" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+embedded-postgres = { module = "io.zonky.test:embedded-postgres", version.ref = "embedded-postgres" }
+embedded-pgbin-windows-amd64 = { module = "io.zonky.test.postgres:embedded-postgres-binaries-windows-amd64", version.ref = "embedded-pgbin" }
+embedded-pgbin-linux-amd64 = { module = "io.zonky.test.postgres:embedded-postgres-binaries-linux-amd64", version.ref = "embedded-pgbin" }
+embedded-pgbin-darwin-arm64v8 = { module = "io.zonky.test.postgres:embedded-postgres-binaries-darwin-arm64v8", version.ref = "embedded-pgbin" }
+
+[plugins]
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-plugin" }
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+jmh = { id = "me.champeau.jmh", version.ref = "jmh-plugin" }
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }

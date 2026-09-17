@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "decacross-web",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["-C", "DecaCross_PLAN/web", "exec", "next", "dev", "-p", "3100"],
+      "port": 3100
+    }
+  ]
+}

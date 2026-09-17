@@ -1,0 +1,3 @@
+# Windows 배치 파일은 CRLF 가 아니면 cmd 가 줄을 잘못 읽는다
+*.bat text eol=crlf
+*.cmd text eol=crlf
