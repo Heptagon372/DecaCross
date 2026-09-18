@@ -77,9 +77,17 @@ interface CollectorStore : AutoCloseable {
     suspend fun contentVersions(contentId: Long): List<StoredVersion>
 
     /**
-     * 버전 메타데이터를 `(content_id, version)` 기준 upsert 하고, 각 버전의 REQUIRE/OPTIONAL 의존성을 교체한다.
-     * 분석 결과 컬럼(java_major, analysis …)과 PROVIDES 의존성은 건드리지 않는다.
-     * sha256/size 는 새 값이 null 이면 기존 값을 유지한다.
+     * 버전 메타데이터를 `(content_id, version)` 기준 upsert 하고, 각 버전의 REQUIRE/OPTIONAL 의존성을 교체한다 (한 트랜잭션).
+     *
+     * - 같은 파일이면([replacesStoredFile] 거짓): 분석 결과 컬럼(java_major, analysis …)과 PROVIDES 의존성은 건드리지 않고,
+     *   sha256/size 는 새 값이 null 이면 기존 값을 유지한다.
+     * - 기존 행이 **다른 파일**을 가리키게 되면([replacesStoredFile] 참, 예: Modrinth 가 같은 version_number 로 새 업로드):
+     *   예전 jar 에서 잰 분석 결과 컬럼(sha256·size·java_major·api_version·pack_decl·analyzed_at·analyzer_version·analysis)과
+     *   PROVIDES 의존성을 지우고 sha256/size 는 새 값 그대로 쓴다. 그래서 다음 분석 패스가 새 파일을 다시 분석한다.
+     *
+     * # 불변식
+     * - 한 파일에서 잰 분석 결과(PROVIDES 포함)가 다른 파일의 file_url·sha256 에 붙어 남지 않는다.
+     *
      * @return version → content_versions.id
      */
     suspend fun upsertContentVersionsMeta(contentId: Long, items: List<VersionMeta>): Map<String, Long>
@@ -203,7 +211,7 @@ data class ContentVersionRow(
     /** Modrinth version_type / Hangar channel 이름 원문 */
     val channel: String?,
     val fileUrl: String?,
-    /** 플랫폼이 준 sha256 (Hangar). 없으면 null → 기존 값 유지. */
+    /** 플랫폼이 준 sha256 (Hangar). 없으면 null → 같은 파일이면 기존 값 유지 ([replacesStoredFile]). */
     val sha256: String?,
     val size: Long?,
     /** DB `text[]` 에는 `LoaderFamily.name` (BUKKIT|FABRIC|FORGE|VANILLA, 0002 주석) 으로 쓴다. */
@@ -230,6 +238,22 @@ data class DepRow(
         require((targetSlug == null) != (targetCapability == null)) { "targetSlug/targetCapability 중 정확히 하나: $this" }
         require((kind == DepKind.PROVIDES) == (targetCapability != null)) { "PROVIDES ⇔ capability 대상: $this" }
     }
+}
+
+/**
+ * 기존 `content_versions` 행이 [incoming] 으로 upsert 되면 **다른 파일**을 가리키게 되는가.
+ *
+ * 참인 경우: 원본 업로드 ID(`source_version_id`)가 달라졌거나, `file_url` 이 달라졌거나,
+ * 플랫폼이 준 sha256 과 이미 기록된 sha256 이 둘 다 있고 서로 다르다 (대소문자 무시).
+ * 새 sha256 이 null 인 것(Modrinth)은 파일이 바뀌었다는 뜻이 아니다.
+ *
+ * @param storedSha256 DB 에 기록된 sha256 (플랫폼 값 또는 분석이 계산한 값)
+ */
+fun replacesStoredFile(storedSourceVersionId: String?, storedFileUrl: String?, storedSha256: String?, incoming: ContentVersionRow): Boolean {
+    val newSha = incoming.sha256
+    return storedSourceVersionId != incoming.sourceVersionId ||
+        storedFileUrl != incoming.fileUrl ||
+        (newSha != null && storedSha256 != null && !newSha.equals(storedSha256, ignoreCase = true))
 }
 
 /** 버전 메타데이터 + 플랫폼 의존성(REQUIRE/OPTIONAL). */

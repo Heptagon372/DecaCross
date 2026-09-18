@@ -18,3 +18,12 @@ val CollectorJson: Json = Json {
     coerceInputValues = true
     isLenient = false
 }
+
+/** UTF-8 BOM (U+FEFF). kotlinx JSON 파서는 이것을 문법 오류로 본다. */
+private val UTF8_BOM: String = Char(0xFEFF).toString()
+
+/**
+ * 운영자가 Windows 편집기로 저장한 설정·기대값 JSON 앞의 UTF-8 BOM 을 벗긴다.
+ * 로컬 파일·리소스를 읽는 모든 경로가 이것을 거친다 (C3-R3, V-1).
+ */
+internal fun stripUtf8Bom(text: String): String = text.removePrefix(UTF8_BOM)

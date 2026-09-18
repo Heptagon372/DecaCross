@@ -1,0 +1,1314 @@
+{
+ "capturedAt": "2026-09-17",
+ "note": "Mojang client/server jar 에서 HTTP Range 로 읽은 version.json / pack.mcmeta 원문 + 기대값(PackFormat.toString 형식). 출처: research/mojang/allrel.json",
+ "releases": {
+  "17w43a": {
+   "jar": "client",
+   "versionJson": null,
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 3
+    }
+   },
+   "expected": {
+    "era": "E1",
+    "rp": "3",
+    "dp": "3",
+    "protocol": null
+   }
+  },
+  "1.13": {
+   "jar": "client",
+   "versionJson": null,
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 4
+    }
+   },
+   "expected": {
+    "era": "E1",
+    "rp": "4",
+    "dp": "4",
+    "protocol": null
+   }
+  },
+  "1.13.1": {
+   "jar": "client",
+   "versionJson": null,
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 4
+    }
+   },
+   "expected": {
+    "era": "E1",
+    "rp": "4",
+    "dp": "4",
+    "protocol": null
+   }
+  },
+  "1.13.2": {
+   "jar": "client",
+   "versionJson": null,
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 4
+    }
+   },
+   "expected": {
+    "era": "E1",
+    "rp": "4",
+    "dp": "4",
+    "protocol": null
+   }
+  },
+  "1.14": {
+   "jar": "client",
+   "versionJson": {
+    "id": "1.14 / 5dac5567e13e46bdb0c1d90aa8d8b3f7",
+    "name": "1.14",
+    "release_target": "1.14",
+    "world_version": 1952,
+    "protocol_version": 477,
+    "pack_version": 4,
+    "build_time": "2019-04-23T14:51:09+00:00",
+    "stable": false
+   },
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 4
+    }
+   },
+   "expected": {
+    "era": "E2",
+    "rp": "4",
+    "dp": "4",
+    "protocol": 477
+   }
+  },
+  "1.14.1": {
+   "jar": "client",
+   "versionJson": {
+    "id": "1.14.1 / a8f78b0d43c74598a199d6d80cda413f",
+    "name": "1.14.1",
+    "release_target": "1.14.1",
+    "world_version": 1957,
+    "protocol_version": 480,
+    "pack_version": 4,
+    "build_time": "2019-05-13T11:08:37+00:00",
+    "stable": false
+   },
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 4
+    }
+   },
+   "expected": {
+    "era": "E2",
+    "rp": "4",
+    "dp": "4",
+    "protocol": 480
+   }
+  },
+  "1.14.2": {
+   "jar": "client",
+   "versionJson": {
+    "id": "1.14.2 / f647ba8dc371474797bee24b2b312ff4",
+    "name": "1.14.2",
+    "release_target": "1.14.2",
+    "world_version": 1963,
+    "protocol_version": 485,
+    "pack_version": 4,
+    "build_time": "2019-05-27T11:46:41+00:00",
+    "stable": true
+   },
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 4
+    }
+   },
+   "expected": {
+    "era": "E2",
+    "rp": "4",
+    "dp": "4",
+    "protocol": 485
+   }
+  },
+  "1.14.3": {
+   "jar": "client",
+   "versionJson": {
+    "id": "1.14.3",
+    "name": "1.14.3",
+    "release_target": "1.14.3",
+    "world_version": 1968,
+    "protocol_version": 490,
+    "pack_version": 4,
+    "build_time": "2019-06-24T12:51:13+00:00",
+    "stable": true
+   },
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 4
+    }
+   },
+   "expected": {
+    "era": "E2",
+    "rp": "4",
+    "dp": "4",
+    "protocol": 490
+   }
+  },
+  "1.14.4": {
+   "jar": "client",
+   "versionJson": {
+    "id": "1.14.4",
+    "name": "1.14.4",
+    "release_target": "1.14.4",
+    "world_version": 1976,
+    "protocol_version": 498,
+    "pack_version": 4,
+    "build_time": "2019-07-19T09:24:08+00:00",
+    "stable": true
+   },
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 4
+    }
+   },
+   "expected": {
+    "era": "E2",
+    "rp": "4",
+    "dp": "4",
+    "protocol": 498
+   }
+  },
+  "1.15": {
+   "jar": "client",
+   "versionJson": {
+    "id": "1.15",
+    "name": "1.15",
+    "release_target": "1.15",
+    "world_version": 2225,
+    "protocol_version": 573,
+    "pack_version": 5,
+    "build_time": "2019-12-09T13:11:56+00:00",
+    "stable": true
+   },
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 5
+    }
+   },
+   "expected": {
+    "era": "E2",
+    "rp": "5",
+    "dp": "5",
+    "protocol": 573
+   }
+  },
+  "1.15.1": {
+   "jar": "client",
+   "versionJson": {
+    "id": "1.15.1",
+    "name": "1.15.1",
+    "release_target": "1.15.1",
+    "world_version": 2227,
+    "protocol_version": 575,
+    "pack_version": 5,
+    "build_time": "2019-12-16T10:28:09+00:00",
+    "stable": true
+   },
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 5
+    }
+   },
+   "expected": {
+    "era": "E2",
+    "rp": "5",
+    "dp": "5",
+    "protocol": 575
+   }
+  },
+  "1.15.2": {
+   "jar": "client",
+   "versionJson": {
+    "id": "1.15.2",
+    "name": "1.15.2",
+    "release_target": "1.15.2",
+    "world_version": 2230,
+    "protocol_version": 578,
+    "pack_version": 5,
+    "build_time": "2020-01-17T10:02:11+00:00",
+    "stable": true
+   },
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 5
+    }
+   },
+   "expected": {
+    "era": "E2",
+    "rp": "5",
+    "dp": "5",
+    "protocol": 578
+   }
+  },
+  "1.16": {
+   "jar": "client",
+   "versionJson": {
+    "id": "1.16",
+    "name": "1.16",
+    "release_target": "1.16",
+    "world_version": 2566,
+    "protocol_version": 735,
+    "pack_version": 5,
+    "build_time": "2020-06-23T16:19:09+00:00",
+    "stable": true
+   },
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 5
+    }
+   },
+   "expected": {
+    "era": "E2",
+    "rp": "5",
+    "dp": "5",
+    "protocol": 735
+   }
+  },
+  "1.16.1": {
+   "jar": "client",
+   "versionJson": {
+    "id": "1.16.1",
+    "name": "1.16.1",
+    "release_target": "1.16.1",
+    "world_version": 2567,
+    "protocol_version": 736,
+    "pack_version": 5,
+    "build_time": "2020-06-24T10:29:54+00:00",
+    "stable": true
+   },
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 5
+    }
+   },
+   "expected": {
+    "era": "E2",
+    "rp": "5",
+    "dp": "5",
+    "protocol": 736
+   }
+  },
+  "1.16.2": {
+   "jar": "client",
+   "versionJson": {
+    "id": "1.16.2",
+    "name": "1.16.2",
+    "release_target": "1.16.2",
+    "world_version": 2578,
+    "protocol_version": 751,
+    "pack_version": 6,
+    "build_time": "2020-08-11T10:11:57+00:00",
+    "stable": true
+   },
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 6
+    }
+   },
+   "expected": {
+    "era": "E2",
+    "rp": "6",
+    "dp": "6",
+    "protocol": 751
+   }
+  },
+  "1.16.3": {
+   "jar": "client",
+   "versionJson": {
+    "id": "1.16.3",
+    "name": "1.16.3",
+    "release_target": "1.16.3",
+    "world_version": 2580,
+    "protocol_version": 753,
+    "pack_version": 6,
+    "build_time": "2020-09-10T13:40:50+00:00",
+    "stable": true
+   },
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 6
+    }
+   },
+   "expected": {
+    "era": "E2",
+    "rp": "6",
+    "dp": "6",
+    "protocol": 753
+   }
+  },
+  "1.16.4": {
+   "jar": "client",
+   "versionJson": {
+    "id": "1.16.4",
+    "name": "1.16.4",
+    "release_target": "1.16.4",
+    "world_version": 2584,
+    "protocol_version": 754,
+    "pack_version": 6,
+    "build_time": "2020-10-29T15:47:51+00:00",
+    "stable": true
+   },
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 6
+    }
+   },
+   "expected": {
+    "era": "E2",
+    "rp": "6",
+    "dp": "6",
+    "protocol": 754
+   }
+  },
+  "1.16.5": {
+   "jar": "client",
+   "versionJson": {
+    "id": "1.16.5",
+    "name": "1.16.5",
+    "release_target": "1.16.5",
+    "world_version": 2586,
+    "protocol_version": 754,
+    "pack_version": 6,
+    "build_time": "2021-01-14T16:03:41+00:00",
+    "stable": true
+   },
+   "packMcmeta": {
+    "pack": {
+     "description": "The default data for Minecraft",
+     "pack_format": 6
+    }
+   },
+   "expected": {
+    "era": "E2",
+    "rp": "6",
+    "dp": "6",
+    "protocol": 754
+   }
+  },
+  "1.17": {
+   "jar": "client",
+   "versionJson": {
+    "id": "1.17",
+    "name": "1.17",
+    "release_target": "1.17",
+    "world_version": 2724,
+    "protocol_version": 755,
+    "pack_version": {
+     "resource": 7,
+     "data": 7
+    },
+    "build_time": "2021-06-08T10:58:54+00:00",
+    "java_component": "java-runtime-alpha",
+    "java_version": 16,
+    "stable": true
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "7",
+    "dp": "7",
+    "protocol": 755
+   }
+  },
+  "1.17.1": {
+   "jar": "client",
+   "versionJson": {
+    "id": "1.17.1",
+    "name": "1.17.1",
+    "release_target": "1.17.1",
+    "world_version": 2730,
+    "protocol_version": 756,
+    "pack_version": {
+     "resource": 7,
+     "data": 7
+    },
+    "build_time": "2021-07-06T11:59:45+00:00",
+    "java_component": "java-runtime-alpha",
+    "java_version": 16,
+    "stable": true
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "7",
+    "dp": "7",
+    "protocol": 756
+   }
+  },
+  "1.18": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.18",
+    "name": "1.18",
+    "release_target": "1.18",
+    "world_version": 2860,
+    "series_id": "main",
+    "protocol_version": 757,
+    "pack_version": {
+     "resource": 8,
+     "data": 8
+    },
+    "build_time": "2021-11-30T09:14:30+00:00",
+    "java_component": "java-runtime-beta",
+    "java_version": 17,
+    "stable": true
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "8",
+    "dp": "8",
+    "protocol": 757
+   }
+  },
+  "1.18.1": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.18.1",
+    "name": "1.18.1",
+    "release_target": "1.18.1",
+    "world_version": 2865,
+    "series_id": "main",
+    "protocol_version": 757,
+    "pack_version": {
+     "resource": 8,
+     "data": 8
+    },
+    "build_time": "2021-12-10T08:21:01+00:00",
+    "java_component": "java-runtime-beta",
+    "java_version": 17,
+    "stable": true
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "8",
+    "dp": "8",
+    "protocol": 757
+   }
+  },
+  "1.18.2": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.18.2",
+    "name": "1.18.2",
+    "release_target": "1.18.2",
+    "world_version": 2975,
+    "series_id": "main",
+    "protocol_version": 758,
+    "pack_version": {
+     "resource": 8,
+     "data": 9
+    },
+    "build_time": "2022-02-28T10:40:37+00:00",
+    "java_component": "java-runtime-beta",
+    "java_version": 17,
+    "stable": true
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "8",
+    "dp": "9",
+    "protocol": 758
+   }
+  },
+  "1.19": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.19",
+    "name": "1.19",
+    "release_target": "1.19",
+    "world_version": 3105,
+    "series_id": "main",
+    "protocol_version": 759,
+    "pack_version": {
+     "resource": 9,
+     "data": 10
+    },
+    "build_time": "2022-06-07T09:40:26+00:00",
+    "java_component": "java-runtime-gamma",
+    "java_version": 17,
+    "stable": true
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "9",
+    "dp": "10",
+    "protocol": 759
+   }
+  },
+  "1.19.1": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.19.1",
+    "name": "1.19.1",
+    "release_target": "1.19.1",
+    "world_version": 3117,
+    "series_id": "main",
+    "protocol_version": 760,
+    "pack_version": {
+     "resource": 9,
+     "data": 10
+    },
+    "build_time": "2022-07-27T09:23:42+00:00",
+    "java_component": "java-runtime-gamma",
+    "java_version": 17,
+    "stable": true
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "9",
+    "dp": "10",
+    "protocol": 760
+   }
+  },
+  "1.19.2": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.19.2",
+    "name": "1.19.2",
+    "release_target": "1.19.2",
+    "world_version": 3120,
+    "series_id": "main",
+    "protocol_version": 760,
+    "pack_version": {
+     "resource": 9,
+     "data": 10
+    },
+    "build_time": "2022-08-05T11:55:20+00:00",
+    "java_component": "java-runtime-gamma",
+    "java_version": 17,
+    "stable": true
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "9",
+    "dp": "10",
+    "protocol": 760
+   }
+  },
+  "1.19.3": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.19.3",
+    "name": "1.19.3",
+    "world_version": 3218,
+    "series_id": "main",
+    "protocol_version": 761,
+    "pack_version": {
+     "resource": 12,
+     "data": 10
+    },
+    "build_time": "2022-12-07T08:14:04+00:00",
+    "java_component": "java-runtime-gamma",
+    "java_version": 17,
+    "stable": true
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "12",
+    "dp": "10",
+    "protocol": 761
+   }
+  },
+  "1.19.4": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.19.4",
+    "name": "1.19.4",
+    "world_version": 3337,
+    "series_id": "main",
+    "protocol_version": 762,
+    "pack_version": {
+     "resource": 13,
+     "data": 12
+    },
+    "build_time": "2023-03-14T12:53:56+00:00",
+    "java_component": "java-runtime-gamma",
+    "java_version": 17,
+    "stable": true
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "13",
+    "dp": "12",
+    "protocol": 762
+   }
+  },
+  "1.20": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.20",
+    "name": "1.20",
+    "world_version": 3463,
+    "series_id": "main",
+    "protocol_version": 763,
+    "pack_version": {
+     "resource": 15,
+     "data": 15
+    },
+    "build_time": "2023-06-02T08:33:51+00:00",
+    "java_component": "java-runtime-gamma",
+    "java_version": 17,
+    "stable": true
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "15",
+    "dp": "15",
+    "protocol": 763
+   }
+  },
+  "1.20.1": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.20.1",
+    "name": "1.20.1",
+    "world_version": 3465,
+    "series_id": "main",
+    "protocol_version": 763,
+    "pack_version": {
+     "resource": 15,
+     "data": 15
+    },
+    "build_time": "2023-06-12T13:23:26+00:00",
+    "java_component": "java-runtime-gamma",
+    "java_version": 17,
+    "stable": true
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "15",
+    "dp": "15",
+    "protocol": 763
+   }
+  },
+  "1.20.2": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.20.2",
+    "name": "1.20.2",
+    "world_version": 3578,
+    "series_id": "main",
+    "protocol_version": 764,
+    "pack_version": {
+     "resource": 18,
+     "data": 18
+    },
+    "build_time": "2023-09-20T09:00:26+00:00",
+    "java_component": "java-runtime-gamma",
+    "java_version": 17,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "18",
+    "dp": "18",
+    "protocol": 764
+   }
+  },
+  "1.20.3": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.20.3",
+    "name": "1.20.3",
+    "world_version": 3698,
+    "series_id": "main",
+    "protocol_version": 765,
+    "pack_version": {
+     "resource": 22,
+     "data": 26
+    },
+    "build_time": "2023-12-04T12:04:50+00:00",
+    "java_component": "java-runtime-gamma",
+    "java_version": 17,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "22",
+    "dp": "26",
+    "protocol": 765
+   }
+  },
+  "1.20.4": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.20.4",
+    "name": "1.20.4",
+    "world_version": 3700,
+    "series_id": "main",
+    "protocol_version": 765,
+    "pack_version": {
+     "resource": 22,
+     "data": 26
+    },
+    "build_time": "2023-12-07T12:53:30+00:00",
+    "java_component": "java-runtime-gamma",
+    "java_version": 17,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "22",
+    "dp": "26",
+    "protocol": 765
+   }
+  },
+  "1.20.5": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.20.5",
+    "name": "1.20.5",
+    "world_version": 3837,
+    "series_id": "main",
+    "protocol_version": 766,
+    "pack_version": {
+     "resource": 32,
+     "data": 41
+    },
+    "build_time": "2024-04-23T11:51:33+00:00",
+    "java_component": "java-runtime-delta",
+    "java_version": 21,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "32",
+    "dp": "41",
+    "protocol": 766
+   }
+  },
+  "1.20.6": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.20.6",
+    "name": "1.20.6",
+    "world_version": 3839,
+    "series_id": "main",
+    "protocol_version": 766,
+    "pack_version": {
+     "resource": 32,
+     "data": 41
+    },
+    "build_time": "2024-04-29T12:38:06+00:00",
+    "java_component": "java-runtime-delta",
+    "java_version": 21,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "32",
+    "dp": "41",
+    "protocol": 766
+   }
+  },
+  "1.21": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.21",
+    "name": "1.21",
+    "world_version": 3953,
+    "series_id": "main",
+    "protocol_version": 767,
+    "pack_version": {
+     "resource": 34,
+     "data": 48
+    },
+    "build_time": "2024-06-13T08:21:21+00:00",
+    "java_component": "java-runtime-delta",
+    "java_version": 21,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "34",
+    "dp": "48",
+    "protocol": 767
+   }
+  },
+  "1.21.1": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.21.1",
+    "name": "1.21.1",
+    "world_version": 3955,
+    "series_id": "main",
+    "protocol_version": 767,
+    "pack_version": {
+     "resource": 34,
+     "data": 48
+    },
+    "build_time": "2024-08-08T12:21:55+00:00",
+    "java_component": "java-runtime-delta",
+    "java_version": 21,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "34",
+    "dp": "48",
+    "protocol": 767
+   }
+  },
+  "1.21.2": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.21.2",
+    "name": "1.21.2",
+    "world_version": 4080,
+    "series_id": "main",
+    "protocol_version": 768,
+    "pack_version": {
+     "resource": 42,
+     "data": 57
+    },
+    "build_time": "2024-10-22T09:55:49+00:00",
+    "java_component": "java-runtime-delta",
+    "java_version": 21,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "42",
+    "dp": "57",
+    "protocol": 768
+   }
+  },
+  "1.21.3": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.21.3",
+    "name": "1.21.3",
+    "world_version": 4082,
+    "series_id": "main",
+    "protocol_version": 768,
+    "pack_version": {
+     "resource": 42,
+     "data": 57
+    },
+    "build_time": "2024-10-23T12:25:27+00:00",
+    "java_component": "java-runtime-delta",
+    "java_version": 21,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "42",
+    "dp": "57",
+    "protocol": 768
+   }
+  },
+  "1.21.4": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.21.4",
+    "name": "1.21.4",
+    "world_version": 4189,
+    "series_id": "main",
+    "protocol_version": 769,
+    "pack_version": {
+     "resource": 46,
+     "data": 61
+    },
+    "build_time": "2024-12-03T10:09:48+00:00",
+    "java_component": "java-runtime-delta",
+    "java_version": 21,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "46",
+    "dp": "61",
+    "protocol": 769
+   }
+  },
+  "1.21.5": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.21.5",
+    "name": "1.21.5",
+    "world_version": 4325,
+    "series_id": "main",
+    "protocol_version": 770,
+    "pack_version": {
+     "resource": 55,
+     "data": 71
+    },
+    "build_time": "2025-03-25T12:11:48+00:00",
+    "java_component": "java-runtime-delta",
+    "java_version": 21,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "55",
+    "dp": "71",
+    "protocol": 770
+   }
+  },
+  "1.21.6": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.21.6",
+    "name": "1.21.6",
+    "world_version": 4435,
+    "series_id": "main",
+    "protocol_version": 771,
+    "pack_version": {
+     "resource": 63,
+     "data": 80
+    },
+    "build_time": "2025-06-17T11:07:28+00:00",
+    "java_component": "java-runtime-delta",
+    "java_version": 21,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "63",
+    "dp": "80",
+    "protocol": 771
+   }
+  },
+  "1.21.7": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.21.7",
+    "name": "1.21.7",
+    "world_version": 4438,
+    "series_id": "main",
+    "protocol_version": 772,
+    "pack_version": {
+     "resource": 64,
+     "data": 81
+    },
+    "build_time": "2025-06-30T09:29:28+00:00",
+    "java_component": "java-runtime-delta",
+    "java_version": 21,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "64",
+    "dp": "81",
+    "protocol": 772
+   }
+  },
+  "1.21.8": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.21.8",
+    "name": "1.21.8",
+    "world_version": 4440,
+    "series_id": "main",
+    "protocol_version": 772,
+    "pack_version": {
+     "resource": 64,
+     "data": 81
+    },
+    "build_time": "2025-07-17T12:00:57+00:00",
+    "java_component": "java-runtime-delta",
+    "java_version": 21,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E3",
+    "rp": "64",
+    "dp": "81",
+    "protocol": 772
+   }
+  },
+  "1.21.9": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.21.9",
+    "name": "1.21.9",
+    "world_version": 4554,
+    "series_id": "main",
+    "protocol_version": 773,
+    "pack_version": {
+     "resource_major": 69,
+     "resource_minor": 0,
+     "data_major": 88,
+     "data_minor": 0
+    },
+    "build_time": "2025-09-30T11:55:33+00:00",
+    "java_component": "java-runtime-delta",
+    "java_version": 21,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E4",
+    "rp": "69",
+    "dp": "88",
+    "protocol": 773
+   }
+  },
+  "1.21.10": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.21.10",
+    "name": "1.21.10",
+    "world_version": 4556,
+    "series_id": "main",
+    "protocol_version": 773,
+    "pack_version": {
+     "resource_major": 69,
+     "resource_minor": 0,
+     "data_major": 88,
+     "data_minor": 0
+    },
+    "build_time": "2025-10-07T09:14:11+00:00",
+    "java_component": "java-runtime-delta",
+    "java_version": 21,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E4",
+    "rp": "69",
+    "dp": "88",
+    "protocol": 773
+   }
+  },
+  "1.21.11": {
+   "jar": "server",
+   "versionJson": {
+    "id": "1.21.11",
+    "name": "1.21.11",
+    "world_version": 4671,
+    "series_id": "main",
+    "protocol_version": 774,
+    "pack_version": {
+     "resource_major": 75,
+     "resource_minor": 0,
+     "data_major": 94,
+     "data_minor": 1
+    },
+    "build_time": "2025-12-09T12:20:42+00:00",
+    "java_component": "java-runtime-delta",
+    "java_version": 21,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E4",
+    "rp": "75",
+    "dp": "94.1",
+    "protocol": 774
+   }
+  },
+  "26.1": {
+   "jar": "server",
+   "versionJson": {
+    "id": "26.1",
+    "name": "26.1",
+    "world_version": 4786,
+    "series_id": "main",
+    "protocol_version": 775,
+    "pack_version": {
+     "resource_major": 84,
+     "resource_minor": 0,
+     "data_major": 101,
+     "data_minor": 1
+    },
+    "build_time": "2026-03-24T12:09:43+00:00",
+    "java_component": "java-runtime-epsilon",
+    "java_version": 25,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E4",
+    "rp": "84",
+    "dp": "101.1",
+    "protocol": 775
+   }
+  },
+  "26.1.1": {
+   "jar": "server",
+   "versionJson": {
+    "id": "26.1.1",
+    "name": "26.1.1",
+    "world_version": 4788,
+    "series_id": "main",
+    "protocol_version": 775,
+    "pack_version": {
+     "resource_major": 84,
+     "resource_minor": 0,
+     "data_major": 101,
+     "data_minor": 1
+    },
+    "build_time": "2026-04-01T09:05:14+00:00",
+    "java_component": "java-runtime-epsilon",
+    "java_version": 25,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E4",
+    "rp": "84",
+    "dp": "101.1",
+    "protocol": 775
+   }
+  },
+  "26.1.2": {
+   "jar": "server",
+   "versionJson": {
+    "id": "26.1.2",
+    "name": "26.1.2",
+    "world_version": 4790,
+    "series_id": "main",
+    "protocol_version": 775,
+    "pack_version": {
+     "resource_major": 84,
+     "resource_minor": 0,
+     "data_major": 101,
+     "data_minor": 1
+    },
+    "build_time": "2026-04-09T10:11:03+00:00",
+    "java_component": "java-runtime-epsilon",
+    "java_version": 25,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E4",
+    "rp": "84",
+    "dp": "101.1",
+    "protocol": 775
+   }
+  },
+  "26.2": {
+   "jar": "server",
+   "versionJson": {
+    "id": "26.2",
+    "name": "26.2",
+    "world_version": 4903,
+    "series_id": "main",
+    "protocol_version": 776,
+    "pack_version": {
+     "resource_major": 88,
+     "resource_minor": 0,
+     "data_major": 107,
+     "data_minor": 1
+    },
+    "build_time": "2026-06-16T12:01:27+00:00",
+    "java_component": "java-runtime-epsilon",
+    "java_version": 25,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E4",
+    "rp": "88",
+    "dp": "107.1",
+    "protocol": 776
+   }
+  },
+  "26.3": {
+   "jar": "server",
+   "versionJson": {
+    "id": "26.3",
+    "name": "26.3",
+    "world_version": 5023,
+    "series_id": "main",
+    "protocol_version": 777,
+    "pack_version": {
+     "resource_major": 97,
+     "resource_minor": 1,
+     "data_major": 121,
+     "data_minor": 0
+    },
+    "build_time": "2026-09-15T11:20:48+00:00",
+    "java_component": "java-runtime-epsilon",
+    "java_version": 25,
+    "stable": true,
+    "use_editor": false
+   },
+   "packMcmeta": null,
+   "expected": {
+    "era": "E4",
+    "rp": "97.1",
+    "dp": "121",
+    "protocol": 777
+   }
+  }
+ }
+}

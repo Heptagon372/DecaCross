@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "jvmFlagProfiles": [
+    {
+      "id": "aikar-base",
+      "descriptionKo": "Aikar 플래그 기본 세트 (힙 12GB 미만) — PaperMC 문서·스크립트 생성기·Fill v3 권장값과 같다",
+      "minHeapMb": 256,
+      "maxHeapMbExclusive": 12288,
+      "minJavaFeature": 8,
+      "maxJavaFeatureExclusive": 29,
+      "flags": [
+        "-XX:+UseG1GC",
+        "-XX:+ParallelRefProcEnabled",
+        "-XX:MaxGCPauseMillis=200",
+        "-XX:+UnlockExperimentalVMOptions",
+        "-XX:+DisableExplicitGC",
+        "-XX:+AlwaysPreTouch",
+        "-XX:G1NewSizePercent=30",
+        "-XX:G1MaxNewSizePercent=40",
+        "-XX:G1HeapRegionSize=8M",
+        "-XX:G1ReservePercent=20",
+        "-XX:G1HeapWastePercent=5",
+        "-XX:G1MixedGCCountTarget=4",
+        "-XX:InitiatingHeapOccupancyPercent=15",
+        "-XX:G1MixedGCLiveThresholdPercent=90",
+        "-XX:G1RSetUpdatingPauseTimePercent=5",
+        "-XX:SurvivorRatio=32",
+        "-XX:+PerfDisableSharedMem",
+        "-XX:MaxTenuringThreshold=1",
+        "-Dusing.aikars.flags=https://mcflags.emc.gs",
+        "-Daikars.new.flags=true"
+      ],
+      "sources": [
+        "https://docs.papermc.io/paper/aikars-flags (PaperMC/docs main, 2026-09-17 확인: 플래그 순서 그대로)",
+        "https://fill.papermc.io/v3/projects/paper/versions/1.21.8 java.flags.recommended (18개, -D 표식 2개 제외 동일, 2026-09-17)",
+        "https://mcflags.emc.gs (Aikar, 2020-04-25 갱신)",
+        "maxJavaFeatureExclusive=29: openjdk/jdk master arguments.cpp — InitiatingHeapOccupancyPercent 27 deprecated / 28 obsolete / 29 expired (research paper-runtime §5)",
+        "minHeapMb=256: JDK 25 에서 -Xmx128M + SurvivorRatio=32 는 기동 거부, 256M 은 기동 (research paper-runtime §5 실측)"
+      ]
+    },
+    {
+      "id": "aikar-12g",
+      "descriptionKo": "Aikar 플래그 12GB 이상 변형 — G1NewSizePercent 40, G1MaxNewSizePercent 50, G1HeapRegionSize 16M, G1ReservePercent 15, IHOP 20",
+      "minHeapMb": 12288,
+      "minJavaFeature": 8,
+      "maxJavaFeatureExclusive": 29,
+      "flags": [
+        "-XX:+UseG1GC",
+        "-XX:+ParallelRefProcEnabled",
+        "-XX:MaxGCPauseMillis=200",
+        "-XX:+UnlockExperimentalVMOptions",
+        "-XX:+DisableExplicitGC",
+        "-XX:+AlwaysPreTouch",
+        "-XX:G1NewSizePercent=40",
+        "-XX:G1MaxNewSizePercent=50",
+        "-XX:G1HeapRegionSize=16M",
+        "-XX:G1ReservePercent=15",
+        "-XX:G1HeapWastePercent=5",
+        "-XX:G1MixedGCCountTarget=4",
+        "-XX:InitiatingHeapOccupancyPercent=20",
+        "-XX:G1MixedGCLiveThresholdPercent=90",
+        "-XX:G1RSetUpdatingPauseTimePercent=5",
+        "-XX:SurvivorRatio=32",
+        "-XX:+PerfDisableSharedMem",
+        "-XX:MaxTenuringThreshold=1",
+        "-Dusing.aikars.flags=https://mcflags.emc.gs",
+        "-Daikars.new.flags=true"
+      ],
+      "sources": [
+        "https://mcflags.emc.gs (Aikar, 2020-04-25 갱신): 'If you have and use more than 12GB of memory, adjust the following' 5개 값",
+        "경계: 프롬프트 03 '12G 미만/이상 분기' 를 따른다 (Aikar 원문은 12G 초과) — DESIGN2 D-I19"
+      ]
+    }
+  ],
+  "console": {
+    "ready": "Done \\(\\d+[.,]\\d+s\\)! For help, type \"help\"",
+    "saved": "Saved the game",
+    "sources": [
+      "ready: PaperMC Paper 1.21.8 build 60 (commit 29c8822) MinecraftServer.java.patch — LOGGER.info(\"Done ({})! For help, type \\\"help\\\"\", String.format(Locale.ROOT, \"%.3fs\", …)); 'Done preparing level' 과 구분",
+      "saved: Minecraft 1.21.8 en_us.json commands.save.success = \"Saved the game\" (2026-09-17 확인)"
+    ]
+  }
+}

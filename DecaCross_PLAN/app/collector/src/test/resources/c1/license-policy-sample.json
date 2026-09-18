@@ -1,0 +1,5 @@
+{
+  "redistributableEnabled": false,
+  "redistributableSpdx": ["MIT", "Apache-2.0", 3],
+  "note": "WP-C1 테스트용 축약 샘플 (운영 파일은 main/resources/license-policy.json, WP-C3)"
+}

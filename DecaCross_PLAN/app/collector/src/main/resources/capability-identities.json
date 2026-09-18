@@ -1,0 +1,8 @@
+{
+  "storeEconomyProviders": false,
+  "identities": [
+    { "pluginName": "ItemsAdder", "definedPackagePrefix": "dev/lone/itemsadder/api/", "capability": "custom_item_framework" },
+    { "pluginName": "Oraxen", "definedPackagePrefix": "io/th0rgal/oraxen/", "capability": "custom_item_framework" },
+    { "pluginName": "Nexo", "definedPackagePrefix": "com/nexomc/nexo/", "capability": "custom_item_framework" }
+  ]
+}

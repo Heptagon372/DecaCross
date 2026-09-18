@@ -1,0 +1,641 @@
+[
+ {
+  "game_versions": [
+   "26.1",
+   "26.1.1",
+   "26.1.2",
+   "26.2"
+  ],
+  "loaders": [
+   "bukkit",
+   "folia",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "MdY6JATr",
+  "project_id": "fALzjamp",
+  "author_id": "nfBsvT1J",
+  "featured": false,
+  "name": "Chunky 1.5.3",
+  "version_number": "1.5.3",
+  "changelog_url": null,
+  "date_published": "2026-05-04T05:46:08.712785Z",
+  "downloads": 171880,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "57JYqjxs",
+    "hashes": {
+     "sha512": "43ffecc6e6a734b752da41575bbb316526c124c3f878942437d5133c377bfbd9b78bda975520dc074d7158c15dade58a444ccd0fd8d8a25d165b6fc450140422",
+     "sha1": "7ff47ee3afec89a1725e6eef393f373c549eff3b"
+    },
+    "url": "https://cdn.modrinth.com/data/fALzjamp/versions/MdY6JATr/Chunky-Bukkit-1.5.3.jar",
+    "filename": "Chunky-Bukkit-1.5.3.jar",
+    "primary": true,
+    "size": 304616,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.20.5",
+   "1.20.6",
+   "1.21",
+   "1.21.1",
+   "1.21.2",
+   "1.21.3",
+   "1.21.4",
+   "1.21.5",
+   "1.21.6",
+   "1.21.7",
+   "1.21.8",
+   "1.21.9",
+   "1.21.10",
+   "1.21.11",
+   "26.1",
+   "26.1.1",
+   "26.1.2"
+  ],
+  "loaders": [
+   "bukkit",
+   "folia",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "P3y2MXnd",
+  "project_id": "fALzjamp",
+  "author_id": "nfBsvT1J",
+  "featured": false,
+  "name": "Chunky 1.4.40",
+  "version_number": "1.4.40",
+  "changelog_url": null,
+  "date_published": "2025-06-21T08:01:39.060370Z",
+  "downloads": 470468,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "jZoLQz5t",
+    "hashes": {
+     "sha1": "7c196c5bebd6017880f3c2a38fc297b3b99f5f93",
+     "sha512": "b017fd180141b5c14c38dfb10128d5f5a1072a68ff93ee486d4465953331f5851f09a09b4a159364837a95d192198d8e9885ce39c46eed32dacbf1fd65c6f30f"
+    },
+    "url": "https://cdn.modrinth.com/data/fALzjamp/versions/P3y2MXnd/Chunky-Bukkit-1.4.40.jar",
+    "filename": "Chunky-Bukkit-1.4.40.jar",
+    "primary": true,
+    "size": 296244,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.20.5",
+   "1.20.6",
+   "1.21",
+   "1.21.1",
+   "1.21.2",
+   "1.21.3",
+   "1.21.4",
+   "1.21.5"
+  ],
+  "loaders": [
+   "bukkit",
+   "folia",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "SmZRkQyR",
+  "project_id": "fALzjamp",
+  "author_id": "nfBsvT1J",
+  "featured": false,
+  "name": "Chunky 1.4.36",
+  "version_number": "1.4.36",
+  "changelog_url": null,
+  "date_published": "2025-04-04T06:37:04.268930Z",
+  "downloads": 47415,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "RitowFR7",
+    "hashes": {
+     "sha512": "9a7630ad2f500a5e23aabf425d311676cb82b74045c68b8aed5917c6c4b03a39cae0d3f4ed9706c34cc19208d1c585a9dcc34a2c27af519b12ac49d5d340cbef",
+     "sha1": "0189648f876649774eabc64a8e1661c64b684e49"
+    },
+    "url": "https://cdn.modrinth.com/data/fALzjamp/versions/SmZRkQyR/Chunky-Bukkit-1.4.36.jar",
+    "filename": "Chunky-Bukkit-1.4.36.jar",
+    "primary": true,
+    "size": 296078,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.20.5",
+   "1.20.6",
+   "1.21",
+   "1.21.1",
+   "1.21.2",
+   "1.21.3",
+   "1.21.4"
+  ],
+  "loaders": [
+   "bukkit",
+   "folia",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "ytBhnGfO",
+  "project_id": "fALzjamp",
+  "author_id": "nfBsvT1J",
+  "featured": false,
+  "name": "Chunky 1.4.28",
+  "version_number": "1.4.28",
+  "changelog_url": null,
+  "date_published": "2024-11-05T11:57:59.598918Z",
+  "downloads": 68645,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "rKIKcm4t",
+    "hashes": {
+     "sha512": "3e9d241adafe1d7979c83ab2796d37f6aee1bcc9373cdf1404d6107df5157a0a31dbea642ffb8aeab018e9ab48fe648d2161a069c346063ea840873300dbd573",
+     "sha1": "b9a2eb26c25b31486782791d42ae19d8d73b14b7"
+    },
+    "url": "https://cdn.modrinth.com/data/fALzjamp/versions/ytBhnGfO/Chunky-Bukkit-1.4.28.jar",
+    "filename": "Chunky-Bukkit-1.4.28.jar",
+    "primary": true,
+    "size": 293155,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.20.5",
+   "1.20.6",
+   "1.21",
+   "1.21.1",
+   "1.21.2",
+   "1.21.3"
+  ],
+  "loaders": [
+   "bukkit",
+   "folia",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "Gc2YLBCa",
+  "project_id": "fALzjamp",
+  "author_id": "nfBsvT1J",
+  "featured": false,
+  "name": "Chunky 1.4.27",
+  "version_number": "1.4.27",
+  "changelog_url": null,
+  "date_published": "2024-11-05T09:28:37.959968Z",
+  "downloads": 1286,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "KQ6Dg5uE",
+    "hashes": {
+     "sha1": "82cc4f6837353aeab1159c536e340724628321d1",
+     "sha512": "4c397c13bc413aac567b640672859a7910eda0f774f8e5028498712031cb3ec1bc16c97c2906636b3f9faa2dd274bc9f7caab2fbf16a59f0bf9ad1c2a0405188"
+    },
+    "url": "https://cdn.modrinth.com/data/fALzjamp/versions/Gc2YLBCa/Chunky-Bukkit-1.4.27.jar",
+    "filename": "Chunky-Bukkit-1.4.27.jar",
+    "primary": true,
+    "size": 293155,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.20.5",
+   "1.20.6",
+   "1.21",
+   "1.21.1"
+  ],
+  "loaders": [
+   "bukkit",
+   "folia",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "6ENKPUbu",
+  "project_id": "fALzjamp",
+  "author_id": "nfBsvT1J",
+  "featured": false,
+  "name": "Chunky 1.4.10",
+  "version_number": "1.4.10",
+  "changelog_url": null,
+  "date_published": "2024-05-06T07:34:49.625633Z",
+  "downloads": 44731,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "W8zLYvT9",
+    "hashes": {
+     "sha512": "f44097dda6d60e8840f2fb5d9bf9d90c75f299fcdc71d5406a18ea8c97d0e3b662a8eb7be428243bde85b87107bb3effe74fcd6dc887bae14976cd94261948f3",
+     "sha1": "b9366f80cf0045cbb791ba7e11e00f608b98d012"
+    },
+    "url": "https://cdn.modrinth.com/data/fALzjamp/versions/6ENKPUbu/Chunky-1.4.10.jar",
+    "filename": "Chunky-1.4.10.jar",
+    "primary": true,
+    "size": 289180,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.18",
+   "1.18.1",
+   "1.18.2",
+   "1.19",
+   "1.19.1",
+   "1.19.2",
+   "1.19.3",
+   "1.19.4",
+   "1.20",
+   "1.20.1",
+   "1.20.2",
+   "1.20.3",
+   "1.20.4"
+  ],
+  "loaders": [
+   "bukkit",
+   "folia",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "y4mBluVX",
+  "project_id": "fALzjamp",
+  "author_id": "nfBsvT1J",
+  "featured": false,
+  "name": "Chunky 1.3.146",
+  "version_number": "1.3.146",
+  "changelog_url": null,
+  "date_published": "2024-05-06T07:28:14.180399Z",
+  "downloads": 46670,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "E9GdQJpV",
+    "hashes": {
+     "sha512": "18a0d3f8ad97da5da90f10422af4cfdd76c0053431367a30144395d73fd2ba0cb5ebafb6345bb5c9093f0ffe2d61b1c4d69b7813f722d2b2735c4bd62621a86b",
+     "sha1": "52a0b59ef563b7eaaa610be4884ff6780d7d4d04"
+    },
+    "url": "https://cdn.modrinth.com/data/fALzjamp/versions/y4mBluVX/Chunky-1.3.146.jar",
+    "filename": "Chunky-1.3.146.jar",
+    "primary": true,
+    "size": 289159,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.18",
+   "1.18.1",
+   "1.18.2",
+   "1.19",
+   "1.19.1",
+   "1.19.2",
+   "1.19.3",
+   "1.19.4",
+   "1.20",
+   "1.20.1",
+   "1.20.2",
+   "1.20.3",
+   "1.20.4"
+  ],
+  "loaders": [
+   "bukkit",
+   "folia",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "2WWxnEtU",
+  "project_id": "fALzjamp",
+  "author_id": "nfBsvT1J",
+  "featured": false,
+  "name": "Chunky 1.3.136",
+  "version_number": "1.3.136",
+  "changelog_url": null,
+  "date_published": "2024-02-15T08:06:29.925615Z",
+  "downloads": 13435,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "qCshsJbK",
+    "hashes": {
+     "sha512": "17d411a50711cf25a0e958bd63880005715cbefa5bf016a6b0b248f99da60475f61201d6251b4cdebd81a68ba5b4ab7c9094f9c3aea07a5575ec5b4966270c8a",
+     "sha1": "29b2bf30efaab24aac0c3f147fbe9d13fb63436d"
+    },
+    "url": "https://cdn.modrinth.com/data/fALzjamp/versions/2WWxnEtU/Chunky-1.3.136.jar",
+    "filename": "Chunky-1.3.136.jar",
+    "primary": true,
+    "size": 287392,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.18",
+   "1.18.1",
+   "1.18.2",
+   "1.19",
+   "1.19.1",
+   "1.19.2",
+   "1.19.3",
+   "1.19.4",
+   "1.20",
+   "1.20.1",
+   "1.20.2",
+   "1.20.3",
+   "1.20.4"
+  ],
+  "loaders": [
+   "bukkit",
+   "folia",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "B0xkCkk4",
+  "project_id": "fALzjamp",
+  "author_id": "nfBsvT1J",
+  "featured": false,
+  "name": "Chunky 1.3.92",
+  "version_number": "1.3.92",
+  "changelog_url": null,
+  "date_published": "2023-06-16T20:21:33.458191Z",
+  "downloads": 14963,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "E1MXzu1j",
+    "hashes": {
+     "sha512": "63c41849020276a6f0156fc5d11abef77ca53c1ab44a242c97ca522666809c29427805cff38b2de484c7d5e2f3e7eb3eb8a989abcfebbd20419718881e12b00b",
+     "sha1": "59dc03a2250c9d5ca9083de5ddab75ed9e282662"
+    },
+    "url": "https://cdn.modrinth.com/data/fALzjamp/versions/B0xkCkk4/Chunky-1.3.92.jar",
+    "filename": "Chunky-1.3.92.jar",
+    "primary": true,
+    "size": 271644,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.18",
+   "1.18.1",
+   "1.18.2",
+   "1.19",
+   "1.19.1",
+   "1.19.2",
+   "1.19.3",
+   "1.19.4",
+   "1.20"
+  ],
+  "loaders": [
+   "bukkit",
+   "folia",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "HTbjPjfx",
+  "project_id": "fALzjamp",
+  "author_id": "nfBsvT1J",
+  "featured": false,
+  "name": "Chunky 1.3.90",
+  "version_number": "1.3.90",
+  "changelog_url": null,
+  "date_published": "2023-06-10T06:40:42.947445Z",
+  "downloads": 818,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "9JAq55qN",
+    "hashes": {
+     "sha1": "6c091cf849f6cda62511824c318e23aa9eadf3c7",
+     "sha512": "7ee1ac5aeb6f15049e94da5aca1399570bf9e811c08c11c654cce9b5606ccb2db6556a1ac5879008fc5f81784383f2e476f6249e0c890c40d09f3d7a6c2e903f"
+    },
+    "url": "https://cdn.modrinth.com/data/fALzjamp/versions/HTbjPjfx/Chunky-1.3.90.jar",
+    "filename": "Chunky-1.3.90.jar",
+    "primary": true,
+    "size": 271055,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.18",
+   "1.18.1",
+   "1.18.2",
+   "1.19",
+   "1.19.1",
+   "1.19.2",
+   "1.19.3",
+   "1.19.4"
+  ],
+  "loaders": [
+   "bukkit",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "nC1d6gOK",
+  "project_id": "fALzjamp",
+  "author_id": "nfBsvT1J",
+  "featured": false,
+  "name": "Chunky 1.3.52",
+  "version_number": "1.3.52",
+  "changelog_url": null,
+  "date_published": "2022-12-15T10:53:07.495026Z",
+  "downloads": 2876,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "vC08DwiM",
+    "hashes": {
+     "sha512": "ff34a7567e118587851baa049de8629b2a06b2bf2674556bf9094e9b79d612fabab1ca0a36fe9e129c4dac5d9b63a29e8accba0c0c0c96d23d1b98769c6a7a74",
+     "sha1": "703dca4a7cdcdb4c0902a7d2b77514e67719d986"
+    },
+    "url": "https://cdn.modrinth.com/data/fALzjamp/versions/nC1d6gOK/Chunky-1.3.52.jar",
+    "filename": "Chunky-1.3.52.jar",
+    "primary": true,
+    "size": 273494,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.13.2",
+   "1.14",
+   "1.14.1",
+   "1.14.2",
+   "1.14.3",
+   "1.14.4",
+   "1.15",
+   "1.15.1",
+   "1.15.2",
+   "1.16",
+   "1.16.1",
+   "1.16.2",
+   "1.16.3",
+   "1.16.4",
+   "1.16.5",
+   "1.17",
+   "1.17.1",
+   "1.18",
+   "1.18.1",
+   "1.18.2",
+   "1.19",
+   "1.19.1",
+   "1.19.2"
+  ],
+  "loaders": [
+   "bukkit",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "3HVm7S45",
+  "project_id": "fALzjamp",
+  "author_id": "nfBsvT1J",
+  "featured": false,
+  "name": "Chunky 1.3.38",
+  "version_number": "1.3.38",
+  "changelog_url": null,
+  "date_published": "2022-09-06T11:00:01.081734Z",
+  "downloads": 13979,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "vl6JBv6y",
+    "hashes": {
+     "sha512": "4484934b5c7a1d886b557dd14d9f903776fbc4813633eb39ed3a35be9102f2239e25e94641456712e70772b2c4e414883606a77a1bf713e206599b01903fc946",
+     "sha1": "fee2436d8a650715083ddf58fde67291c84dbb41"
+    },
+    "url": "https://cdn.modrinth.com/data/fALzjamp/versions/3HVm7S45/Chunky-1.3.38.jar",
+    "filename": "Chunky-1.3.38.jar",
+    "primary": true,
+    "size": 270009,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.13.2",
+   "1.14",
+   "1.14.1",
+   "1.14.2",
+   "1.14.3",
+   "1.14.4",
+   "1.15",
+   "1.15.1",
+   "1.15.2",
+   "1.16",
+   "1.16.1",
+   "1.16.2",
+   "1.16.3",
+   "1.16.4",
+   "1.16.5",
+   "1.17",
+   "1.17.1",
+   "1.18",
+   "1.18.1",
+   "1.18.2",
+   "1.19",
+   "1.19.1",
+   "1.19.2"
+  ],
+  "loaders": [
+   "bukkit",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "2jPJJG5p",
+  "project_id": "fALzjamp",
+  "author_id": "nfBsvT1J",
+  "featured": false,
+  "name": "Chunky 1.2.217",
+  "version_number": "1.2.217",
+  "changelog_url": null,
+  "date_published": "2022-08-27T00:28:28.419970Z",
+  "downloads": 2257,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "j2kofe7E",
+    "hashes": {
+     "sha1": "d2ccb0cfd863e182d86a563447b51e240ebc4d0b",
+     "sha512": "6d4b119596514666f8dfd44c151ad89f71c2cd6a57cf830602eb31b90f1107b428d6fd5273420496696dbd8b57012297fa163b06617697b095c6c8236642e1bd"
+    },
+    "url": "https://cdn.modrinth.com/data/fALzjamp/versions/2jPJJG5p/Chunky-1.2.217.jar",
+    "filename": "Chunky-1.2.217.jar",
+    "primary": true,
+    "size": 221676,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ }
+]

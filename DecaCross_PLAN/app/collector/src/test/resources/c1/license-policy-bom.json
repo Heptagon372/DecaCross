@@ -1,0 +1,4 @@
+﻿{
+  "redistributableSpdx": ["MIT"],
+  "note": "통합 수정 V-1 테스트용: UTF-8 BOM 으로 시작, redistributableEnabled 없음 = false"
+}

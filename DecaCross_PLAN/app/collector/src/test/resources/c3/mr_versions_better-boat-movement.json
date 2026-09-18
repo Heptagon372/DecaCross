@@ -1,0 +1,44 @@
+[
+ {
+  "game_versions": [
+   "26.1",
+   "26.1.1",
+   "26.1.2",
+   "26.2",
+   "26.3"
+  ],
+  "loaders": [
+   "folia",
+   "paper",
+   "purpur"
+  ],
+  "environment": "unknown",
+  "id": "uHxekeNF",
+  "project_id": "wTfH1dkt",
+  "author_id": "qDVtmZJc",
+  "featured": false,
+  "name": "v3.1.0-26.1+paper",
+  "version_number": "3.1.0-26.1+paper",
+  "changelog_url": null,
+  "date_published": "2026-09-16T16:06:36.025893Z",
+  "downloads": 12,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "2ECnbs17",
+    "hashes": {
+     "sha1": "aa87e6797741db72a125925469d88e02b51f5511",
+     "sha512": "f0e0cd7f79a0a0eff32b6a7e4c43442ee2e06c26994f47775bc2dd927d17e3eb19fc81927433ac8964a6d0d5aaa1bd69e60b0797a185833f582a6e46a00a8150"
+    },
+    "url": "https://cdn.modrinth.com/data/wTfH1dkt/versions/uHxekeNF/better-boat-movement-3.1.0-26.1%2Bpaper.jar",
+    "filename": "better-boat-movement-3.1.0-26.1+paper.jar",
+    "primary": true,
+    "size": 92794,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ }
+]

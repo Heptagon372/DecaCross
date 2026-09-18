@@ -15,14 +15,16 @@ import kr.decacross.collector.store.StoredVersion
 import kr.decacross.collector.store.TableCounts
 import kr.decacross.collector.store.UpsertCount
 import kr.decacross.collector.store.VersionMeta
+import kr.decacross.collector.store.replacesStoredFile
 import kr.decacross.compat.model.CoreKey
 import kr.decacross.compat.model.DepKind
 import kr.decacross.compat.model.Source
 
 /**
  * 메모리 [CollectorStore]. PgCollectorStore 와 같은 **관찰 가능한 의미**를 가진 참조 구현이다
- * (서수 UPDATE 없음, 충돌 시 전체 롤백, sha256 null 이면 기존 값 유지, PROVIDES 분리 등).
- * WP0 소유 — 수정하지 말 것. 테스트 데이터는 공개 필드로 직접 넣어도 된다.
+ * (서수 UPDATE 없음, 충돌 시 전체 롤백, sha256 null 이면 기존 값 유지, 파일이 바뀌면 분석 무효화, PROVIDES 분리 등).
+ * WP0 소유 — 계약([kr.decacross.collector.store.CollectorStore]) 변경 없이 수정하지 말 것. 테스트 데이터는 공개 필드로 직접 넣어도 된다.
+ * (통합 수정 C3-R1: 파일 교체 시 분석 무효화 계약 추가에 맞춰 갱신.)
  */
 class RecordingStore(
     override val isDevDatabase: Boolean = true,
@@ -151,11 +153,23 @@ class RecordingStore(
     override suspend fun upsertContentVersionsMeta(contentId: Long, items: List<VersionMeta>): Map<String, Long> = synchronized(lock) {
         require(contentId in contents) { "unknown content $contentId" }
         val byVersion = versions.getOrPut(contentId) { LinkedHashMap() }
+        // PgCollectorStore.resetReplacedFiles 와 같다: 다른 파일을 가리키게 될 행은 분석·PROVIDES·sha256/size 를 먼저 비운다
+        val replaced = HashSet<Long>()
+        for ((version, item) in items.associateBy { it.row.version }) {
+            val (vid, meta) = byVersion[version] ?: continue
+            val storedSha = analyses[vid]?.sha256 ?: meta.row.sha256
+            if (replacesStoredFile(meta.row.sourceVersionId, meta.row.fileUrl, storedSha, item.row)) {
+                replaced += vid
+                analyses.remove(vid)
+                deps[vid] = deps[vid].orEmpty().filter { it.kind != DepKind.PROVIDES }.toMutableList()
+                byVersion[version] = vid to meta.copy(row = meta.row.copy(sha256 = null, size = null))
+            }
+        }
         val out = LinkedHashMap<String, Long>()
         for (item in items) {
             val old = byVersion[item.row.version]
             val vid = old?.first ?: id()
-            val merged = if (old == null) {
+            val merged = if (old == null || old.first in replaced) {
                 item
             } else {
                 item.copy(row = item.row.copy(sha256 = item.row.sha256 ?: old.second.row.sha256, size = item.row.size ?: old.second.row.size))

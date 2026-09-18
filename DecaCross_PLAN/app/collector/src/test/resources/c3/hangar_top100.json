@@ -1,0 +1,774 @@
+{
+ "pagination": {
+  "count": 5,
+  "limit": 50,
+  "offset": 0
+ },
+ "result": [
+  {
+   "createdAt": "2022-12-23T20:47:00.582094Z",
+   "publishedAt": "2022-12-23T20:57:21.569868Z",
+   "id": 12,
+   "name": "ViaBackwards",
+   "namespace": {
+    "owner": "ViaVersion",
+    "slug": "ViaBackwards"
+   },
+   "stats": {
+    "views": 1219861,
+    "downloads": 735427,
+    "recentViews": 36262,
+    "recentDownloads": 18316,
+    "stars": 281,
+    "watchers": 164
+   },
+   "category": "misc",
+   "description": "Allow Java Edition clients with older versions to connect to your Minecraft server",
+   "lastUpdated": "2026-09-07T15:52:32.866688Z",
+   "visibility": "public",
+   "userActions": null,
+   "settings": {
+    "links": [
+     {
+      "id": 0,
+      "type": "top",
+      "title": "top",
+      "links": [
+       {
+        "id": 4,
+        "name": "Donate",
+        "url": "https://github.com/sponsors/kennytv"
+       },
+       {
+        "id": 1,
+        "name": "Issues",
+        "url": "https://github.com/ViaVersion/ViaBackwards/issues"
+       },
+       {
+        "id": 2,
+        "name": "Source",
+        "url": "https://github.com/ViaVersion/ViaBackwards/"
+       },
+       {
+        "id": 3,
+        "name": "Support",
+        "url": "https://discord.gg/viaversion"
+       }
+      ]
+     },
+     {
+      "id": 1,
+      "type": "sidebar",
+      "title": "Early-Access builds",
+      "links": [
+       {
+        "id": 0,
+        "name": "GitHub Sponsors",
+        "url": "https://github.com/sponsors/kennytv/sponsorships?sponsor=kennytv&tier_id=385613&preview=false"
+       }
+      ]
+     }
+    ],
+    "tags": [
+     "SUPPORTS_FOLIA",
+     "ADDON"
+    ],
+    "license": {
+     "name": "GPL",
+     "url": "https://github.com/ViaVersion/ViaBackwards/blob/master/LICENSE",
+     "type": "GPL"
+    },
+    "keywords": [
+     "viaversion",
+     "viabackwards",
+     "protocolhack"
+    ],
+    "unlisted": false,
+    "donation": {
+     "subject": "",
+     "enable": false
+    }
+   },
+   "supportedPlatforms": {
+    "PAPER": [
+     "1.10",
+     "1.10.1",
+     "1.10.2",
+     "1.11",
+     "1.11.1",
+     "1.11.2",
+     "1.12",
+     "1.12.1",
+     "1.12.2",
+     "1.13",
+     "1.13.1",
+     "1.13.2",
+     "1.14",
+     "1.14.1",
+     "1.14.2",
+     "1.14.3",
+     "1.14.4",
+     "1.15",
+     "1.15.1",
+     "1.15.2",
+     "1.16",
+     "1.16.1",
+     "1.16.2",
+     "1.16.3",
+     "1.16.4",
+     "1.16.5",
+     "1.17",
+     "1.17.1",
+     "1.18",
+     "1.18.1",
+     "1.18.2",
+     "1.19",
+     "1.19.1",
+     "1.19.2",
+     "1.19.3",
+     "1.19.4",
+     "1.20",
+     "1.20.1",
+     "1.20.2",
+     "1.20.3",
+     "1.20.4",
+     "1.20.5",
+     "1.20.6",
+     "1.21",
+     "1.21.1",
+     "1.21.10",
+     "1.21.11",
+     "1.21.2",
+     "1.21.3",
+     "1.21.4",
+     "1.21.5",
+     "1.21.6",
+     "1.21.7",
+     "1.21.8",
+     "1.21.9",
+     "26.1",
+     "26.1.1",
+     "26.1.2",
+     "26.2"
+    ],
+    "WATERFALL": [
+     "1.19",
+     "1.20"
+    ],
+    "VELOCITY": [
+     "3.1",
+     "3.2",
+     "3.3",
+     "3.4",
+     "3.4.0",
+     "3.5"
+    ]
+   },
+   "memberNames": [
+    "kennytv",
+    "viaversion",
+    "formallymyles",
+    "jo0001",
+    "enzaxd",
+    "rk_01"
+   ],
+   "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/12.webp?v=1"
+  },
+  {
+   "createdAt": "2022-12-24T16:00:15.69127Z",
+   "publishedAt": "2023-01-10T18:54:50.752322Z",
+   "id": 23,
+   "name": "Essentials",
+   "namespace": {
+    "owner": "EssentialsX",
+    "slug": "Essentials"
+   },
+   "stats": {
+    "views": 372392,
+    "downloads": 110341,
+    "recentViews": 8508,
+    "recentDownloads": 2570,
+    "stars": 340,
+    "watchers": 176
+   },
+   "category": "admin_tools",
+   "description": "The essential plugin suite for Paper! (and Spigot)",
+   "lastUpdated": "2026-05-31T15:48:54.559387Z",
+   "visibility": "public",
+   "userActions": null,
+   "settings": {
+    "links": [
+     {
+      "id": 0,
+      "type": "top",
+      "title": "top",
+      "links": [
+       {
+        "id": 2,
+        "name": "Source",
+        "url": "https://github.com/EssentialsX/Essentials"
+       },
+       {
+        "id": 1,
+        "name": "Issues",
+        "url": "https://github.com/EssentialsX/Essentials/issues"
+       },
+       {
+        "id": 3,
+        "name": "Support",
+        "url": "https://essentialsx.net/community.html"
+       },
+       {
+        "id": 4,
+        "name": "Wiki",
+        "url": "https://essentialsx.net/wiki/Home.html"
+       }
+      ]
+     },
+     {
+      "id": 2,
+      "type": "sidebar",
+      "title": "🛟 Help!",
+      "links": [
+       {
+        "id": 0,
+        "name": "Get help on MOSS Discord",
+        "url": "https://discord.gg/h8CnPSw"
+       },
+       {
+        "id": 1,
+        "name": "Report bugs on GitHub",
+        "url": "https://github.com/EssentialsX/Essentials/issues/new/choose"
+       },
+       {
+        "id": 2,
+        "name": "API documentation",
+        "url": "https://jd-v2.essentialsx.net/"
+       }
+      ]
+     },
+     {
+      "id": 1,
+      "type": "sidebar",
+      "title": "💬 Community",
+      "links": [
+       {
+        "id": 3,
+        "name": "Request a feature",
+        "url": "https://github.com/EssentialsX/Essentials/issues/new/choose"
+       },
+       {
+        "id": 2,
+        "name": "GitHub Discussions forum",
+        "url": "https://github.com/EssentialsX/Essentials/discussions/"
+       },
+       {
+        "id": 1,
+        "name": "Development Discord",
+        "url": "https://discord.gg/bSrXB43nW7"
+       }
+      ]
+     }
+    ],
+    "tags": [],
+    "license": {
+     "name": "GPL",
+     "url": "https://github.com/EssentialsX/Essentials/blob/2.x/LICENSE",
+     "type": "GPL"
+    },
+    "keywords": [
+     "essentials",
+     "essentialsx",
+     "essx",
+     "bukkit",
+     "spigot"
+    ],
+    "unlisted": false,
+    "donation": {
+     "subject": "",
+     "enable": false
+    }
+   },
+   "supportedPlatforms": {
+    "PAPER": [
+     "1.10",
+     "1.10.1",
+     "1.10.2",
+     "1.11",
+     "1.11.1",
+     "1.11.2",
+     "1.12",
+     "1.12.1",
+     "1.12.2",
+     "1.13",
+     "1.13.1",
+     "1.13.2",
+     "1.14",
+     "1.14.1",
+     "1.14.2",
+     "1.14.3",
+     "1.14.4",
+     "1.15",
+     "1.15.1",
+     "1.15.2",
+     "1.16",
+     "1.16.1",
+     "1.16.2",
+     "1.16.3",
+     "1.16.4",
+     "1.16.5",
+     "1.17",
+     "1.17.1",
+     "1.18",
+     "1.18.1",
+     "1.18.2",
+     "1.19",
+     "1.19.1",
+     "1.19.2",
+     "1.19.3",
+     "1.19.4",
+     "1.20.1",
+     "1.20.6",
+     "1.21.11",
+     "1.21.4",
+     "1.21.5",
+     "1.21.8",
+     "1.8",
+     "1.8.8",
+     "1.9",
+     "1.9.1",
+     "1.9.2",
+     "1.9.3",
+     "1.9.4",
+     "26.1.2"
+    ]
+   },
+   "memberNames": [
+    "jroy",
+    "pop4959",
+    "mdcfe",
+    "kashike",
+    "essentialsx",
+    "chew"
+   ],
+   "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/23.webp?v=3"
+  },
+  {
+   "createdAt": "2022-12-23T23:21:00.76682Z",
+   "publishedAt": "2022-12-23T23:26:25.893212Z",
+   "id": 14,
+   "name": "Geyser",
+   "namespace": {
+    "owner": "GeyserMC",
+    "slug": "Geyser"
+   },
+   "stats": {
+    "views": 304978,
+    "downloads": 81270,
+    "recentViews": 7465,
+    "recentDownloads": 2225,
+    "stars": 348,
+    "watchers": 176
+   },
+   "category": "misc",
+   "description": "A bridge/proxy allowing you to connect to Minecraft: Java Edition servers with Minecraft: Bedrock Edition.",
+   "lastUpdated": "2023-03-19T20:49:50.933106Z",
+   "visibility": "public",
+   "userActions": null,
+   "settings": {
+    "links": [
+     {
+      "id": 0,
+      "type": "top",
+      "title": "top",
+      "links": [
+       {
+        "id": 0,
+        "name": "Homepage",
+        "url": "https://geysermc.org"
+       },
+       {
+        "id": 1,
+        "name": "Issues",
+        "url": "https://github.com/GeyserMC/Geyser/issues"
+       },
+       {
+        "id": 2,
+        "name": "Source",
+        "url": "https://github.com/GeyserMC/Geyser"
+       },
+       {
+        "id": 3,
+        "name": "Support",
+        "url": "https://discord.gg/GeyserMC"
+       },
+       {
+        "id": 4,
+        "name": "Wiki",
+        "url": "https://wiki.geysermc.org"
+       }
+      ]
+     }
+    ],
+    "tags": [
+     "SUPPORTS_FOLIA"
+    ],
+    "license": {
+     "name": "MIT",
+     "url": "https://github.com/GeyserMC/Geyser/blob/master/LICENSE",
+     "type": "MIT"
+    },
+    "keywords": [
+     "java",
+     "bedrock",
+     "translator",
+     "proxy",
+     "protocol"
+    ],
+    "unlisted": false,
+    "donation": {
+     "subject": "",
+     "enable": false
+    }
+   },
+   "supportedPlatforms": {
+    "PAPER": [
+     "1.13",
+     "1.13.1",
+     "1.13.2",
+     "1.14",
+     "1.14.1",
+     "1.14.2",
+     "1.14.3",
+     "1.14.4",
+     "1.15",
+     "1.15.1",
+     "1.15.2",
+     "1.16",
+     "1.16.1",
+     "1.16.2",
+     "1.16.3",
+     "1.16.4",
+     "1.16.5",
+     "1.17",
+     "1.17.1",
+     "1.18",
+     "1.18.1",
+     "1.18.2",
+     "1.19",
+     "1.19.1",
+     "1.19.2",
+     "1.19.3",
+     "1.20",
+     "1.20.1",
+     "1.20.2",
+     "1.20.3",
+     "1.20.4",
+     "1.20.5",
+     "1.20.6",
+     "1.21",
+     "1.21.1",
+     "1.21.10",
+     "1.21.11",
+     "1.21.2",
+     "1.21.3",
+     "1.21.4",
+     "1.21.5",
+     "1.21.6",
+     "1.21.7",
+     "1.21.8",
+     "1.21.9",
+     "26.1",
+     "26.1.1",
+     "26.1.2",
+     "26.2"
+    ],
+    "WATERFALL": [
+     "1.19",
+     "1.20",
+     "1.21"
+    ],
+    "VELOCITY": [
+     "3.0",
+     "3.1",
+     "3.5",
+     "3.5.0",
+     "3.5.1",
+     "4.0.0",
+     "4.1.0",
+     "4.1.1"
+    ]
+   },
+   "memberNames": [
+    "tim203",
+    "geysermc",
+    "camotoy",
+    "redned",
+    "rtm516",
+    "amberichu"
+   ],
+   "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/14.webp?v=1"
+  },
+  {
+   "createdAt": "2023-04-22T21:14:09.755343Z",
+   "publishedAt": "2023-04-22T21:42:59.295939Z",
+   "id": 463,
+   "name": "HuskHomes",
+   "namespace": {
+    "owner": "William278",
+    "slug": "HuskHomes"
+   },
+   "stats": {
+    "views": 113657,
+    "downloads": 11781,
+    "recentViews": 5328,
+    "recentDownloads": 264,
+    "stars": 50,
+    "watchers": 20
+   },
+   "category": "admin_tools",
+   "description": "The powerful and intuitive set homes, warps, and teleports plugin/mod",
+   "lastUpdated": "2026-08-18T17:39:11.472583Z",
+   "visibility": "public",
+   "userActions": null,
+   "settings": {
+    "links": [
+     {
+      "id": 0,
+      "type": "top",
+      "title": null,
+      "links": [
+       {
+        "id": 0,
+        "name": "Issues",
+        "url": "https://github.com/WiIIiam278/HuskHomes/issues"
+       },
+       {
+        "id": 1,
+        "name": "Source",
+        "url": "https://github.com/WiIIiam278/HuskHomes/"
+       },
+       {
+        "id": 2,
+        "name": "Docs",
+        "url": "https://william278.net/docs/huskhomes"
+       },
+       {
+        "id": 3,
+        "name": "Discord",
+        "url": "https://discord.gg/tVYhJfyDWG"
+       }
+      ]
+     },
+     {
+      "id": 1,
+      "type": "sidebar",
+      "title": "Donations",
+      "links": [
+       {
+        "id": 0,
+        "name": "Buy Me A Coffee",
+        "url": "https://buymeacoffee.com/William278"
+       },
+       {
+        "id": 1,
+        "name": "GitHub Sponsors",
+        "url": "https://github.com/sponsors/WiIIiam278"
+       }
+      ]
+     }
+    ],
+    "tags": [
+     "SUPPORTS_FOLIA"
+    ],
+    "license": {
+     "name": "Apache 2.0",
+     "url": null,
+     "type": "Apache 2.0"
+    },
+    "keywords": [
+     "teleportation",
+     "utility",
+     "homes",
+     "warps",
+     "spawn"
+    ],
+    "unlisted": false,
+    "donation": {
+     "subject": "",
+     "enable": false
+    }
+   },
+   "supportedPlatforms": {
+    "PAPER": [
+     "1.16.5",
+     "1.17.1",
+     "1.18",
+     "1.18.1",
+     "1.18.2",
+     "1.19",
+     "1.19.1",
+     "1.19.2",
+     "1.19.3",
+     "1.19.4",
+     "1.20",
+     "1.20.1",
+     "1.20.2",
+     "1.20.3",
+     "1.20.4",
+     "1.20.5",
+     "1.20.6",
+     "1.21",
+     "1.21.1",
+     "1.21.11",
+     "1.21.2",
+     "1.21.3",
+     "1.21.4",
+     "1.21.5",
+     "1.21.6",
+     "1.21.7",
+     "1.21.8",
+     "26.1.1",
+     "26.1.2",
+     "26.2"
+    ]
+   },
+   "memberNames": [
+    "william278"
+   ],
+   "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/463.webp?v=2"
+  },
+  {
+   "createdAt": "2022-12-23T20:25:56.75066Z",
+   "publishedAt": "2022-12-23T20:42:16.522044Z",
+   "id": 10,
+   "name": "CoreProtect",
+   "namespace": {
+    "owner": "CORE",
+    "slug": "CoreProtect"
+   },
+   "stats": {
+    "views": 166051,
+    "downloads": 38195,
+    "recentViews": 5535,
+    "recentDownloads": 1270,
+    "stars": 267,
+    "watchers": 153
+   },
+   "category": "admin_tools",
+   "description": "CoreProtect is a fast, efficient, data logging and anti-griefing tool. Rollback and restore any amount of damage.",
+   "lastUpdated": "2026-07-07T21:15:32.945925Z",
+   "visibility": "public",
+   "userActions": null,
+   "settings": {
+    "links": [
+     {
+      "id": 0,
+      "type": "top",
+      "title": "top",
+      "links": [
+       {
+        "id": 0,
+        "name": "Homepage",
+        "url": "https://coreprotect.net"
+       },
+       {
+        "id": 1,
+        "name": "Issues",
+        "url": "https://github.com/PlayPro/CoreProtect/issues"
+       },
+       {
+        "id": 2,
+        "name": "Source",
+        "url": "https://github.com/PlayPro/CoreProtect"
+       },
+       {
+        "id": 3,
+        "name": "Support",
+        "url": "https://discord.gg/b4DZ4jy"
+       },
+       {
+        "id": 4,
+        "name": "Wiki",
+        "url": "https://docs.coreprotect.net"
+       }
+      ]
+     }
+    ],
+    "tags": [],
+    "license": {
+     "name": "Artistic License 2.0",
+     "url": "https://github.com/PlayPro/CoreProtect/blob/master/LICENSE",
+     "type": "Other"
+    },
+    "keywords": [
+     "Rollback",
+     "Restore",
+     "Logging",
+     "Grief",
+     "Anti-Griefing"
+    ],
+    "unlisted": false,
+    "donation": {
+     "subject": "",
+     "enable": false
+    }
+   },
+   "supportedPlatforms": {
+    "PAPER": [
+     "1.14",
+     "1.14.1",
+     "1.14.2",
+     "1.14.3",
+     "1.14.4",
+     "1.15",
+     "1.15.1",
+     "1.15.2",
+     "1.16",
+     "1.16.1",
+     "1.16.2",
+     "1.16.3",
+     "1.16.4",
+     "1.16.5",
+     "1.17",
+     "1.17.1",
+     "1.18",
+     "1.18.1",
+     "1.18.2",
+     "1.19",
+     "1.19.1",
+     "1.19.2",
+     "1.19.3",
+     "1.19.4",
+     "1.20",
+     "1.20.1",
+     "1.20.2",
+     "1.20.3",
+     "1.20.4",
+     "1.20.5",
+     "1.20.6",
+     "1.21",
+     "1.21.1",
+     "1.21.10",
+     "1.21.11",
+     "1.21.2",
+     "1.21.3",
+     "1.21.4",
+     "1.21.5",
+     "1.21.6",
+     "1.21.7",
+     "1.21.8",
+     "1.21.9",
+     "26.1",
+     "26.1.1",
+     "26.1.2"
+    ]
+   },
+   "memberNames": [
+    "intelli",
+    "core"
+   ],
+   "avatarUrl": "https://hangarcdn.papermc.io/avatars/project/10.webp?v=1"
+  }
+ ]
+}

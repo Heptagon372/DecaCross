@@ -1,6 +1,7 @@
 package kr.decacross.analysis
 
 import java.nio.file.Path
+import java.util.zip.ZipFile
 
 // ── jar descriptor 메타데이터 ─────────────────────────────────────────────
 // plugin.yml / paper-plugin.yml / fabric.mod.json / (neoforge.)mods.toml.
@@ -143,7 +144,50 @@ public sealed interface DescriptorParse {
  *
  * @throws java.io.IOException jar 를 zip 으로 열 수 없을 때.
  */
-internal fun readJarDescriptors(jar: Path): JarDescriptors = TODO("WP-JA")
+internal fun readJarDescriptors(jar: Path): JarDescriptors = withZipFile(jar) { zip -> readJarDescriptors(zip) }
+
+/** TOML descriptor 는 이번 Phase 에서 해석하지 않는다 (설계 D36 / SCP-18). */
+private const val TOML_NOT_SUPPORTED: String = "TOML descriptor 는 Phase 2 (파서 미도입)"
+
+/** 루트 descriptor 항목 → 종류·해석기. 순서가 곧 [JarDescriptors.all] 의 순서다 (Paper 우선순위). */
+private val DESCRIPTOR_ENTRIES: List<Triple<String, JarMeta.Descriptor, ((String) -> DescriptorParse)?>> = listOf(
+    Triple("paper-plugin.yml", JarMeta.Descriptor.PAPER_PLUGIN_YML, ::parsePaperPluginYmlText),
+    Triple("plugin.yml", JarMeta.Descriptor.PLUGIN_YML, ::parsePluginYmlText),
+    Triple("fabric.mod.json", JarMeta.Descriptor.FABRIC_MOD_JSON, ::parseFabricModJsonText),
+    Triple("META-INF/neoforge.mods.toml", JarMeta.Descriptor.NEOFORGE_MODS_TOML, null),
+    Triple("META-INF/mods.toml", JarMeta.Descriptor.MODS_TOML, null),
+)
+
+/**
+ * 이미 열린 zip 에서 descriptor 를 읽는다.
+ *
+ * @throws java.io.IOException 항목 데이터가 손상됐을 때.
+ */
+internal fun readJarDescriptors(zip: ZipFile): JarDescriptors {
+    val all = ArrayList<JarMeta>()
+    val invalid = ArrayList<InvalidDescriptor>()
+    for ((entryName, kind, parser) in DESCRIPTOR_ENTRIES) {
+        val bytes = when (val read = zip.readRootEntry(entryName, DESCRIPTOR_MAX_BYTES)) {
+            RootEntryRead.Absent -> continue
+
+            RootEntryRead.TooLarge -> {
+                invalid += InvalidDescriptor(kind, "$entryName 크기 상한(${DESCRIPTOR_MAX_BYTES / 1024} KiB) 초과 — 읽지 않음")
+                continue
+            }
+
+            is RootEntryRead.Bytes -> read.bytes
+        }
+        if (parser == null) {
+            invalid += InvalidDescriptor(kind, TOML_NOT_SUPPORTED)
+            continue
+        }
+        when (val parsed = parser(decodeDescriptorText(bytes))) {
+            is DescriptorParse.Parsed -> all += parsed.meta
+            is DescriptorParse.Invalid -> invalid += parsed.problem
+        }
+    }
+    return JarDescriptors(all, invalid)
+}
 
 /**
  * 명세 §6 시그니처. [JarDescriptors.primary]. descriptor 가 없거나 우선 descriptor 가 깨졌으면 null.
@@ -153,13 +197,13 @@ internal fun readJarDescriptors(jar: Path): JarDescriptors = TODO("WP-JA")
 public fun readJarMeta(jar: Path): JarMeta? = readJarDescriptors(jar).primary
 
 /** plugin.yml 텍스트 (Bukkit `PluginDescriptionFile` 시맨틱, float 미해석 리졸버). */
-public fun parsePluginYml(text: String): DescriptorParse = TODO("WP-JA")
+public fun parsePluginYml(text: String): DescriptorParse = parsePluginYmlText(text)
 
 /**
  * paper-plugin.yml 텍스트 (Configurate 시맨틱, 기본 리졸버 — float 해석). 레거시 형식도 받는다.
  * `api-version` 하한 비교(1.19)는 Paper `ApiVersion` 을 흉내 낸 **로더 계약 검사**다 — MC 버전 비교가 아니다 (불변식 1).
  */
-public fun parsePaperPluginYml(text: String): DescriptorParse = TODO("WP-JA")
+public fun parsePaperPluginYml(text: String): DescriptorParse = parsePaperPluginYmlText(text)
 
 /** fabric.mod.json 텍스트 (schemaVersion 1). */
-public fun parseFabricModJson(text: String): DescriptorParse = TODO("WP-JA")
+public fun parseFabricModJson(text: String): DescriptorParse = parseFabricModJsonText(text)

@@ -1,0 +1,3185 @@
+{
+ "ViaBackwards": {
+  "pagination": {
+   "count": 14,
+   "limit": 25,
+   "offset": 0
+  },
+  "result": [
+   {
+    "createdAt": "2026-09-07T15:52:32.866688Z",
+    "id": 29990,
+    "projectId": 12,
+    "name": "5.12.0-SNAPSHOT+626",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 1972,
+     "platformDownloads": {
+      "PAPER": 1803,
+      "VELOCITY": 169
+     }
+    },
+    "author": "kennytv",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-08-10T12:49:29.210401Z",
+     "name": "Snapshot",
+     "description": "Development builds",
+     "color": "#84cc16",
+     "flags": []
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.12.0-SNAPSHOT.jar",
+       "sizeBytes": 1390181,
+       "sha256Hash": "1a11fdcadf88463466ab63bae4ed3ceb17b28a5ee7deb7ae60d22f5478539d2f"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.12.0-SNAPSHOT%2B626/PAPER/ViaBackwards-5.12.0-SNAPSHOT.jar"
+     },
+     "VELOCITY": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.12.0-SNAPSHOT.jar",
+       "sizeBytes": 1390181,
+       "sha256Hash": "1a11fdcadf88463466ab63bae4ed3ceb17b28a5ee7deb7ae60d22f5478539d2f"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.12.0-SNAPSHOT%2B626/PAPER/ViaBackwards-5.12.0-SNAPSHOT.jar"
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "PAPER"
+      },
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "PAPER"
+      }
+     ],
+     "VELOCITY": [
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      },
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10",
+      "1.10.1",
+      "1.10.2",
+      "1.11",
+      "1.11.1",
+      "1.11.2",
+      "1.12",
+      "1.12.1",
+      "1.12.2",
+      "1.13",
+      "1.13.1",
+      "1.13.2",
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.10",
+      "1.21.11",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "26.1",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ],
+     "VELOCITY": [
+      "3.4",
+      "3.4.0",
+      "3.5"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.10-26.2"
+     ],
+     "VELOCITY": [
+      "3.4-3.5"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-09-04T19:06:33.399337Z",
+    "id": 29880,
+    "projectId": 12,
+    "name": "5.12.0-SNAPSHOT+625",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 629,
+     "platformDownloads": {
+      "PAPER": 584,
+      "VELOCITY": 45
+     }
+    },
+    "author": "kennytv",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-08-10T12:49:29.210401Z",
+     "name": "Snapshot",
+     "description": "Development builds",
+     "color": "#84cc16",
+     "flags": []
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.12.0-SNAPSHOT.jar",
+       "sizeBytes": 1390179,
+       "sha256Hash": "a38abb8b1da7ff4e4ef69b31f45ae0d120298fc645e7454bec9c14d72a9027bf"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.12.0-SNAPSHOT%2B625/PAPER/ViaBackwards-5.12.0-SNAPSHOT.jar"
+     },
+     "VELOCITY": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.12.0-SNAPSHOT.jar",
+       "sizeBytes": 1390179,
+       "sha256Hash": "a38abb8b1da7ff4e4ef69b31f45ae0d120298fc645e7454bec9c14d72a9027bf"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.12.0-SNAPSHOT%2B625/PAPER/ViaBackwards-5.12.0-SNAPSHOT.jar"
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "PAPER"
+      },
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "PAPER"
+      }
+     ],
+     "VELOCITY": [
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      },
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10",
+      "1.10.1",
+      "1.10.2",
+      "1.11",
+      "1.11.1",
+      "1.11.2",
+      "1.12",
+      "1.12.1",
+      "1.12.2",
+      "1.13",
+      "1.13.1",
+      "1.13.2",
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.10",
+      "1.21.11",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "26.1",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ],
+     "VELOCITY": [
+      "3.4",
+      "3.4.0",
+      "3.5"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.10-26.2"
+     ],
+     "VELOCITY": [
+      "3.4-3.5"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-09-04T19:05:29.265774Z",
+    "id": 29879,
+    "projectId": 12,
+    "name": "5.12.0-SNAPSHOT+624",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 2,
+     "platformDownloads": {
+      "PAPER": 2
+     }
+    },
+    "author": "kennytv",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-08-10T12:49:29.210401Z",
+     "name": "Snapshot",
+     "description": "Development builds",
+     "color": "#84cc16",
+     "flags": []
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.12.0-SNAPSHOT.jar",
+       "sizeBytes": 1390179,
+       "sha256Hash": "249328b6983c22904196f5e790a5c455ef857cbb8ebb9ed74599b8a199e2a523"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.12.0-SNAPSHOT%2B624/PAPER/ViaBackwards-5.12.0-SNAPSHOT.jar"
+     },
+     "VELOCITY": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.12.0-SNAPSHOT.jar",
+       "sizeBytes": 1390179,
+       "sha256Hash": "249328b6983c22904196f5e790a5c455ef857cbb8ebb9ed74599b8a199e2a523"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.12.0-SNAPSHOT%2B624/PAPER/ViaBackwards-5.12.0-SNAPSHOT.jar"
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "PAPER"
+      },
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "PAPER"
+      }
+     ],
+     "VELOCITY": [
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      },
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10",
+      "1.10.1",
+      "1.10.2",
+      "1.11",
+      "1.11.1",
+      "1.11.2",
+      "1.12",
+      "1.12.1",
+      "1.12.2",
+      "1.13",
+      "1.13.1",
+      "1.13.2",
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.10",
+      "1.21.11",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "26.1",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ],
+     "VELOCITY": [
+      "3.4",
+      "3.4.0",
+      "3.5"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.10-26.2"
+     ],
+     "VELOCITY": [
+      "3.4-3.5"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-08-29T11:32:18.075965Z",
+    "id": 29595,
+    "projectId": 12,
+    "name": "5.12.0-SNAPSHOT+623",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 1281,
+     "platformDownloads": {
+      "PAPER": 1175,
+      "VELOCITY": 106
+     }
+    },
+    "author": "kennytv",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-08-10T12:49:29.210401Z",
+     "name": "Snapshot",
+     "description": "Development builds",
+     "color": "#84cc16",
+     "flags": []
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.12.0-SNAPSHOT.jar",
+       "sizeBytes": 1390080,
+       "sha256Hash": "df9a40a85f4be4416c7405e8091ece175d00ee4ac23aee040766c25cf3362280"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.12.0-SNAPSHOT%2B623/PAPER/ViaBackwards-5.12.0-SNAPSHOT.jar"
+     },
+     "VELOCITY": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.12.0-SNAPSHOT.jar",
+       "sizeBytes": 1390080,
+       "sha256Hash": "df9a40a85f4be4416c7405e8091ece175d00ee4ac23aee040766c25cf3362280"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.12.0-SNAPSHOT%2B623/PAPER/ViaBackwards-5.12.0-SNAPSHOT.jar"
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "PAPER"
+      },
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "PAPER"
+      }
+     ],
+     "VELOCITY": [
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      },
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10",
+      "1.10.1",
+      "1.10.2",
+      "1.11",
+      "1.11.1",
+      "1.11.2",
+      "1.12",
+      "1.12.1",
+      "1.12.2",
+      "1.13",
+      "1.13.1",
+      "1.13.2",
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.10",
+      "1.21.11",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "26.1",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ],
+     "VELOCITY": [
+      "3.4",
+      "3.4.0",
+      "3.5"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.10-26.2"
+     ],
+     "VELOCITY": [
+      "3.4-3.5"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-08-28T14:50:57.393789Z",
+    "id": 29568,
+    "projectId": 12,
+    "name": "5.12.0-SNAPSHOT+622",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 212,
+     "platformDownloads": {
+      "PAPER": 193,
+      "VELOCITY": 19
+     }
+    },
+    "author": "kennytv",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-08-10T12:49:29.210401Z",
+     "name": "Snapshot",
+     "description": "Development builds",
+     "color": "#84cc16",
+     "flags": []
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.12.0-SNAPSHOT.jar",
+       "sizeBytes": 1389906,
+       "sha256Hash": "f769136c3a39de606e3594d6a1beac75fa88503e64478a3075f0334e98164a24"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.12.0-SNAPSHOT%2B622/PAPER/ViaBackwards-5.12.0-SNAPSHOT.jar"
+     },
+     "VELOCITY": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.12.0-SNAPSHOT.jar",
+       "sizeBytes": 1389906,
+       "sha256Hash": "f769136c3a39de606e3594d6a1beac75fa88503e64478a3075f0334e98164a24"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.12.0-SNAPSHOT%2B622/PAPER/ViaBackwards-5.12.0-SNAPSHOT.jar"
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "PAPER"
+      },
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "PAPER"
+      }
+     ],
+     "VELOCITY": [
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      },
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10",
+      "1.10.1",
+      "1.10.2",
+      "1.11",
+      "1.11.1",
+      "1.11.2",
+      "1.12",
+      "1.12.1",
+      "1.12.2",
+      "1.13",
+      "1.13.1",
+      "1.13.2",
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.10",
+      "1.21.11",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "26.1",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ],
+     "VELOCITY": [
+      "3.4",
+      "3.4.0",
+      "3.5"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.10-26.2"
+     ],
+     "VELOCITY": [
+      "3.4-3.5"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-08-05T16:07:41.929392Z",
+    "id": 28561,
+    "projectId": 12,
+    "name": "5.12.0-SNAPSHOT+621",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 5231,
+     "platformDownloads": {
+      "PAPER": 4798,
+      "VELOCITY": 433
+     }
+    },
+    "author": "kennytv",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-08-10T12:49:29.210401Z",
+     "name": "Snapshot",
+     "description": "Development builds",
+     "color": "#84cc16",
+     "flags": []
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.12.0-SNAPSHOT.jar",
+       "sizeBytes": 1389828,
+       "sha256Hash": "46d4c0803530661eb778166e21940f1fc871d2273b8585d8c021e6e009e7ae70"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.12.0-SNAPSHOT%2B621/PAPER/ViaBackwards-5.12.0-SNAPSHOT.jar"
+     },
+     "VELOCITY": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.12.0-SNAPSHOT.jar",
+       "sizeBytes": 1389828,
+       "sha256Hash": "46d4c0803530661eb778166e21940f1fc871d2273b8585d8c021e6e009e7ae70"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.12.0-SNAPSHOT%2B621/PAPER/ViaBackwards-5.12.0-SNAPSHOT.jar"
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "PAPER"
+      },
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "PAPER"
+      }
+     ],
+     "VELOCITY": [
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      },
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10",
+      "1.10.1",
+      "1.10.2",
+      "1.11",
+      "1.11.1",
+      "1.11.2",
+      "1.12",
+      "1.12.1",
+      "1.12.2",
+      "1.13",
+      "1.13.1",
+      "1.13.2",
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.10",
+      "1.21.11",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "26.1",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ],
+     "VELOCITY": [
+      "3.4",
+      "3.4.0",
+      "3.5"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.10-26.2"
+     ],
+     "VELOCITY": [
+      "3.4-3.5"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-07-29T08:14:12.156621Z",
+    "id": 28329,
+    "projectId": 12,
+    "name": "5.11.1-SNAPSHOT+620",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 1212,
+     "platformDownloads": {
+      "PAPER": 1094,
+      "VELOCITY": 118
+     }
+    },
+    "author": "kennytv",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-08-10T12:49:29.210401Z",
+     "name": "Snapshot",
+     "description": "Development builds",
+     "color": "#84cc16",
+     "flags": []
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.11.1-SNAPSHOT.jar",
+       "sizeBytes": 1378833,
+       "sha256Hash": "ad45b4cca1c246a489a9c38fe7cb39f9718af17149b3bfd0468051d9a2404951"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.1-SNAPSHOT%2B620/PAPER/ViaBackwards-5.11.1-SNAPSHOT.jar"
+     },
+     "VELOCITY": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.11.1-SNAPSHOT.jar",
+       "sizeBytes": 1378833,
+       "sha256Hash": "ad45b4cca1c246a489a9c38fe7cb39f9718af17149b3bfd0468051d9a2404951"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.1-SNAPSHOT%2B620/PAPER/ViaBackwards-5.11.1-SNAPSHOT.jar"
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "PAPER"
+      },
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "PAPER"
+      }
+     ],
+     "VELOCITY": [
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      },
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10",
+      "1.10.1",
+      "1.10.2",
+      "1.11",
+      "1.11.1",
+      "1.11.2",
+      "1.12",
+      "1.12.1",
+      "1.12.2",
+      "1.13",
+      "1.13.1",
+      "1.13.2",
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.10",
+      "1.21.11",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "26.1",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ],
+     "VELOCITY": [
+      "3.4",
+      "3.4.0",
+      "3.5"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.10-26.2"
+     ],
+     "VELOCITY": [
+      "3.4-3.5"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-07-29T07:55:21.46697Z",
+    "id": 28326,
+    "projectId": 12,
+    "name": "5.11.1-SNAPSHOT+619",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 7,
+     "platformDownloads": {
+      "PAPER": 6,
+      "VELOCITY": 1
+     }
+    },
+    "author": "kennytv",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-08-10T12:49:29.210401Z",
+     "name": "Snapshot",
+     "description": "Development builds",
+     "color": "#84cc16",
+     "flags": []
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.11.1-SNAPSHOT.jar",
+       "sizeBytes": 1378590,
+       "sha256Hash": "daa51a6c0acd4dc06cb201d93fa4fedce614f5b70d5fd3a1835ec53ba0f8badf"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.1-SNAPSHOT%2B619/PAPER/ViaBackwards-5.11.1-SNAPSHOT.jar"
+     },
+     "VELOCITY": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.11.1-SNAPSHOT.jar",
+       "sizeBytes": 1378590,
+       "sha256Hash": "daa51a6c0acd4dc06cb201d93fa4fedce614f5b70d5fd3a1835ec53ba0f8badf"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.1-SNAPSHOT%2B619/PAPER/ViaBackwards-5.11.1-SNAPSHOT.jar"
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "PAPER"
+      },
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "PAPER"
+      }
+     ],
+     "VELOCITY": [
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      },
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10",
+      "1.10.1",
+      "1.10.2",
+      "1.11",
+      "1.11.1",
+      "1.11.2",
+      "1.12",
+      "1.12.1",
+      "1.12.2",
+      "1.13",
+      "1.13.1",
+      "1.13.2",
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.10",
+      "1.21.11",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "26.1",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ],
+     "VELOCITY": [
+      "3.4",
+      "3.4.0",
+      "3.5"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.10-26.2"
+     ],
+     "VELOCITY": [
+      "3.4-3.5"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-07-23T19:20:46.851215Z",
+    "id": 28118,
+    "projectId": 12,
+    "name": "5.11.1-SNAPSHOT+618",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 722,
+     "platformDownloads": {
+      "PAPER": 648,
+      "VELOCITY": 74
+     }
+    },
+    "author": "kennytv",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-08-10T12:49:29.210401Z",
+     "name": "Snapshot",
+     "description": "Development builds",
+     "color": "#84cc16",
+     "flags": []
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.11.1-SNAPSHOT.jar",
+       "sizeBytes": 1378785,
+       "sha256Hash": "e2dba088f90780980180f4666d12759e645daf4cc413a69ba95a9fb9513eefb7"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.1-SNAPSHOT%2B618/PAPER/ViaBackwards-5.11.1-SNAPSHOT.jar"
+     },
+     "VELOCITY": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.11.1-SNAPSHOT.jar",
+       "sizeBytes": 1378785,
+       "sha256Hash": "e2dba088f90780980180f4666d12759e645daf4cc413a69ba95a9fb9513eefb7"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.1-SNAPSHOT%2B618/PAPER/ViaBackwards-5.11.1-SNAPSHOT.jar"
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "PAPER"
+      },
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "PAPER"
+      }
+     ],
+     "VELOCITY": [
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      },
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10",
+      "1.10.1",
+      "1.10.2",
+      "1.11",
+      "1.11.1",
+      "1.11.2",
+      "1.12",
+      "1.12.1",
+      "1.12.2",
+      "1.13",
+      "1.13.1",
+      "1.13.2",
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.10",
+      "1.21.11",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "26.1",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ],
+     "VELOCITY": [
+      "3.4",
+      "3.4.0",
+      "3.5"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.10-26.2"
+     ],
+     "VELOCITY": [
+      "3.4-3.5"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-07-18T17:35:11.7722Z",
+    "id": 27930,
+    "projectId": 12,
+    "name": "5.11.1-SNAPSHOT+617",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 605,
+     "platformDownloads": {
+      "PAPER": 548,
+      "VELOCITY": 57
+     }
+    },
+    "author": "kennytv",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-08-10T12:49:29.210401Z",
+     "name": "Snapshot",
+     "description": "Development builds",
+     "color": "#84cc16",
+     "flags": []
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.11.1-SNAPSHOT.jar",
+       "sizeBytes": 1378762,
+       "sha256Hash": "aed168eed6393606a610623094921ea49da78433801cfd8517ea82acb468f72b"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.1-SNAPSHOT%2B617/PAPER/ViaBackwards-5.11.1-SNAPSHOT.jar"
+     },
+     "VELOCITY": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.11.1-SNAPSHOT.jar",
+       "sizeBytes": 1378762,
+       "sha256Hash": "aed168eed6393606a610623094921ea49da78433801cfd8517ea82acb468f72b"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.1-SNAPSHOT%2B617/PAPER/ViaBackwards-5.11.1-SNAPSHOT.jar"
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "PAPER"
+      },
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "PAPER"
+      }
+     ],
+     "VELOCITY": [
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      },
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10",
+      "1.10.1",
+      "1.10.2",
+      "1.11",
+      "1.11.1",
+      "1.11.2",
+      "1.12",
+      "1.12.1",
+      "1.12.2",
+      "1.13",
+      "1.13.1",
+      "1.13.2",
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.10",
+      "1.21.11",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "26.1",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ],
+     "VELOCITY": [
+      "3.4",
+      "3.4.0",
+      "3.5"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.10-26.2"
+     ],
+     "VELOCITY": [
+      "3.4-3.5"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-07-18T08:02:26.292049Z",
+    "id": 27904,
+    "projectId": 12,
+    "name": "5.11.1-SNAPSHOT+616",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 63,
+     "platformDownloads": {
+      "PAPER": 56,
+      "VELOCITY": 7
+     }
+    },
+    "author": "kennytv",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-08-10T12:49:29.210401Z",
+     "name": "Snapshot",
+     "description": "Development builds",
+     "color": "#84cc16",
+     "flags": []
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.11.1-SNAPSHOT.jar",
+       "sizeBytes": 1378739,
+       "sha256Hash": "46294136cb88b6e79e243ff75c6bed9afd301ab1ef41f37e6b2da59c8be670f3"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.1-SNAPSHOT%2B616/PAPER/ViaBackwards-5.11.1-SNAPSHOT.jar"
+     },
+     "VELOCITY": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.11.1-SNAPSHOT.jar",
+       "sizeBytes": 1378739,
+       "sha256Hash": "46294136cb88b6e79e243ff75c6bed9afd301ab1ef41f37e6b2da59c8be670f3"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.1-SNAPSHOT%2B616/PAPER/ViaBackwards-5.11.1-SNAPSHOT.jar"
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "PAPER"
+      },
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "PAPER"
+      }
+     ],
+     "VELOCITY": [
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      },
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10",
+      "1.10.1",
+      "1.10.2",
+      "1.11",
+      "1.11.1",
+      "1.11.2",
+      "1.12",
+      "1.12.1",
+      "1.12.2",
+      "1.13",
+      "1.13.1",
+      "1.13.2",
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.10",
+      "1.21.11",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "26.1",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ],
+     "VELOCITY": [
+      "3.4",
+      "3.4.0",
+      "3.5"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.10-26.2"
+     ],
+     "VELOCITY": [
+      "3.4-3.5"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-07-16T08:41:20.894943Z",
+    "id": 27832,
+    "projectId": 12,
+    "name": "5.11.1-SNAPSHOT+615",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 236,
+     "platformDownloads": {
+      "PAPER": 213,
+      "VELOCITY": 23
+     }
+    },
+    "author": "kennytv",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-08-10T12:49:29.210401Z",
+     "name": "Snapshot",
+     "description": "Development builds",
+     "color": "#84cc16",
+     "flags": []
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.11.1-SNAPSHOT.jar",
+       "sizeBytes": 1378696,
+       "sha256Hash": "f90f9b18482a9168a3d266ab9c0c5cb44de0241db516f07f3e6414f35f4fd81b"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.1-SNAPSHOT%2B615/PAPER/ViaBackwards-5.11.1-SNAPSHOT.jar"
+     },
+     "VELOCITY": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.11.1-SNAPSHOT.jar",
+       "sizeBytes": 1378696,
+       "sha256Hash": "f90f9b18482a9168a3d266ab9c0c5cb44de0241db516f07f3e6414f35f4fd81b"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.1-SNAPSHOT%2B615/PAPER/ViaBackwards-5.11.1-SNAPSHOT.jar"
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "PAPER"
+      },
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "PAPER"
+      }
+     ],
+     "VELOCITY": [
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      },
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10",
+      "1.10.1",
+      "1.10.2",
+      "1.11",
+      "1.11.1",
+      "1.11.2",
+      "1.12",
+      "1.12.1",
+      "1.12.2",
+      "1.13",
+      "1.13.1",
+      "1.13.2",
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.10",
+      "1.21.11",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "26.1",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ],
+     "VELOCITY": [
+      "3.4",
+      "3.4.0",
+      "3.5"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.10-26.2"
+     ],
+     "VELOCITY": [
+      "3.4-3.5"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-07-12T16:46:27.754527Z",
+    "id": 27686,
+    "projectId": 12,
+    "name": "5.11.0",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 32226,
+     "platformDownloads": {
+      "PAPER": 29883,
+      "VELOCITY": 2343
+     }
+    },
+    "author": "kennytv",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2022-12-23T20:47:00.590915Z",
+     "name": "Release",
+     "description": null,
+     "color": "#14b8a6",
+     "flags": [
+      "FROZEN",
+      "PINNED",
+      "SENDS_NOTIFICATIONS"
+     ]
+    },
+    "pinnedStatus": "CHANNEL",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.11.0.jar",
+       "sizeBytes": 1378644,
+       "sha256Hash": "41085a59d784c9a0d14917fe7487ef5e201a9da7825fd047f08d328ff33eecdc"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.0/PAPER/ViaBackwards-5.11.0.jar"
+     },
+     "VELOCITY": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.11.0.jar",
+       "sizeBytes": 1378644,
+       "sha256Hash": "41085a59d784c9a0d14917fe7487ef5e201a9da7825fd047f08d328ff33eecdc"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.0/PAPER/ViaBackwards-5.11.0.jar"
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "PAPER"
+      },
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "PAPER"
+      }
+     ],
+     "VELOCITY": [
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      },
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10",
+      "1.10.1",
+      "1.10.2",
+      "1.11",
+      "1.11.1",
+      "1.11.2",
+      "1.12",
+      "1.12.1",
+      "1.12.2",
+      "1.13",
+      "1.13.1",
+      "1.13.2",
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.10",
+      "1.21.11",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "26.1",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ],
+     "VELOCITY": [
+      "3.4",
+      "3.4.0",
+      "3.5"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.10-26.2"
+     ],
+     "VELOCITY": [
+      "3.4-3.5"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-07-12T16:07:00.651568Z",
+    "id": 27683,
+    "projectId": 12,
+    "name": "5.11.0-SNAPSHOT+613",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 41,
+     "platformDownloads": {
+      "PAPER": 38,
+      "VELOCITY": 3
+     }
+    },
+    "author": "kennytv",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-08-10T12:49:29.210401Z",
+     "name": "Snapshot",
+     "description": "Development builds",
+     "color": "#84cc16",
+     "flags": []
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.11.0-SNAPSHOT.jar",
+       "sizeBytes": 1378692,
+       "sha256Hash": "df8cd41075a937daeafdfba4acd534a148ad22858c2b204b5251a479437cf4dc"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.0-SNAPSHOT%2B613/PAPER/ViaBackwards-5.11.0-SNAPSHOT.jar"
+     },
+     "VELOCITY": {
+      "fileInfo": {
+       "name": "ViaBackwards-5.11.0-SNAPSHOT.jar",
+       "sizeBytes": 1378692,
+       "sha256Hash": "df8cd41075a937daeafdfba4acd534a148ad22858c2b204b5251a479437cf4dc"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/5.11.0-SNAPSHOT%2B613/PAPER/ViaBackwards-5.11.0-SNAPSHOT.jar"
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "PAPER"
+      },
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "PAPER"
+      }
+     ],
+     "VELOCITY": [
+      {
+       "name": "ViaVersion",
+       "projectId": 31,
+       "required": true,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      },
+      {
+       "name": "ViaRewind",
+       "projectId": 112,
+       "required": false,
+       "externalUrl": null,
+       "platform": "VELOCITY"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10",
+      "1.10.1",
+      "1.10.2",
+      "1.11",
+      "1.11.1",
+      "1.11.2",
+      "1.12",
+      "1.12.1",
+      "1.12.2",
+      "1.13",
+      "1.13.1",
+      "1.13.2",
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.10",
+      "1.21.11",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "26.1",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ],
+     "VELOCITY": [
+      "3.4",
+      "3.4.0",
+      "3.5"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.10-26.2"
+     ],
+     "VELOCITY": [
+      "3.4-3.5"
+     ]
+    }
+   }
+  ]
+ },
+ "Essentials": {
+  "pagination": {
+   "count": 7,
+   "limit": 25,
+   "offset": 0
+  },
+  "result": [
+   {
+    "createdAt": "2026-05-31T15:48:54.559387Z",
+    "id": 25952,
+    "projectId": 23,
+    "name": "2.22.0",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 10942,
+     "platformDownloads": {
+      "PAPER": 10942
+     }
+    },
+    "author": "mdcfe",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2022-12-24T16:00:15.758715Z",
+     "name": "Release",
+     "description": null,
+     "color": "#14b8a6",
+     "flags": [
+      "FROZEN",
+      "SENDS_NOTIFICATIONS",
+      "PINNED"
+     ]
+    },
+    "pinnedStatus": "CHANNEL",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": null,
+      "externalUrl": "https://github.com/EssentialsX/Essentials/releases/tag/2.22.0",
+      "downloadUrl": null
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "Vault",
+       "projectId": null,
+       "required": false,
+       "externalUrl": "https://www.spigotmc.org/resources/vault.34315/",
+       "platform": "PAPER"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10.2",
+      "1.11.2",
+      "1.12.2",
+      "1.13.2",
+      "1.14.4",
+      "1.15.2",
+      "1.16.5",
+      "1.17.1",
+      "1.18.2",
+      "1.19.4",
+      "1.20.6",
+      "1.21.11",
+      "1.8.8",
+      "1.9.4",
+      "26.1.2"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.8.8",
+      "1.9.4",
+      "1.10.2",
+      "1.11.2",
+      "1.12.2",
+      "1.13.2",
+      "1.14.4",
+      "1.15.2",
+      "1.16.5",
+      "1.17.1",
+      "1.18.2",
+      "1.19.4",
+      "1.20.6",
+      "1.21.11",
+      "26.1.2"
+     ]
+    }
+   },
+   {
+    "createdAt": "2025-08-03T19:26:49.659792Z",
+    "id": 18084,
+    "projectId": 23,
+    "name": "2.21.2",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 26367,
+     "platformDownloads": {
+      "PAPER": 26367
+     }
+    },
+    "author": "mdcfe",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2022-12-24T16:00:15.758715Z",
+     "name": "Release",
+     "description": null,
+     "color": "#14b8a6",
+     "flags": [
+      "FROZEN",
+      "SENDS_NOTIFICATIONS",
+      "PINNED"
+     ]
+    },
+    "pinnedStatus": "CHANNEL",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": null,
+      "externalUrl": "https://github.com/EssentialsX/Essentials/releases/tags/2.21.2",
+      "downloadUrl": null
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "Vault",
+       "projectId": null,
+       "required": false,
+       "externalUrl": "https://www.spigotmc.org/resources/vault.34315/",
+       "platform": "PAPER"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10.2",
+      "1.11.2",
+      "1.12.2",
+      "1.13.2",
+      "1.14.4",
+      "1.15.2",
+      "1.16.5",
+      "1.17.1",
+      "1.18.2",
+      "1.19.4",
+      "1.20.6",
+      "1.21.8",
+      "1.8.8",
+      "1.9.4"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.8.8",
+      "1.9.4",
+      "1.10.2",
+      "1.11.2",
+      "1.12.2",
+      "1.13.2",
+      "1.14.4",
+      "1.15.2",
+      "1.16.5",
+      "1.17.1",
+      "1.18.2",
+      "1.19.4",
+      "1.20.6",
+      "1.21.8"
+     ]
+    }
+   },
+   {
+    "createdAt": "2025-05-26T10:14:30.207299Z",
+    "id": 16074,
+    "projectId": 23,
+    "name": "2.21.1",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 9465,
+     "platformDownloads": {
+      "PAPER": 9465
+     }
+    },
+    "author": "mdcfe",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2022-12-24T16:00:15.758715Z",
+     "name": "Release",
+     "description": null,
+     "color": "#14b8a6",
+     "flags": [
+      "FROZEN",
+      "SENDS_NOTIFICATIONS",
+      "PINNED"
+     ]
+    },
+    "pinnedStatus": "CHANNEL",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": null,
+      "externalUrl": "https://github.com/EssentialsX/Essentials/releases/tag/2.21.1",
+      "downloadUrl": null
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "Vault",
+       "projectId": null,
+       "required": false,
+       "externalUrl": "https://www.spigotmc.org/resources/vault.34315/",
+       "platform": "PAPER"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10.2",
+      "1.11.2",
+      "1.12.2",
+      "1.13.2",
+      "1.14.4",
+      "1.15.2",
+      "1.16.5",
+      "1.17.1",
+      "1.18.2",
+      "1.19.4",
+      "1.20.6",
+      "1.21.5",
+      "1.8",
+      "1.9.4"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.8",
+      "1.9.4",
+      "1.10.2",
+      "1.11.2",
+      "1.12.2",
+      "1.13.2",
+      "1.14.4",
+      "1.15.2",
+      "1.16.5",
+      "1.17.1",
+      "1.18.2",
+      "1.19.4",
+      "1.20.6",
+      "1.21.5"
+     ]
+    }
+   },
+   {
+    "createdAt": "2025-03-22T22:48:37.551028Z",
+    "id": 13751,
+    "projectId": 23,
+    "name": "2.21.0",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 10337,
+     "platformDownloads": {
+      "PAPER": 10337
+     }
+    },
+    "author": "mdcfe",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2022-12-24T16:00:15.758715Z",
+     "name": "Release",
+     "description": null,
+     "color": "#14b8a6",
+     "flags": [
+      "FROZEN",
+      "SENDS_NOTIFICATIONS",
+      "PINNED"
+     ]
+    },
+    "pinnedStatus": "CHANNEL",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": null,
+      "externalUrl": "https://github.com/EssentialsX/Essentials/releases/tag/2.21.0",
+      "downloadUrl": null
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "Vault",
+       "projectId": null,
+       "required": false,
+       "externalUrl": "https://www.spigotmc.org/resources/vault.34315/",
+       "platform": "PAPER"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10.2",
+      "1.11.2",
+      "1.12.2",
+      "1.13.2",
+      "1.14.4",
+      "1.15.2",
+      "1.16.5",
+      "1.17.1",
+      "1.18.2",
+      "1.19.4",
+      "1.20.6",
+      "1.21.4",
+      "1.8",
+      "1.9.4"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.8",
+      "1.9.4",
+      "1.10.2",
+      "1.11.2",
+      "1.12.2",
+      "1.13.2",
+      "1.14.4",
+      "1.15.2",
+      "1.16.5",
+      "1.17.1",
+      "1.18.2",
+      "1.19.4",
+      "1.20.6",
+      "1.21.4"
+     ]
+    }
+   },
+   {
+    "createdAt": "2023-08-06T10:41:48.751944Z",
+    "id": 2150,
+    "projectId": 23,
+    "name": "2.20.1",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 48657,
+     "platformDownloads": {
+      "PAPER": 48657
+     }
+    },
+    "author": "mdcfe",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2022-12-24T16:00:15.758715Z",
+     "name": "Release",
+     "description": null,
+     "color": "#14b8a6",
+     "flags": [
+      "FROZEN",
+      "SENDS_NOTIFICATIONS",
+      "PINNED"
+     ]
+    },
+    "pinnedStatus": "CHANNEL",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": null,
+      "externalUrl": "https://github.com/EssentialsX/Essentials/releases/tag/2.20.1",
+      "downloadUrl": null
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "Vault",
+       "projectId": null,
+       "required": false,
+       "externalUrl": "https://www.spigotmc.org/resources/vault.34315/",
+       "platform": "PAPER"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10.2",
+      "1.11.2",
+      "1.12.2",
+      "1.13.2",
+      "1.14.4",
+      "1.15.2",
+      "1.16.5",
+      "1.17.1",
+      "1.18.2",
+      "1.19.4",
+      "1.20.1",
+      "1.8",
+      "1.9.4"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.8",
+      "1.9.4",
+      "1.10.2",
+      "1.11.2",
+      "1.12.2",
+      "1.13.2",
+      "1.14.4",
+      "1.15.2",
+      "1.16.5",
+      "1.17.1",
+      "1.18.2",
+      "1.19.4",
+      "1.20.1"
+     ]
+    }
+   },
+   {
+    "createdAt": "2023-05-23T15:54:35.001806Z",
+    "id": 1147,
+    "projectId": 23,
+    "name": "2.20.0",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 3613,
+     "platformDownloads": {
+      "PAPER": 3613
+     }
+    },
+    "author": "jroy",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2022-12-24T16:00:15.758715Z",
+     "name": "Release",
+     "description": null,
+     "color": "#14b8a6",
+     "flags": [
+      "FROZEN",
+      "SENDS_NOTIFICATIONS",
+      "PINNED"
+     ]
+    },
+    "pinnedStatus": "CHANNEL",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": null,
+      "externalUrl": "https://github.com/EssentialsX/Essentials/releases/tag/2.20.0",
+      "downloadUrl": null
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "Vault",
+       "projectId": null,
+       "required": false,
+       "externalUrl": "https://www.spigotmc.org/resources/vault.34315/",
+       "platform": "PAPER"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10",
+      "1.10.1",
+      "1.10.2",
+      "1.11",
+      "1.11.1",
+      "1.11.2",
+      "1.12",
+      "1.12.1",
+      "1.12.2",
+      "1.13",
+      "1.13.1",
+      "1.13.2",
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.8",
+      "1.9",
+      "1.9.1",
+      "1.9.2",
+      "1.9.3",
+      "1.9.4"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.8",
+      "1.9-1.19.4"
+     ]
+    }
+   },
+   {
+    "createdAt": "2023-01-10T18:54:50.752322Z",
+    "id": 71,
+    "projectId": 23,
+    "name": "2.19.7",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 957,
+     "platformDownloads": {
+      "PAPER": 957
+     }
+    },
+    "author": "mdcfe",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2022-12-24T16:00:15.758715Z",
+     "name": "Release",
+     "description": null,
+     "color": "#14b8a6",
+     "flags": [
+      "FROZEN",
+      "SENDS_NOTIFICATIONS",
+      "PINNED"
+     ]
+    },
+    "pinnedStatus": "CHANNEL",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": null,
+      "externalUrl": "https://github.com/EssentialsX/Essentials/releases/tag/2.19.7",
+      "downloadUrl": null
+     }
+    },
+    "pluginDependencies": {
+     "PAPER": [
+      {
+       "name": "Vault",
+       "projectId": null,
+       "required": false,
+       "externalUrl": "https://www.spigotmc.org/resources/vault.34315/",
+       "platform": "PAPER"
+      }
+     ]
+    },
+    "platformDependencies": {
+     "PAPER": [
+      "1.10",
+      "1.10.1",
+      "1.10.2",
+      "1.11",
+      "1.11.1",
+      "1.11.2",
+      "1.12",
+      "1.12.1",
+      "1.12.2",
+      "1.13",
+      "1.13.1",
+      "1.13.2",
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.8",
+      "1.9",
+      "1.9.1",
+      "1.9.2",
+      "1.9.3",
+      "1.9.4"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.8",
+      "1.9-1.19.3"
+     ]
+    }
+   }
+  ]
+ },
+ "HuskHomes": {
+  "pagination": {
+   "count": 6,
+   "limit": 25,
+   "offset": 0
+  },
+  "result": [
+   {
+    "createdAt": "2026-08-18T17:39:11.472583Z",
+    "id": 29163,
+    "projectId": 463,
+    "name": "4.11-7a2d09a",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 44,
+     "platformDownloads": {
+      "PAPER": 44
+     }
+    },
+    "author": "William278",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-04-22T21:26:50.724572Z",
+     "name": "Alpha",
+     "description": null,
+     "color": "#ef4444",
+     "flags": [
+      "UNSTABLE",
+      "SENDS_NOTIFICATIONS"
+     ]
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "HuskHomes-Paper-4.11-7a2d09a.jar",
+       "sizeBytes": 2307510,
+       "sha256Hash": "fda4d481602a80b7916f921e51f79ff3ad638c08b783faaeb2e2373835da32ce"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/William278/HuskHomes/versions/4.11-7a2d09a/PAPER/HuskHomes-Paper-4.11-7a2d09a.jar"
+     }
+    },
+    "pluginDependencies": {},
+    "platformDependencies": {
+     "PAPER": [
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.11",
+      "1.21.2",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.8",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.20.1-1.21.2",
+      "1.21.4-1.21.6",
+      "1.21.8",
+      "1.21.11",
+      "26.1.1-26.2"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-08-15T21:20:28.247486Z",
+    "id": 29005,
+    "projectId": 463,
+    "name": "4.11-5652e34",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 2,
+     "platformDownloads": {
+      "PAPER": 2
+     }
+    },
+    "author": "William278",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-04-22T21:26:50.724572Z",
+     "name": "Alpha",
+     "description": null,
+     "color": "#ef4444",
+     "flags": [
+      "UNSTABLE",
+      "SENDS_NOTIFICATIONS"
+     ]
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "HuskHomes-Paper-4.11-5652e34.jar",
+       "sizeBytes": 2307514,
+       "sha256Hash": "1e4420ef04200723fc37a5d898eb3572b92cf0a0804b3724a5d74a1df5774036"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/William278/HuskHomes/versions/4.11-5652e34/PAPER/HuskHomes-Paper-4.11-5652e34.jar"
+     }
+    },
+    "pluginDependencies": {},
+    "platformDependencies": {
+     "PAPER": [
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.11",
+      "1.21.2",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.8",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.20.1-1.21.2",
+      "1.21.4-1.21.6",
+      "1.21.8",
+      "1.21.11",
+      "26.1.1-26.2"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-08-15T19:26:58.276216Z",
+    "id": 29004,
+    "projectId": 463,
+    "name": "4.11-f717f80",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 0,
+     "platformDownloads": {}
+    },
+    "author": "William278",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-04-22T21:26:50.724572Z",
+     "name": "Alpha",
+     "description": null,
+     "color": "#ef4444",
+     "flags": [
+      "UNSTABLE",
+      "SENDS_NOTIFICATIONS"
+     ]
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "HuskHomes-Paper-4.11-f717f80.jar",
+       "sizeBytes": 2307513,
+       "sha256Hash": "79423526675326d015af25d18f8282f7967b9cea38808faf5af1ec401fb9761c"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/William278/HuskHomes/versions/4.11-f717f80/PAPER/HuskHomes-Paper-4.11-f717f80.jar"
+     }
+    },
+    "pluginDependencies": {},
+    "platformDependencies": {
+     "PAPER": [
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.11",
+      "1.21.2",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.8",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.20.1-1.21.2",
+      "1.21.4-1.21.6",
+      "1.21.8",
+      "1.21.11",
+      "26.1.1-26.2"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-08-15T16:46:46.000852Z",
+    "id": 28995,
+    "projectId": 463,
+    "name": "4.11-06b3254",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 0,
+     "platformDownloads": {}
+    },
+    "author": "William278",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-04-22T21:26:50.724572Z",
+     "name": "Alpha",
+     "description": null,
+     "color": "#ef4444",
+     "flags": [
+      "UNSTABLE",
+      "SENDS_NOTIFICATIONS"
+     ]
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "HuskHomes-Paper-4.11-06b3254.jar",
+       "sizeBytes": 2307515,
+       "sha256Hash": "d8b4b45d2c942b54077af1732edfb17d90e2de8a6de3d441ae242d89ffcadba5"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/William278/HuskHomes/versions/4.11-06b3254/PAPER/HuskHomes-Paper-4.11-06b3254.jar"
+     }
+    },
+    "pluginDependencies": {},
+    "platformDependencies": {
+     "PAPER": [
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.11",
+      "1.21.2",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.8",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.20.1-1.21.2",
+      "1.21.4-1.21.6",
+      "1.21.8",
+      "1.21.11",
+      "26.1.1-26.2"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-08-14T02:04:32.602735Z",
+    "id": 28940,
+    "projectId": 463,
+    "name": "4.11",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 241,
+     "platformDownloads": {
+      "PAPER": 241
+     }
+    },
+    "author": "William278",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-04-22T21:14:09.807767Z",
+     "name": "Release",
+     "description": null,
+     "color": "#14b8a6",
+     "flags": [
+      "FROZEN",
+      "SENDS_NOTIFICATIONS",
+      "PINNED"
+     ]
+    },
+    "pinnedStatus": "CHANNEL",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "HuskHomes-Paper-4.11.jar",
+       "sizeBytes": 2307272,
+       "sha256Hash": "4040f6b653f5fae0f030ecd98e93c3b7db34ddf361da9a5d2141e483c3eabaa3"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/William278/HuskHomes/versions/4.11/PAPER/HuskHomes-Paper-4.11.jar"
+     }
+    },
+    "pluginDependencies": {},
+    "platformDependencies": {
+     "PAPER": [
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.11",
+      "1.21.2",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.8"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.20.1-1.21.2",
+      "1.21.4-1.21.6",
+      "1.21.8",
+      "1.21.11"
+     ]
+    }
+   },
+   {
+    "createdAt": "2026-08-14T01:38:01.188439Z",
+    "id": 28939,
+    "projectId": 463,
+    "name": "4.11-af35b8a",
+    "visibility": "public",
+    "stats": {
+     "totalDownloads": 0,
+     "platformDownloads": {}
+    },
+    "author": "William278",
+    "reviewState": "reviewed",
+    "channel": {
+     "createdAt": "2023-04-22T21:26:50.724572Z",
+     "name": "Alpha",
+     "description": null,
+     "color": "#ef4444",
+     "flags": [
+      "UNSTABLE",
+      "SENDS_NOTIFICATIONS"
+     ]
+    },
+    "pinnedStatus": "NONE",
+    "downloads": {
+     "PAPER": {
+      "fileInfo": {
+       "name": "HuskHomes-Paper-4.11-af35b8a.jar",
+       "sizeBytes": 2307514,
+       "sha256Hash": "aa2d6bfc239cb6e286a897b1e51ee8a91e0f7438904cae1c7da1e22506be6916"
+      },
+      "externalUrl": null,
+      "downloadUrl": "https://hangarcdn.papermc.io/plugins/William278/HuskHomes/versions/4.11-af35b8a/PAPER/HuskHomes-Paper-4.11-af35b8a.jar"
+     }
+    },
+    "pluginDependencies": {},
+    "platformDependencies": {
+     "PAPER": [
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.11",
+      "1.21.2",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.8",
+      "26.1.1",
+      "26.1.2",
+      "26.2"
+     ]
+    },
+    "platformDependenciesFormatted": {
+     "PAPER": [
+      "1.20.1-1.21.2",
+      "1.21.4-1.21.6",
+      "1.21.8",
+      "1.21.11",
+      "26.1.1-26.2"
+     ]
+    }
+   }
+  ]
+ }
+}

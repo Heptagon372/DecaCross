@@ -1,0 +1,5 @@
+{
+  "redistributableEnabled": true,
+  "redistributableSpdx": ["MIT", "Apache-2.0"],
+  "note": "통합 수정 INV-4 테스트용: 스위치 켜짐"
+}

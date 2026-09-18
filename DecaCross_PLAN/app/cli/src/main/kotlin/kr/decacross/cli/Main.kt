@@ -62,4 +62,10 @@ class Lookup : CliktCommand(name = "lookup") {
     private fun fmt(pf: PackFormat?): String = pf?.toString() ?: "?(미수집)"
 }
 
-fun main(args: Array<String>) = DecaCross().subcommands(Lookup()).main(args)
+fun main(args: Array<String>) {
+    // 표준입력 읽기 스레드는 하나만 둔다 (EULA 프롬프트와 서버 콘솔 전달이 같은 채널을 나눠 쓴다)
+    val io = ConsoleIo()
+    DecaCross()
+        .subcommands(Lookup(), CreateCommand(io), ListCommand(io), StartCommand(io), StopCommand(io))
+        .main(args)
+}

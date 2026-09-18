@@ -115,8 +115,13 @@ public class PluginScan internal constructor(
     /** jar 전체 LDC 문자열 중 FQCN 모양(`a.b.C`)인 것 → 내부 이름. 리플렉션 경고 판정의 약한 근거. */
     public val classNameStrings: Set<String>,
 ) {
-    /** 기본 항목 클래스들의 major version 최댓값. MR jar 의 versions/N 은 제외 (그 JVM 에서만 로드된다). */
-    public val maxBaseMajor: Int? by lazy { base.values.maxOfOrNull { it.majorVersion } }
+    /**
+     * 기본 항목 클래스들의 major version 최댓값. MR jar 의 versions/N 은 제외 (그 JVM 에서만 로드된다).
+     * 제외 규칙은 [BytecodeProfile] 과 같은 [isJavaRequirementClass] 를 쓴다 (모듈 안 "Java 요구 버전" 정의는 하나).
+     */
+    public val maxBaseMajor: Int? by lazy {
+        base.values.filter { isJavaRequirementClass("${it.name}.class") }.maxOfOrNull { it.majorVersion }
+    }
 
     /** `javaFeature` 에서 실제로 로드될 클래스 정의들. [JarMemberIndex.resolve] 와 같은 규칙. */
     public fun effectiveClasses(javaFeature: Int): List<ClassScan> {
@@ -267,6 +272,9 @@ private class RefMethodVisitor(
     private var caught: Set<String> = emptySet()
     private var lastClassString: String? = null
 
+    /** [lastClassString] 위에 쌓인 값 수 — 조회 API 의 String 뒤 인자(boolean·로더)로 볼 수 있는 적재만 센다. */
+    private var valuesAboveString: Int = 0
+
     // ClassReader 는 명령어보다 먼저 예외 테이블을 방문한다 (MethodVisitor 계약: 라벨 방문 전에 호출).
     override fun visitTryCatchBlock(start: Label, end: Label, handler: Label, type: String?) {
         if (type != null) {
@@ -300,17 +308,80 @@ private class RefMethodVisitor(
         return super.visitParameterAnnotation(parameter, descriptor, visible)
     }
 
+    // ── lastClassString 수명 ──
+    // `ldc "a.b.C"` 뒤에 조회 API 의 나머지 인자 적재(`forName(String, boolean, ClassLoader)` 의 boolean·로더) 외의
+    // 명령이 오면 그 문자열은 조회 인자가 아니다 → 잊는다. 안 그러면 로그로 쓴 문자열이 뒤의 `forName(변수)` 에 붙는다.
+    // 인자 적재도 그 위에 쌓인 값 수를 세어, 조회 호출 시점에 String 이 정확히 그 인자 자리에 있을 때만 인정한다
+    // (`map.put("a.b.C", Class.forName(name))` 처럼 1-인자 조회 아래 깔린 문자열 오탐 방지).
+
+    /** 인자 적재로 볼 수 있는 명령: 값 [pops] 개를 꺼내고 [pushes] 개를 올린다. 문자열 자신까지 꺼내면 잊는다. */
+    private fun argumentLoad(pops: Int, pushes: Int) {
+        if (lastClassString == null) return
+        if (valuesAboveString < pops) {
+            lastClassString = null
+        } else {
+            valuesAboveString += pushes - pops
+        }
+    }
+
+    override fun visitInsn(opcode: Int) {
+        if (opcode == Opcodes.ICONST_0 || opcode == Opcodes.ICONST_1 || opcode == Opcodes.ACONST_NULL) {
+            argumentLoad(pops = 0, pushes = 1)
+        } else {
+            lastClassString = null
+        }
+        super.visitInsn(opcode)
+    }
+
+    override fun visitIntInsn(opcode: Int, operand: Int) {
+        lastClassString = null
+        super.visitIntInsn(opcode, operand)
+    }
+
+    override fun visitVarInsn(opcode: Int, varIndex: Int) {
+        if (opcode == Opcodes.ALOAD || opcode == Opcodes.ILOAD) argumentLoad(pops = 0, pushes = 1) else lastClassString = null
+        super.visitVarInsn(opcode, varIndex)
+    }
+
+    override fun visitJumpInsn(opcode: Int, label: Label) {
+        lastClassString = null
+        super.visitJumpInsn(opcode, label)
+    }
+
+    override fun visitIincInsn(varIndex: Int, increment: Int) {
+        lastClassString = null
+        super.visitIincInsn(varIndex, increment)
+    }
+
+    override fun visitTableSwitchInsn(min: Int, max: Int, dflt: Label, vararg labels: Label) {
+        lastClassString = null
+        super.visitTableSwitchInsn(min, max, dflt, *labels)
+    }
+
+    override fun visitLookupSwitchInsn(dflt: Label, keys: IntArray, labels: Array<out Label>) {
+        lastClassString = null
+        super.visitLookupSwitchInsn(dflt, keys, labels)
+    }
+
     override fun visitTypeInsn(opcode: Int, type: String) {
+        if (opcode == Opcodes.CHECKCAST) argumentLoad(pops = 1, pushes = 1) else lastClassString = null
         owner.addType(RefKind.TYPE_INSN, type, member, caught)
         super.visitTypeInsn(opcode, type)
     }
 
     override fun visitMultiANewArrayInsn(descriptor: String, numDimensions: Int) {
+        lastClassString = null
         owner.addDescriptor(RefKind.TYPE_INSN, descriptor, member, caught)
         super.visitMultiANewArrayInsn(descriptor, numDimensions)
     }
 
     override fun visitFieldInsn(opcode: Int, fieldOwner: String, name: String, descriptor: String) {
+        // 필드에서 로더를 읽는 것(GETSTATIC/GETFIELD)은 인자 적재로 본다
+        when (opcode) {
+            Opcodes.GETSTATIC -> argumentLoad(pops = 0, pushes = 1)
+            Opcodes.GETFIELD -> argumentLoad(pops = 1, pushes = 1)
+            else -> lastClassString = null
+        }
         elementClass(fieldOwner)?.let {
             owner.refs += ScannedRef(RefTarget(RefKind.FIELD_ACCESS, it, name, descriptor, opcode), member, caught)
         }
@@ -324,16 +395,24 @@ private class RefMethodVisitor(
         } else {
             owner.refs += ScannedRef(RefTarget(RefKind.METHOD_INVOKE, methodOwner, name, descriptor, opcode, isInterface), member, caught)
         }
-        val lookupApi = isReflectiveLookup(methodOwner, name, descriptor)
         val target = lastClassString
-        if (lookupApi && target != null) {
-            owner.reflective += ReflectiveLookup(target.replace('.', '/'), "$methodOwner.$name", member, caught)
+        if (isReflectiveLookup(methodOwner, name, descriptor)) {
+            // 문자열이 조회의 String 인자 자리에 있을 때만 (그 위에 쌓인 값 수 = String 뒤 인자 수)
+            if (target != null && valuesAboveString == argumentsAfterString(descriptor)) {
+                owner.reflective += ReflectiveLookup(target.replace('.', '/'), "$methodOwner.$name", member, caught)
+            }
+            lastClassString = null
+        } else if (isLoaderArgumentLoad(descriptor)) {
+            // 정적 호출은 값을 올리기만 하고, 인스턴스 호출은 수신자를 꺼내고 결과를 올린다
+            argumentLoad(pops = if (opcode == Opcodes.INVOKESTATIC) 0 else 1, pushes = 1)
+        } else {
             lastClassString = null
         }
         super.visitMethodInsn(opcode, methodOwner, name, descriptor, isInterface)
     }
 
     override fun visitInvokeDynamicInsn(name: String, descriptor: String, bootstrapMethodHandle: Handle, vararg bootstrapMethodArguments: Any?) {
+        lastClassString = null
         owner.addDescriptor(RefKind.METHOD_HANDLE, descriptor, member, caught)
         addHandle(bootstrapMethodHandle)
         bootstrapMethodArguments.forEach(::addConstant)
@@ -345,18 +424,38 @@ private class RefMethodVisitor(
             is String -> if (CLASS_NAME_STRING.matches(value)) {
                 owner.strings.add(value.replace('.', '/'))
                 lastClassString = value
+                valuesAboveString = 0
+            } else {
+                lastClassString = null
             }
 
             is Type -> if (value.sort == Type.OBJECT || value.sort == Type.ARRAY) {
+                // `Foo.class.getClassLoader()` 의 클래스 상수는 로더 인자 적재일 수 있다
+                argumentLoad(pops = 0, pushes = 1)
                 owner.addType(RefKind.TYPE_INSN, value.internalName, member, caught)
             } else {
+                lastClassString = null
                 addConstant(value)
             }
 
-            else -> addConstant(value)
+            else -> {
+                lastClassString = null
+                addConstant(value)
+            }
         }
         super.visitLdcInsn(value)
     }
+
+    /** 조회 기술자에서 첫 String 인자 뒤에 오는 인자 수 (`forName(String)` 0, `forName(String, boolean, ClassLoader)` 2, `forName(Module, String)` 0). */
+    private fun argumentsAfterString(descriptor: String): Int {
+        val arguments = Type.getArgumentTypes(descriptor)
+        val index = arguments.indexOfFirst { it.sort == Type.OBJECT && it.internalName == "java/lang/String" }
+        return if (index < 0) -1 else arguments.size - 1 - index
+    }
+
+    /** 인자 없이 Class / ClassLoader / Thread 를 돌려주는 호출 (`getClass`, `getClassLoader`, `currentThread` 등). */
+    private fun isLoaderArgumentLoad(descriptor: String): Boolean =
+        descriptor == "()Ljava/lang/Class;" || descriptor == "()Ljava/lang/ClassLoader;" || descriptor == "()Ljava/lang/Thread;"
 
     private fun addHandle(h: Handle) {
         elementClass(h.owner)?.let {

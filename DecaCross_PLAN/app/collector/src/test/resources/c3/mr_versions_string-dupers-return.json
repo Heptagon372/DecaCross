@@ -1,0 +1,199 @@
+[
+ {
+  "game_versions": [
+   "1.21",
+   "1.21.1",
+   "1.21.2",
+   "1.21.3",
+   "1.21.4",
+   "1.21.5",
+   "1.21.6",
+   "1.21.7",
+   "1.21.8",
+   "1.21.9",
+   "1.21.10",
+   "1.21.11",
+   "26.1",
+   "26.1.1",
+   "26.1.2",
+   "26.2",
+   "26.3"
+  ],
+  "loaders": [
+   "folia",
+   "paper",
+   "purpur",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "padTtIq6",
+  "project_id": "U6d1TJQm",
+  "author_id": "XDft23lh",
+  "featured": false,
+  "name": "String Dupers Return 1.0.12",
+  "version_number": "1.0.12",
+  "changelog_url": null,
+  "date_published": "2026-02-23T14:44:22.307804Z",
+  "downloads": 97599,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "nOC9aWXg",
+    "hashes": {
+     "sha1": "4decbcfcc41da83559e028531ed372e133503a5b",
+     "sha512": "a25e6a2c4b56b975062ca6b7ac1beb9fb0b95e4409464981df9c036085498da51640cf927f776b7780f3090976d25c456a224f15c4f129bc06d417f4f228d762"
+    },
+    "url": "https://cdn.modrinth.com/data/U6d1TJQm/versions/padTtIq6/StringDupersReturn-1.0.12.jar",
+    "filename": "StringDupersReturn-1.0.12.jar",
+    "primary": true,
+    "size": 32725,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.21.2",
+   "1.21.3",
+   "1.21.4",
+   "1.21.5",
+   "1.21.6",
+   "1.21.7",
+   "1.21.8",
+   "1.21.9",
+   "1.21.10",
+   "1.21.11"
+  ],
+  "loaders": [
+   "folia",
+   "paper",
+   "purpur",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "xTeVKr1m",
+  "project_id": "U6d1TJQm",
+  "author_id": "XDft23lh",
+  "featured": false,
+  "name": "String Dupers Return 1.0.11",
+  "version_number": "1.0.11",
+  "changelog_url": null,
+  "date_published": "2025-12-01T05:44:14.150231Z",
+  "downloads": 23032,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "gTCeoqrs",
+    "hashes": {
+     "sha512": "96da61290ac05bb97cb6c95bbab314f80c32dec6bfdc92c94026dcbd3f2847602accdd7d2688bb1a23aaffd4dd50ce4bca0194fcedf47488556ff07883599ef8",
+     "sha1": "bee73c266ea8cfee236b4f34fe26fb6c95f9d43f"
+    },
+    "url": "https://cdn.modrinth.com/data/U6d1TJQm/versions/xTeVKr1m/StringDupersReturn-1.0.11.jar",
+    "filename": "StringDupersReturn-1.0.11.jar",
+    "primary": true,
+    "size": 5441,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.21.2",
+   "1.21.3",
+   "1.21.4",
+   "1.21.5",
+   "1.21.6",
+   "1.21.7",
+   "1.21.8",
+   "1.21.9",
+   "1.21.10",
+   "1.21.11"
+  ],
+  "loaders": [
+   "paper",
+   "purpur",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "B2yvL6Fk",
+  "project_id": "U6d1TJQm",
+  "author_id": "XDft23lh",
+  "featured": true,
+  "name": "String Dupers Return 1.0.1",
+  "version_number": "1.0.1",
+  "changelog_url": null,
+  "date_published": "2025-05-11T11:42:17.542755Z",
+  "downloads": 15541,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "FD3GPcRp",
+    "hashes": {
+     "sha512": "b322971e5468336155d3679257955f2cce67741e9a686a255e6394b3ad41b262ce407d7009da36b775b11c57ea41708a72636ce06cc9ea4b8abf077d33aa2593",
+     "sha1": "6c270f29e36633a937b276d4d43ddd32a6dff560"
+    },
+    "url": "https://cdn.modrinth.com/data/U6d1TJQm/versions/B2yvL6Fk/StringDupersReturn-1.0.1.jar",
+    "filename": "StringDupersReturn-1.0.1.jar",
+    "primary": true,
+    "size": 5419,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.21.2",
+   "1.21.3",
+   "1.21.4",
+   "1.21.5",
+   "1.21.6",
+   "1.21.7",
+   "1.21.8",
+   "1.21.9",
+   "1.21.10",
+   "1.21.11"
+  ],
+  "loaders": [
+   "paper",
+   "purpur",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "AcTl23fr",
+  "project_id": "U6d1TJQm",
+  "author_id": "XDft23lh",
+  "featured": false,
+  "name": "String Dupers Return 1.0.0",
+  "version_number": "1.0.0",
+  "changelog_url": null,
+  "date_published": "2025-03-10T12:04:24.189182Z",
+  "downloads": 1492,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "awBtMcU4",
+    "hashes": {
+     "sha512": "d5baffe99fa609bcbc1b807816455d095b4f8669f68bbb6e281e6554a4fb2077751f613bdeb29d3ce21f2bd25e67442e87adf587f857ee5f143c31e7b7a82c14",
+     "sha1": "6e3181944f924d30e78cbbe7c8ffbe739566bf43"
+    },
+    "url": "https://cdn.modrinth.com/data/U6d1TJQm/versions/AcTl23fr/StringDupersReturn-1.0.0.jar",
+    "filename": "StringDupersReturn-1.0.0.jar",
+    "primary": true,
+    "size": 5379,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ }
+]

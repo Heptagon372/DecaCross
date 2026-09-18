@@ -1,0 +1,776 @@
+[
+ {
+  "game_versions": [
+   "1.8.8",
+   "1.8.9",
+   "1.9.4",
+   "1.10.2",
+   "1.11.2",
+   "1.12.2",
+   "1.13.2",
+   "1.14.4",
+   "1.15.2",
+   "1.16.5",
+   "1.17.1",
+   "1.18.2",
+   "1.19.4",
+   "1.20.6",
+   "1.21.11",
+   "26.1.2"
+  ],
+  "loaders": [
+   "bukkit",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "nY6VN1XH",
+  "project_id": "hXiIvTyT",
+  "author_id": "R5dS2mlb",
+  "featured": false,
+  "name": "2.22.0 - The Tiny Copper Mayhem Update",
+  "version_number": "2.22.0",
+  "changelog_url": null,
+  "date_published": "2026-05-31T15:05:35.376401Z",
+  "downloads": 235087,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "M9snGgmP",
+    "hashes": {
+     "sha512": "472ecf71924801723643ca6e1f9931297de5aa0874a544f8a719e2e2f7c81af81ef7bcbd38b6e43f0260a9dae6abe42c97907e70e2430e326ff8cff12ebd61cf",
+     "sha1": "c509ef487056e460dff2fbd0462ae8f0c3b5b0d2"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/nY6VN1XH/EssentialsX-2.22.0.jar",
+    "filename": "EssentialsX-2.22.0.jar",
+    "primary": true,
+    "size": 4861125,
+    "file_type": null
+   }
+  ],
+  "dependencies": [
+   {
+    "version_id": null,
+    "project_id": "Vebnzrzj",
+    "file_name": null,
+    "dependency_type": "optional"
+   }
+  ]
+ },
+ {
+  "game_versions": [
+   "1.8.8",
+   "1.8.9",
+   "1.9.4",
+   "1.10.2",
+   "1.11.2",
+   "1.12.2",
+   "1.13.2",
+   "1.14.4",
+   "1.15.2",
+   "1.16.5",
+   "1.17.1",
+   "1.18.2",
+   "1.19.4",
+   "1.20.6",
+   "1.21.8"
+  ],
+  "loaders": [
+   "bukkit",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "Oa9ZDzZq",
+  "project_id": "hXiIvTyT",
+  "author_id": "R5dS2mlb",
+  "featured": true,
+  "name": "2.21.2 - The Chase the Skies Update",
+  "version_number": "2.21.2",
+  "changelog_url": null,
+  "date_published": "2025-08-03T18:52:13.724098Z",
+  "downloads": 287710,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "bQD0Synl",
+    "hashes": {
+     "sha1": "f678ee85da1a8adf309df163d8b4166d2dc65554",
+     "sha512": "0571b015dce84cf03e906c2d498e8bc3827d86debafafb89851517a76c3eec0391b9bb90f6ec4a5f0dbf4c18bee84ead5e354fc0a5be0cc567fdaa9fc8d96c15"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/Oa9ZDzZq/EssentialsX-2.21.2.jar",
+    "filename": "EssentialsX-2.21.2.jar",
+    "primary": true,
+    "size": 4734714,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.8.8",
+   "1.8.9",
+   "1.9.4",
+   "1.10.2",
+   "1.11.2",
+   "1.12.2",
+   "1.13.2",
+   "1.14.4",
+   "1.15.2",
+   "1.16.5",
+   "1.17.1",
+   "1.18.2",
+   "1.19.4",
+   "1.20.6",
+   "1.21.5"
+  ],
+  "loaders": [
+   "bukkit",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "V4qyvs91",
+  "project_id": "hXiIvTyT",
+  "author_id": "R5dS2mlb",
+  "featured": false,
+  "name": "2.21.1 - The Spring to Life Update",
+  "version_number": "2.21.1",
+  "changelog_url": null,
+  "date_published": "2025-05-25T21:19:10.638874Z",
+  "downloads": 49660,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "pJX1tHo6",
+    "hashes": {
+     "sha512": "32aa5529aac63e0d6ae52b17337798a5aafe5087c898d972b0306414669a215ad34a9ef93f6b57eaae33b6d57e3ae16c7b6f8f5d14c44da9df9cfb4c94b7d084",
+     "sha1": "707e73c008ae692c96f3682c41f3be1df8dc210d"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/V4qyvs91/EssentialsX-2.21.1.jar",
+    "filename": "EssentialsX-2.21.1.jar",
+    "primary": true,
+    "size": 4655797,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.8.8",
+   "1.8.9",
+   "1.9.4",
+   "1.10.2",
+   "1.11.2",
+   "1.12.2",
+   "1.13.2",
+   "1.14.4",
+   "1.15.2",
+   "1.16.5",
+   "1.17.1",
+   "1.18.2",
+   "1.19.4",
+   "1.20.6",
+   "1.21.4"
+  ],
+  "loaders": [
+   "bukkit",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "SKQwLLoQ",
+  "project_id": "hXiIvTyT",
+  "author_id": "R5dS2mlb",
+  "featured": false,
+  "name": "2.21.0 - The Adventure Awakening Update",
+  "version_number": "2.21.0",
+  "changelog_url": null,
+  "date_published": "2025-03-22T22:55:22.368601Z",
+  "downloads": 102459,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "7kZVW8Eg",
+    "hashes": {
+     "sha1": "fc71f668dba90040e63992361793ba73941b810e",
+     "sha512": "b9ebac202a129cda3bcdce4c553519425d0aad55ef585b5197367cc868d3a80ee6917b9069cff0f320b1e6daf5699ef3b5a395e23b19ce453d7ac502c4e8b34f"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/SKQwLLoQ/EssentialsX-2.21.0.jar",
+    "filename": "EssentialsX-2.21.0.jar",
+    "primary": true,
+    "size": 4605977,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.8.8",
+   "1.9.4",
+   "1.10.2",
+   "1.11.2",
+   "1.12.2",
+   "1.13.2",
+   "1.14.4",
+   "1.15.2",
+   "1.16.5",
+   "1.17.1",
+   "1.18.2",
+   "1.19.4",
+   "1.20.1"
+  ],
+  "loaders": [
+   "bukkit",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "puUfqBpY",
+  "project_id": "hXiIvTyT",
+  "author_id": "R5dS2mlb",
+  "featured": true,
+  "name": "2.20.1 - The Trails and Tales Update",
+  "version_number": "2.20.1",
+  "changelog_url": null,
+  "date_published": "2023-08-05T20:14:51.163791Z",
+  "downloads": 107586,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "f81Fs1k5",
+    "hashes": {
+     "sha1": "e626f9f250470bcf2feffbc3740f738f9cee50ef",
+     "sha512": "d6453063b8197b96c5f244f5b23bd97abf75c9bd60206e1f9e40ae4bb6e93d0141a3b253dce588a6335a43f8c2c37f02d14563587668edbff0d60daac80b42ca"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/puUfqBpY/EssentialsX-2.20.1.jar",
+    "filename": "EssentialsX-2.20.1.jar",
+    "primary": true,
+    "size": 3070345,
+    "file_type": null
+   },
+   {
+    "id": "ME2zhbgT",
+    "hashes": {
+     "sha512": "268fb0484721d9bf82790bcb82f58e1fb49795244636ed6e4e1643dfbe7ec78f85532999522cd5369607bef739644318580d96bbc3e321dfd0c8411a44086be0",
+     "sha1": "189d23f6aea5b3f2b255189c1af2bd8c0d53ae60"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/puUfqBpY/EssentialsXAntiBuild-2.20.1.jar",
+    "filename": "EssentialsXAntiBuild-2.20.1.jar",
+    "primary": false,
+    "size": 18325,
+    "file_type": null
+   },
+   {
+    "id": "2N8zGPxi",
+    "hashes": {
+     "sha1": "cf5c055984b808512b2f5c23dd7c7de8806f072f",
+     "sha512": "ca64e1c7833fc01a91241ad4bab8213252047469dd01d330606b2198d5d9a6a083cc2c00489c42c3e4ff14472ec9a45a5a8d9e84d7240e9eb18d3fe10af3e3c4"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/puUfqBpY/EssentialsXChat-2.20.1.jar",
+    "filename": "EssentialsXChat-2.20.1.jar",
+    "primary": false,
+    "size": 17829,
+    "file_type": null
+   },
+   {
+    "id": "v9bXA4zZ",
+    "hashes": {
+     "sha512": "c743d549422ffc76c25fdfaa39b9d0ed493113742d79bc9474f4ca38c18e6bdd7f582aa52e97cceb12c597971d791036676de8b5c2298441f57b0e5c01fd2ddb",
+     "sha1": "2ba790eec7cdb23f13535ee84bb6296d225c975f"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/puUfqBpY/EssentialsXDiscord-2.20.1.jar",
+    "filename": "EssentialsXDiscord-2.20.1.jar",
+    "primary": false,
+    "size": 7553095,
+    "file_type": null
+   },
+   {
+    "id": "5dlrjyoD",
+    "hashes": {
+     "sha1": "db6499efe3a09d29bb08ac9a02c7603005525895",
+     "sha512": "51b07ea9f2f02749f10b4052a68f12fc810075552ceaf15e2f87416e14f2cefc67d9ee9ddaec3d2907c955cbaaf53aa40b2ffcdef915d38a706cf58e150c2a11"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/puUfqBpY/EssentialsXDiscordLink-2.20.1.jar",
+    "filename": "EssentialsXDiscordLink-2.20.1.jar",
+    "primary": false,
+    "size": 37032,
+    "file_type": null
+   },
+   {
+    "id": "dgrGC2gJ",
+    "hashes": {
+     "sha512": "4f71bc8cb042cfefd13a42a658a2f856da71a1bfa629292f3dbd2a6725f6d96f1676859814d6aa49b4a9debdab8ae8d9d529b35d9a833c9d86aea47a1a681e59",
+     "sha1": "38f11d64c9a067d3f5b310941d1fd66412a4965a"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/puUfqBpY/EssentialsXGeoIP-2.20.1.jar",
+    "filename": "EssentialsXGeoIP-2.20.1.jar",
+    "primary": false,
+    "size": 1875925,
+    "file_type": null
+   },
+   {
+    "id": "X5EhjnSM",
+    "hashes": {
+     "sha512": "b2502f22ddc61eb34ece206b4e72900ef85559e8bc2f4a2effceb457d836989f3571e9c37577572337554e8b9046339bba2b9d10c3378829fbf70b09a7e35783",
+     "sha1": "186ba82dbde2829cca990ec2e7ce5d241633c30e"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/puUfqBpY/EssentialsXProtect-2.20.1.jar",
+    "filename": "EssentialsXProtect-2.20.1.jar",
+    "primary": false,
+    "size": 25712,
+    "file_type": null
+   },
+   {
+    "id": "ENY8rGrZ",
+    "hashes": {
+     "sha1": "68dfe0e04217ecf27bb255d4a6b993ddd6c7830d",
+     "sha512": "ad12d4b00189a077da9b6b95d0e3f565cf9fba4e5404a2011beccb187816d749093d868b14134f8682082847273d732ae869852f28100b90a8cc21175afef674"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/puUfqBpY/EssentialsXSpawn-2.20.1.jar",
+    "filename": "EssentialsXSpawn-2.20.1.jar",
+    "primary": false,
+    "size": 18122,
+    "file_type": null
+   },
+   {
+    "id": "6i5b27Y4",
+    "hashes": {
+     "sha512": "ba57b130419293a4a8ec84b5ca09d68072b07bc8e5a918d8fb14669cb400a676b3769069f694b8e856c2decdf7a6c2b73986a972b0a885de07e946ffa673c044",
+     "sha1": "9a8ab7c3b169edd22176eac62220d5eebcdd80aa"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/puUfqBpY/EssentialsXXMPP-2.20.1.jar",
+    "filename": "EssentialsXXMPP-2.20.1.jar",
+    "primary": false,
+    "size": 328615,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.8.8",
+   "1.9.4",
+   "1.10.2",
+   "1.11.2",
+   "1.12.2",
+   "1.13.2",
+   "1.14.4",
+   "1.15.2",
+   "1.16.5",
+   "1.17.1",
+   "1.18.2",
+   "1.19.4"
+  ],
+  "loaders": [
+   "bukkit",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "pdY49V5Y",
+  "project_id": "hXiIvTyT",
+  "author_id": "57K43X0k",
+  "featured": false,
+  "name": "2.20.0 - The Better Together Update",
+  "version_number": "2.20.0",
+  "changelog_url": null,
+  "date_published": "2023-05-23T15:54:45.272867Z",
+  "downloads": 7455,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "WjvFSUbA",
+    "hashes": {
+     "sha1": "0fe111344c14fa45997da874a025e76afaf74310",
+     "sha512": "c43daf29469f630849d39db6b2f2075a28664ba4b5437183b2e314feaabada38bf2e58d32ed578aa20144e0f3433e6911185277651be59d7f43ed7fcfc2e9373"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/pdY49V5Y/EssentialsX-2.20.0.jar",
+    "filename": "EssentialsX-2.20.0.jar",
+    "primary": true,
+    "size": 3050801,
+    "file_type": null
+   },
+   {
+    "id": "CJrFvjek",
+    "hashes": {
+     "sha512": "5645c2655dcd4f4c5e4f9aebe923cd644f61540fa71e733e162dbaf2cb8bc347684866a83f0c6aecd810c5daf1f8775d62b8ca6d7068e71bbea669b9a784d232",
+     "sha1": "fcb6f7abdf5e573d29d1639313723964a9025749"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/pdY49V5Y/EssentialsXAntiBuild-2.20.0.jar",
+    "filename": "EssentialsXAntiBuild-2.20.0.jar",
+    "primary": false,
+    "size": 18203,
+    "file_type": null
+   },
+   {
+    "id": "TXZ09WLl",
+    "hashes": {
+     "sha512": "5551a91b831997373dc81fa605b96c17fdb00808e1fd33cfb3d80d8eb5f9a59587753463ae47ce5a97977ec23c14ee39c516ec33ca1d143a650d2886e6146367",
+     "sha1": "ab3c1cbfea70717849829d0b8eb8c5463879b428"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/pdY49V5Y/EssentialsXChat-2.20.0.jar",
+    "filename": "EssentialsXChat-2.20.0.jar",
+    "primary": false,
+    "size": 17771,
+    "file_type": null
+   },
+   {
+    "id": "3KLBUK6M",
+    "hashes": {
+     "sha512": "e3770327f6fded7ca5af89a780d06b96f867525f854ed7c1f1cdfbfacb07ceda823ae4d5960ec55ab66d8d8aedc1d0ff0ab3af3f05422eecc1b5f2f8ca04489d",
+     "sha1": "87873d719c6c56c9504662ae68e4ae8389513e24"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/pdY49V5Y/EssentialsXDiscord-2.20.0.jar",
+    "filename": "EssentialsXDiscord-2.20.0.jar",
+    "primary": false,
+    "size": 4675378,
+    "file_type": null
+   },
+   {
+    "id": "kb0oAQZB",
+    "hashes": {
+     "sha512": "3542cf57425f960d840261aff0759ca7fea6663bfd9fd8d7cc02023beb42d7ec111aa5c942ded84b24bd3c5096e4469407387c01594fa5d8d383e67ec9c1e8cc",
+     "sha1": "77dee4a7df58912b2fc40ef7de363dbe089f5091"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/pdY49V5Y/EssentialsXDiscordLink-2.20.0.jar",
+    "filename": "EssentialsXDiscordLink-2.20.0.jar",
+    "primary": false,
+    "size": 37029,
+    "file_type": null
+   },
+   {
+    "id": "Kz4uBQXl",
+    "hashes": {
+     "sha1": "abeba4c2885e5f687f627cc5d89b156ffb1a2369",
+     "sha512": "d03ceb149e1dc5ed9d1575d848dab81c4bd8162e7cbf0d89af4f08306bd35740a8a9a5421acb42de523a75abb9451e83eae485153118430be00de9667070f906"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/pdY49V5Y/EssentialsXGeoIP-2.20.0.jar",
+    "filename": "EssentialsXGeoIP-2.20.0.jar",
+    "primary": false,
+    "size": 1875925,
+    "file_type": null
+   },
+   {
+    "id": "jHMDCoWS",
+    "hashes": {
+     "sha512": "b90aff17b4e98b31a334636b093a76cc3acee6be3ed74fb032e911ab202183495da0500e5ede61a8b7d7d81159c19a95664474f2649cfc13d2d11aa3a7591bc0",
+     "sha1": "dc38cbd38086255125cb2189b1dbf8d8bdcbefdc"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/pdY49V5Y/EssentialsXProtect-2.20.0.jar",
+    "filename": "EssentialsXProtect-2.20.0.jar",
+    "primary": false,
+    "size": 25712,
+    "file_type": null
+   },
+   {
+    "id": "BFu6Pojs",
+    "hashes": {
+     "sha512": "c9f649d3b95e83f78b4eaabb8c3c43982f15ddca164789fab840204d48097a99a20f6dd8a2ed3d989718dd35cf80052cc022be738cf973ce4bbbfa695622cc26",
+     "sha1": "306dff76141f76052368482612aceca8b42e54a1"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/pdY49V5Y/EssentialsXSpawn-2.20.0.jar",
+    "filename": "EssentialsXSpawn-2.20.0.jar",
+    "primary": false,
+    "size": 18118,
+    "file_type": null
+   },
+   {
+    "id": "w43NaB0G",
+    "hashes": {
+     "sha512": "513dd04e185808ca4f2005368dd30e7f7144bf1340790d04c5697fecdc4fe98e988ad96402a05c6dd935acbf4252dc99748955767446329a69aeb7d9e7810607",
+     "sha1": "f3ae93152f7592600e095c5b9058443bdd846ff8"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/pdY49V5Y/EssentialsXXMPP-2.20.0.jar",
+    "filename": "EssentialsXXMPP-2.20.0.jar",
+    "primary": false,
+    "size": 328616,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.8.8",
+   "1.9.4",
+   "1.10.2",
+   "1.11.2",
+   "1.12.2",
+   "1.13.2",
+   "1.14.4",
+   "1.15.2",
+   "1.16.5",
+   "1.17.1",
+   "1.18.2",
+   "1.19.2"
+  ],
+  "loaders": [
+   "bukkit",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "z951OvHM",
+  "project_id": "hXiIvTyT",
+  "author_id": "R5dS2mlb",
+  "featured": false,
+  "name": "2.19.7 - The (Even Less) Wild Update",
+  "version_number": "2.19.7",
+  "changelog_url": null,
+  "date_published": "2022-08-23T12:52:18.759973Z",
+  "downloads": 7303,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "Hx9a1Y8F",
+    "hashes": {
+     "sha1": "1142297fc1facd0f6015202b21796a99571f681d",
+     "sha512": "96da3eeed46d99139ee82b78780de9a5fbc6cd8cffe1c277b79a8718e0e3587a959e259975dae5c51be9ee2afe78bdb8347e2a3ccbb35e8542764cad00901662"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/z951OvHM/EssentialsX-2.19.7.jar",
+    "filename": "EssentialsX-2.19.7.jar",
+    "primary": true,
+    "size": 2967611,
+    "file_type": null
+   },
+   {
+    "id": "JHhPsA98",
+    "hashes": {
+     "sha1": "e449c48a99a2a692d8ccf0fe8f1018b5ff20dd29",
+     "sha512": "d9d9145950ccb40346fd5dfdd4ac4afd9775809301d30ef7faebaf5dfd7dcc9349844ad39a8c1e0d6a854395b6db5a6184b4a7b83579e0cf5ca3657821231eb5"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/z951OvHM/EssentialsXAntiBuild-2.19.7.jar",
+    "filename": "EssentialsXAntiBuild-2.19.7.jar",
+    "primary": false,
+    "size": 18204,
+    "file_type": null
+   },
+   {
+    "id": "Loag46a4",
+    "hashes": {
+     "sha1": "f4271d6d8a7238c993aea44d33d8eb70f4b0e005",
+     "sha512": "572ab9fd9ee6a59de21ce24ad791e9c39293d818b218451fa9e0d3cdd6076b5bd49997d26fb2ae6d0615021702091b54af34f5643c69d677944489f42b833809"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/z951OvHM/EssentialsXChat-2.19.7.jar",
+    "filename": "EssentialsXChat-2.19.7.jar",
+    "primary": false,
+    "size": 27011,
+    "file_type": null
+   },
+   {
+    "id": "OQcvlY8Y",
+    "hashes": {
+     "sha512": "22400b65b56e6578d721fdc148f27daaa99660973634c09e35e2f4059496e3ac97a8a7d6239bf24a901b089820a7e4fd33c28e68e873996fd7a78e3714ae2d58",
+     "sha1": "ec72eef44ce8bfd02c0c8d00bd245e17eecac645"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/z951OvHM/EssentialsXDiscord-2.19.7.jar",
+    "filename": "EssentialsXDiscord-2.19.7.jar",
+    "primary": false,
+    "size": 4665139,
+    "file_type": null
+   },
+   {
+    "id": "ppIFOsNe",
+    "hashes": {
+     "sha1": "124cf16ac6bba0b354ef8d061361b84934ec2fc7",
+     "sha512": "0e68866292154e0c88b9c7153c8f411cac523965a4e5e13f4b67fab52ec495e7c72c4a1a28cfde60f311c10b8648c3cf4f839576ec18c185d5a262314bb88f3e"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/z951OvHM/EssentialsXGeoIP-2.19.7.jar",
+    "filename": "EssentialsXGeoIP-2.19.7.jar",
+    "primary": false,
+    "size": 1875925,
+    "file_type": null
+   },
+   {
+    "id": "A7ZHhv9g",
+    "hashes": {
+     "sha1": "7d743c6c88320afeda8a49aad1c0e735b64a0dde",
+     "sha512": "b2d683de26dd8bd5df1c57bce8bd2c143fde949fa2d8949a956628b76437d4f8f15619369fa40fb820385e48a652009e95b89676b0a1f83cde344cd90d8563a6"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/z951OvHM/EssentialsXProtect-2.19.7.jar",
+    "filename": "EssentialsXProtect-2.19.7.jar",
+    "primary": false,
+    "size": 25713,
+    "file_type": null
+   },
+   {
+    "id": "tTMAOhVT",
+    "hashes": {
+     "sha1": "c166b845e5ad533069465d681170fad156cf4030",
+     "sha512": "c9129915fb99090c6afabae2267bdb1a3547c9a4acf051cbf7bc40f27c856744067b91b86c04aa2512f8363a1e5d4ac9ff543d10f6f4ae447d519cbb14ab3a80"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/z951OvHM/EssentialsXSpawn-2.19.7.jar",
+    "filename": "EssentialsXSpawn-2.19.7.jar",
+    "primary": false,
+    "size": 18119,
+    "file_type": null
+   },
+   {
+    "id": "rZbLrRRQ",
+    "hashes": {
+     "sha1": "0a9dcf7054944d784e7daba7657e129916e3a28a",
+     "sha512": "de6f70c9c852180a55317b9861c1f43ddb69f9be57ed125f28aef01ef9acad23ea05386f03834af84eed6462d266f2ba06dd4837bc19541fbc7e2bae356c5ff0"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/z951OvHM/EssentialsXXMPP-2.19.7.jar",
+    "filename": "EssentialsXXMPP-2.19.7.jar",
+    "primary": false,
+    "size": 328617,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ },
+ {
+  "game_versions": [
+   "1.8.8",
+   "1.8.9",
+   "1.9.4",
+   "1.10.2",
+   "1.11.2",
+   "1.12.2",
+   "1.13.2",
+   "1.14.4",
+   "1.15.2",
+   "1.16.5",
+   "1.17.1",
+   "1.18.2",
+   "1.19.2"
+  ],
+  "loaders": [
+   "bukkit",
+   "paper",
+   "spigot"
+  ],
+  "environment": "unknown",
+  "id": "1RQ0Dtsz",
+  "project_id": "hXiIvTyT",
+  "author_id": "R5dS2mlb",
+  "featured": false,
+  "name": "2.19.6 - The (Not Too) Wild Update",
+  "version_number": "2.19.6",
+  "changelog_url": null,
+  "date_published": "2022-08-14T20:25:21.387177Z",
+  "downloads": 6519,
+  "version_type": "release",
+  "status": "listed",
+  "requested_status": null,
+  "files": [
+   {
+    "id": "9eTwZYP0",
+    "hashes": {
+     "sha512": "95f57b1134b54f74cad86becc60d138a2cd8dbe7edc34b004c1b3f2434bea3dd1d9a47d8df319b90000bde000d7f6e8319c9c577d27cc8f21dc3b5b52981194c",
+     "sha1": "9d8f167f18c27ba25c6900d63236efe43cb9b68f"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/2.19.6/EssentialsX-2.19.6.jar",
+    "filename": "EssentialsX-2.19.6.jar",
+    "primary": true,
+    "size": 2966875,
+    "file_type": null
+   },
+   {
+    "id": "G1irZjNQ",
+    "hashes": {
+     "sha512": "8f6bfb601680668ea67d713222376f899b723c9ce989ca026326cded68c0fa2aa4e14e51d8a387cc350e03ea56352a4310a78cdb5fa8bfcb3bf53182ca98fae3",
+     "sha1": "b3800aba153909103c123cdfc7cc3bf25f1638a5"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/2.19.6/EssentialsXAntiBuild-2.19.6.jar",
+    "filename": "EssentialsXAntiBuild-2.19.6.jar",
+    "primary": false,
+    "size": 18204,
+    "file_type": null
+   },
+   {
+    "id": "vMokSSSj",
+    "hashes": {
+     "sha1": "b90d1767b1305801d159cc24c177552794cbabfc",
+     "sha512": "7261c3fccce0c9f8edcc4954d52ef099c533e2000a13aaa9eef4fbf0b4552cb0f64fbc0440e81e26590ac8fb3615b13abd99500f7554c0dbe93340997303bb16"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/2.19.6/EssentialsXChat-2.19.6.jar",
+    "filename": "EssentialsXChat-2.19.6.jar",
+    "primary": false,
+    "size": 26949,
+    "file_type": null
+   },
+   {
+    "id": "eMnKScMF",
+    "hashes": {
+     "sha1": "55dfbbd8e5bd0e235b852ef669abd3c93b9b6eb5",
+     "sha512": "a7a5d6383ed39fe58c856384e37f04dad6f20dc81dfd3258a042444dd1a516c2e2cae797158364d7ab1dfe78decdfd3b5375e16c7ceaa041b44c85191556e3b2"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/2.19.6/EssentialsXDiscord-2.19.6.jar",
+    "filename": "EssentialsXDiscord-2.19.6.jar",
+    "primary": false,
+    "size": 4665139,
+    "file_type": null
+   },
+   {
+    "id": "hrl2MPI6",
+    "hashes": {
+     "sha512": "f9089443185c508ea10e1c9cfae16db86aa559262762dbae9036712326baaca164de87502698e1cea75db8ff85cf5495887043b29eb5d9f5ab9b8cd5d51c8425",
+     "sha1": "e27edec975f8015c9996418037aad1f0a4212b41"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/2.19.6/EssentialsXGeoIP-2.19.6.jar",
+    "filename": "EssentialsXGeoIP-2.19.6.jar",
+    "primary": false,
+    "size": 1875925,
+    "file_type": null
+   },
+   {
+    "id": "ExoIvbbM",
+    "hashes": {
+     "sha1": "5051a19b7cfa86cb041adea77e8ee07e2a756cf5",
+     "sha512": "a701bf44fca8090595ce14b8cf8b4ad6dd1ce8b53d9f1cbbe242a23969e51f383fe376c8804d631c1b6f242ec3135460132d2ec9b53120a1ec7ccd76ac19095f"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/2.19.6/EssentialsXProtect-2.19.6.jar",
+    "filename": "EssentialsXProtect-2.19.6.jar",
+    "primary": false,
+    "size": 25713,
+    "file_type": null
+   },
+   {
+    "id": "VgTvCghR",
+    "hashes": {
+     "sha1": "4fc7ae910c485e1c8d73cfab500052fef9a6b4c8",
+     "sha512": "858ddd1f068637e1dba065809211b56ace1b321d2c17039b91cdf7dcd669b6678972bdce1d25aa1af004778d98acb37070216500e2957a1bb9a341927e17a11d"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/2.19.6/EssentialsXSpawn-2.19.6.jar",
+    "filename": "EssentialsXSpawn-2.19.6.jar",
+    "primary": false,
+    "size": 18119,
+    "file_type": null
+   },
+   {
+    "id": "7Y6U46Lg",
+    "hashes": {
+     "sha512": "c0f837094ed49f4c2b0608f4ea8510a927d3ca6b1a257365b87e245d850844149e99ae2261e738922e6cc0d194b8d2916bf4696a9a865e9f1112a21250f2c94e",
+     "sha1": "2f74de75ab68bbbb3f77efadfd3ab9a7ec9b52c3"
+    },
+    "url": "https://cdn.modrinth.com/data/hXiIvTyT/versions/2.19.6/EssentialsXXMPP-2.19.6.jar",
+    "filename": "EssentialsXXMPP-2.19.6.jar",
+    "primary": false,
+    "size": 328617,
+    "file_type": null
+   }
+  ],
+  "dependencies": []
+ }
+]

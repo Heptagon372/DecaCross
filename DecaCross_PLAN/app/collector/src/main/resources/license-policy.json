@@ -1,0 +1,7 @@
+{
+  "redistributableEnabled": false,
+  "redistributableSpdx": ["MIT", "MIT-0", "Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "0BSD", "ISC", "Zlib", "CC0-1.0", "Unlicense"],
+  "hangarTypeToSpdx": { "MIT": "MIT", "Apache 2.0": "Apache-2.0" },
+  "hangarVersionlessTypes": ["GPL", "LGPL", "AGPL"],
+  "hangarUnspecifiedTypes": ["Unspecified"]
+}
