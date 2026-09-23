@@ -68,6 +68,26 @@ class Cas(private val blobsDir: Path) {
         }
     }
 
+    /**
+     * 어떤 서버도 참조하지 않는 blob 을 지운다. [referenced] 는 각 서버의 `.decacross/manifest.json` 해시 집합의 합.
+     * [olderThan] 보다 최근에 만들어진 blob 은 참조가 없어도 남긴다 (설치 진행 중일 수 있다). 지운 바이트 수를 돌려준다.
+     */
+    fun gc(referenced: Set<String>, olderThan: java.time.Duration): Long {
+        if (!Files.isDirectory(blobsDir)) return 0
+        val cutoff = java.time.Instant.now().minus(olderThan)
+        var freed = 0L
+        Files.walk(blobsDir).use { stream ->
+            stream.filter { Files.isRegularFile(it) }.toList().forEach { blob ->
+                val sha = blob.fileName.toString()
+                if (sha in referenced) return@forEach
+                if (Files.getLastModifiedTime(blob).toInstant().isAfter(cutoff)) return@forEach
+                val size = Files.size(blob)
+                if (runCatching { Files.deleteIfExists(blob) }.getOrDefault(false)) freed += size
+            }
+        }
+        return freed
+    }
+
     data class CasStats(val blobCount: Long, val totalBytes: Long)
 
     fun stats(): CasStats {

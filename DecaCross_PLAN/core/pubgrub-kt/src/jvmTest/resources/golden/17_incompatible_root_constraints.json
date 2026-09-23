@@ -1,0 +1,10 @@
+{
+  "name": "incompatible_root_constraints",
+  "origin": "자체 — 루트 제약끼리 충돌",
+  "packages": {
+    "a": { "1.0.0": { "b": "^2.0.0" } },
+    "b": { "1.0.0": {}, "2.0.0": {} }
+  },
+  "root": { "a": "^1.0.0", "b": "^1.0.0" },
+  "expect": { "noSolution": true, "mentions": ["root", "a", "b"] }
+}

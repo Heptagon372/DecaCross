@@ -1,0 +1,11 @@
+{
+  "name": "unrelated_package_not_mentioned",
+  "origin": "자체 — 충돌과 무관한 b 는 트리에 없어야 한다",
+  "packages": {
+    "a": { "1.0.0": { "c": "^1.0.0" } },
+    "b": { "1.0.0": {}, "2.0.0": {} },
+    "c": { "2.0.0": {} }
+  },
+  "root": { "a": "*", "b": "*" },
+  "expect": { "noSolution": true, "mentions": ["root", "a", "c"] }
+}

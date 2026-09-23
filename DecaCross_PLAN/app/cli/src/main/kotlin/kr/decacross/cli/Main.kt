@@ -21,8 +21,14 @@ import kr.decacross.daemon.install.InstallEvent
 import kr.decacross.daemon.install.InstallPipeline
 import kr.decacross.daemon.install.InstallSpec
 import kr.decacross.daemon.install.InstalledServer
+import kr.decacross.daemon.install.defaultFetcher
 import kr.decacross.daemon.paths.DecaPaths
+import kr.decacross.daemon.runtime.Cas
+import kr.decacross.daemon.runtime.EnsureResult
+import kr.decacross.daemon.runtime.JavaInfo
 import kr.decacross.daemon.runtime.JavaRuntime
+import kr.decacross.daemon.runtime.RuntimeInstaller
+import kr.decacross.daemon.runtime.defaultRuntimeInstaller
 import kr.decacross.daemon.store.DevCompatFixture
 import java.nio.file.Files
 import java.nio.file.Path
@@ -90,7 +96,8 @@ class Create : CliktCommand(name = "create") {
     private val start by option("--start", help = "설치 후 바로 기동").flag()
     private val acceptEula by option("--accept-eula", help = "Mojang EULA 에 동의함 (없으면 물어봄)").flag()
     private val experimental by option("--experimental", help = "STABLE 빌드가 없으면 실험 빌드 허용").flag()
-    private val javaPath by option("--java", help = "서버 실행용 java 절대경로 (기본: 시스템 java 탐지)")
+    private val javaPath by option("--java", help = "서버 실행용 java 절대경로 (기본: 권장 버전을 Adoptium 에서 자동 설치)")
+    private val systemJava by option("--system-java", help = "자동 설치 대신 시스템 java 를 찾아 쓴다").flag()
     private val stopAfterDone by option("--stop-after-done", help = "'Done (' 출현 후 정상 종료 (데모/CI 용)").flag()
 
     override fun run() = runBlocking {
@@ -108,8 +115,13 @@ class Create : CliktCommand(name = "create") {
             }
         if (build.channel == Channel.EXPERIMENTAL) echo("⚠ 실험 채널 빌드 ${build.build} 를 사용합니다")
 
-        // Java: 03 단계는 시스템 java. 버전이 안 맞으면 명확한 에러 (자동 설치는 04).
-        val java = javaPath?.let { JavaRuntime.probe(Paths.get(it)) } ?: JavaRuntime.findSystemJava(bundledJre = paths.bundledJre)
+        // Java: --java 지정 > --system-java(시스템 탐지) > ★ 권장 버전(javaRecommended)을 Adoptium 에서 격리 설치.
+        // "최소"가 아니라 "권장"을 설치한다 — 최신 하나로 통일하려 하지 않는다 (기획서 §4.3).
+        val java = when {
+            javaPath != null -> JavaRuntime.probe(Paths.get(javaPath ?: ""))
+            systemJava -> JavaRuntime.findSystemJava(bundledJre = paths.bundledJre)
+            else -> ensureRecommendedJava(paths, version.javaRecommended)
+        }
         if (java == null) {
             echo("실행 가능한 Java 를 찾지 못했습니다. --java <경로> 로 지정하세요.", err = true)
             throw ProgramResult(3)
@@ -184,6 +196,76 @@ class Create : CliktCommand(name = "create") {
     }
 }
 
+/** 권장 feature 의 Temurin 런타임을 보장한다 (없으면 다운로드). 실패하면 null + 사유 출력. */
+private fun CliktCommand.ensureRecommendedJava(paths: DecaPaths, feature: Int): JavaInfo? = runBlocking {
+    val installer = defaultRuntimeInstaller(paths)
+    var lastPct = -1
+    when (val r = installer.ensureRuntime(feature, RuntimeInstaller.currentOs(), RuntimeInstaller.currentArch()) { done, total ->
+        val pct = total?.let { (done * 100 / it).toInt() } ?: -1
+        if (pct != lastPct && pct % 20 == 0) {
+            lastPct = pct
+            echo("  Temurin $feature 다운로드: ${done / 1_048_576}MB" + (total?.let { "/${it / 1_048_576}MB" } ?: ""))
+        }
+    }) {
+        is EnsureResult.Ok -> {
+            if (r.downloaded) echo("  Temurin $feature 설치 완료: ${r.info.exe}")
+            r.info
+        }
+
+        is EnsureResult.Failed -> {
+            echo(r.messageKo, err = true)
+            null
+        }
+    }
+}
+
+/** `runtime list` / `runtime ensure <feature>` — 04 단계 검증용. */
+class RuntimeCmd : CliktCommand(name = "runtime") {
+    override fun run() = Unit
+}
+
+class RuntimeList : CliktCommand(name = "list") {
+    override fun run() {
+        val paths = DecaPaths.detect()
+        val installer = defaultRuntimeInstaller(paths)
+        val list = installer.installed(RuntimeInstaller.currentOs())
+        if (list.isEmpty()) echo("설치된 서버용 런타임 없음 (${paths.runtimes})")
+        for (r in list) echo("Java ${r.feature.toString().padEnd(3)} ${r.javaExe}   ${r.versionString}")
+    }
+}
+
+class RuntimeEnsure : CliktCommand(name = "ensure") {
+    private val feature by argument(help = "Java feature (8|16|17|21|25)").int()
+
+    override fun run() {
+        val info = ensureRecommendedJava(DecaPaths.detect(), feature) ?: throw ProgramResult(3)
+        echo("Java ${info.feature}: ${info.exe}  (${info.versionString})")
+    }
+}
+
+class CasCmd : CliktCommand(name = "cas") {
+    private val gc by option("--gc", help = "참조되지 않는 blob 정리 (30일 이상)").flag()
+
+    override fun run() {
+        val paths = DecaPaths.detect()
+        val cas = Cas(paths.cacheBlobs)
+        val st = cas.stats()
+        echo("blobs=${st.blobCount} total=${"%.1f".format(st.totalBytes / 1_048_576.0)}MB (${paths.cacheBlobs})")
+        if (gc) {
+            val referenced = readServers(paths).flatMap { s ->
+                val manifest = Paths.get(s.dir).resolve(".decacross/manifest.json")
+                if (Files.isRegularFile(manifest)) {
+                    json.decodeFromString(kr.decacross.daemon.install.InstallManifest.serializer(), Files.readString(manifest)).files.map { it.sha256 }
+                } else {
+                    emptyList()
+                }
+            }.toSet()
+            val freed = cas.gc(referenced, java.time.Duration.ofDays(30))
+            echo("gc: ${"%.1f".format(freed / 1_048_576.0)}MB 정리 (참조 ${referenced.size}개 유지)")
+        }
+    }
+}
+
 class ListServers : CliktCommand(name = "list") {
     override fun run() {
         val paths = DecaPaths.detect()
@@ -219,4 +301,7 @@ internal fun readServers(paths: DecaPaths): List<InstalledServer> {
     }.sortedBy { it.name }
 }
 
-fun main(args: Array<String>) = DecaCross().subcommands(Lookup(), Create(), ListServers(), Start()).main(args)
+fun main(args: Array<String>) =
+    DecaCross()
+        .subcommands(Lookup(), Create(), ListServers(), Start(), RuntimeCmd().subcommands(RuntimeList(), RuntimeEnsure()), CasCmd())
+        .main(args)

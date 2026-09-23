@@ -1,0 +1,11 @@
+{
+  "name": "linear_error_reporting",
+  "origin": "PubGrub 문서 'Linear error reporting'",
+  "packages": {
+    "foo": { "1.0.0": { "bar": "^2.0.0" } },
+    "bar": { "2.0.0": { "baz": "^3.0.0" } },
+    "baz": { "1.0.0": {}, "3.0.0": {} }
+  },
+  "root": { "foo": "^1.0.0", "baz": "^1.0.0" },
+  "expect": { "noSolution": true, "mentions": ["root", "foo", "bar", "baz"] }
+}

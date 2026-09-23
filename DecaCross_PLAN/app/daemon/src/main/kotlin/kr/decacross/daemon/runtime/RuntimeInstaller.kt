@@ -22,6 +22,10 @@ import java.util.zip.ZipInputStream
 import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.deleteRecursively
 
+/** 기본 HTTP 클라이언트를 쓰는 설치기. 앱 계층은 Ktor 타입을 몰라도 된다. */
+fun defaultRuntimeInstaller(paths: DecaPaths): RuntimeInstaller =
+    RuntimeInstaller(paths, kr.decacross.daemon.install.defaultHttpClient(), kr.decacross.daemon.install.defaultFetcher())
+
 /** 설치된 서버용 런타임 목록 항목 (GET /api/runtimes). */
 data class InstalledRuntime(val feature: Int, val path: Path, val javaExe: Path, val versionString: String)
 

@@ -1,0 +1,13 @@
+{
+  "name": "conflict_with_partial_satisfier",
+  "origin": "PubGrub 문서 'Conflict resolution with a partial satisfier' / pubgrub-rs tests/examples.rs",
+  "packages": {
+    "foo": { "1.1.0": { "left": "^1.0.0", "right": "^1.0.0" }, "1.0.0": {} },
+    "left": { "1.0.0": { "shared": ">=1.0.0" } },
+    "right": { "1.0.0": { "shared": "<2.0.0" } },
+    "shared": { "2.0.0": {}, "1.0.0": { "target": "^1.0.0" } },
+    "target": { "2.0.0": {}, "1.0.0": {} }
+  },
+  "root": { "foo": "^1.0.0", "target": "^2.0.0" },
+  "expect": { "solution": { "foo": "1.0.0", "target": "2.0.0" } }
+}

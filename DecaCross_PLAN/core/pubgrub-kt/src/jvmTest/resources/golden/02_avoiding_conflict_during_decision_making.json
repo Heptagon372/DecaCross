@@ -1,0 +1,10 @@
+{
+  "name": "avoiding_conflict_during_decision_making",
+  "origin": "PubGrub 문서 'Avoiding conflict during decision making' / pubgrub-rs tests/examples.rs",
+  "packages": {
+    "foo": { "1.1.0": { "bar": "^2.0.0" }, "1.0.0": {} },
+    "bar": { "1.0.0": {}, "1.1.0": {}, "2.0.0": {} }
+  },
+  "root": { "foo": "^1.0.0", "bar": "^1.0.0" },
+  "expect": { "solution": { "foo": "1.0.0", "bar": "1.1.0" } }
+}

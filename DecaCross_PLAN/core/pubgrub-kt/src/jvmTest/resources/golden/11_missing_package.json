@@ -1,0 +1,7 @@
+{
+  "name": "missing_package",
+  "origin": "자체 — 존재하지 않는 패키지",
+  "packages": {},
+  "root": { "foo": "*" },
+  "expect": { "noSolution": true, "mentions": ["root", "foo"] }
+}

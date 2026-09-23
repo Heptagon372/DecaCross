@@ -1,0 +1,10 @@
+{
+  "name": "conflict_resolution",
+  "origin": "PubGrub 문서 'Performing conflict resolution' / pubgrub-rs tests/examples.rs::conflict_resolution",
+  "packages": {
+    "foo": { "2.0.0": { "bar": "^1.0.0" }, "1.0.0": {} },
+    "bar": { "1.0.0": { "foo": "^1.0.0" } }
+  },
+  "root": { "foo": ">=1.0.0" },
+  "expect": { "solution": { "foo": "1.0.0" } }
+}

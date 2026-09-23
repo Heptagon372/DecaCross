@@ -1,0 +1,10 @@
+{
+  "name": "simple_transitive",
+  "origin": "Dart pub backtracking_test 'simple transitive' 재구성 — 최신 foo 는 없는 bar 를 요구",
+  "packages": {
+    "foo": { "1.0.0": { "bar": "1.0.0" }, "2.0.0": { "bar": "2.0.0" }, "3.0.0": { "bar": "3.0.0" } },
+    "bar": { "1.0.0": {}, "2.0.0": {} }
+  },
+  "root": { "foo": "*" },
+  "expect": { "solution": { "foo": "2.0.0", "bar": "2.0.0" } }
+}

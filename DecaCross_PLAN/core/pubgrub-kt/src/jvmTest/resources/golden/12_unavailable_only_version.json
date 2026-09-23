@@ -1,0 +1,8 @@
+{
+  "name": "unavailable_only_version",
+  "origin": "자체 — Dependencies.Unavailable 만 있는 패키지",
+  "packages": {},
+  "unavailable": { "a": { "2.0.0": "재배포 불가 파일" } },
+  "root": { "a": "*" },
+  "expect": { "noSolution": true, "mentions": ["root", "a"] }
+}

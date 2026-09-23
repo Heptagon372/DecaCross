@@ -1,0 +1,222 @@
+[
+  {
+    "key": "unsupported_class_version",
+    "pattern": "Unsupported class file major version (\\d+)",
+    "category": "java",
+    "captures": ["major"],
+    "priority": 100,
+    "titleKo": "Java 버전이 낮습니다",
+    "causeKo": "플러그인이 현재 서버 런타임보다 높은 Java 로 빌드되었습니다. 클래스 파일 메이저 버전 − 44 가 필요한 Java 입니다.",
+    "fixes": [
+      { "labelKo": "필요한 Java 로 런타임 전환", "action": { "type": "ChangeJava", "capture": "major" }, "recommended": true }
+    ]
+  },
+  {
+    "key": "unsupported_class_error",
+    "pattern": "java\\.lang\\.UnsupportedClassVersionError(?:.*?class file version (\\d+))?",
+    "category": "java",
+    "captures": ["major"],
+    "priority": 90,
+    "titleKo": "Java 버전이 낮습니다",
+    "causeKo": "JVM 이 인식하지 못하는 상위 버전의 클래스 파일입니다. 서버 런타임을 올려야 합니다.",
+    "fixes": [
+      { "labelKo": "필요한 Java 로 런타임 전환", "action": { "type": "ChangeJava", "capture": "major" }, "recommended": true }
+    ]
+  },
+  {
+    "key": "eula_not_agreed",
+    "pattern": "You need to agree to the EULA",
+    "category": "config",
+    "captures": [],
+    "priority": 100,
+    "titleKo": "EULA 에 동의하지 않았습니다",
+    "causeKo": "eula.txt 의 `eula=true` 가 아닙니다. 동의 전에는 서버가 기동을 거부합니다.",
+    "fixes": [
+      { "labelKo": "EULA 다시 보기 및 동의", "action": { "type": "ShowEulaDialog" }, "recommended": true }
+    ]
+  },
+  {
+    "key": "port_in_use",
+    "pattern": "FAILED TO BIND TO PORT|Address already in use",
+    "category": "network",
+    "captures": [],
+    "priority": 100,
+    "titleKo": "포트가 이미 사용 중입니다",
+    "causeKo": "다른 프로세스(대개 이미 떠 있는 서버)가 같은 포트를 점유하고 있습니다.",
+    "fixes": [
+      { "labelKo": "포트를 쓰는 프로세스 찾기", "action": { "type": "FindPortOwner" }, "recommended": false },
+      { "labelKo": "다른 포트로 변경", "action": { "type": "SuggestPort" }, "recommended": true }
+    ]
+  },
+  {
+    "key": "heap_reserve_failed",
+    "pattern": "Could not reserve enough space for object heap",
+    "category": "memory",
+    "captures": [],
+    "priority": 100,
+    "titleKo": "힙 메모리를 확보하지 못했습니다",
+    "causeKo": "할당한 RAM(-Xmx) 이 가용 메모리보다 크거나, 32bit Java 를 쓰고 있습니다.",
+    "fixes": [
+      { "labelKo": "RAM 할당량 재계산", "action": { "type": "RecalcRam" }, "recommended": true }
+    ]
+  },
+  {
+    "key": "oom_heap",
+    "pattern": "OutOfMemoryError: Java heap space",
+    "category": "memory",
+    "captures": [],
+    "priority": 100,
+    "titleKo": "메모리 부족 (Java heap space)",
+    "causeKo": "서버가 할당된 RAM 을 다 썼습니다. 플레이어·플러그인 규모에 비해 적거나, 플러그인 메모리 누수입니다.",
+    "fixes": [
+      { "labelKo": "RAM 할당량 늘리기", "action": { "type": "IncreaseRam" }, "recommended": true },
+      { "labelKo": "다음 OOM 때 힙 덤프 남기기", "action": { "type": "EnableHeapDump" }, "recommended": false }
+    ]
+  },
+  {
+    "key": "unknown_dependency",
+    "pattern": "Unknown dependency:? ([\\w\\-]+)",
+    "category": "plugin",
+    "captures": ["dependency"],
+    "priority": 80,
+    "titleKo": "의존 플러그인이 없습니다",
+    "causeKo": "plugin.yml 의 depend 에 적힌 플러그인이 설치되어 있지 않습니다.",
+    "fixes": [
+      { "labelKo": "누락된 플러그인 설치", "action": { "type": "InstallDependency", "capture": "dependency" }, "recommended": true }
+    ]
+  },
+  {
+    "key": "plugin_load_failed",
+    "pattern": "Could not load (?:plugin )?'([^']+)'",
+    "category": "plugin",
+    "captures": ["file"],
+    "priority": 50,
+    "titleKo": "플러그인을 불러오지 못했습니다",
+    "causeKo": "jar 가 손상되었거나 이 서버 버전과 맞지 않습니다. 아래 원인 줄(Caused by)을 확인하세요.",
+    "fixes": [
+      { "labelKo": "호환성 엔진으로 재질의", "action": { "type": "ReResolve", "capture": "file" }, "recommended": true }
+    ]
+  },
+  {
+    "key": "nms_missing",
+    "pattern": "NoClassDefFoundError: net/minecraft/server/(v[\\w_]+)",
+    "category": "plugin",
+    "captures": ["nmsVersion"],
+    "priority": 85,
+    "titleKo": "플러그인의 NMS 버전이 다릅니다",
+    "causeKo": "플러그인이 특정 MC 버전의 내부 클래스(NMS)에 직접 의존합니다. 서버 버전과 맞지 않습니다.",
+    "fixes": [
+      { "labelKo": "서버 버전에 맞는 빌드로 교체", "action": { "type": "ReplaceWithMatchingBuild", "capture": "nmsVersion" }, "recommended": true }
+    ]
+  },
+  {
+    "key": "plugin_enable_failed",
+    "pattern": "Error occurred while enabling (\\S+)(?: v(\\S+))?",
+    "category": "plugin",
+    "captures": ["plugin", "version"],
+    "priority": 60,
+    "titleKo": "플러그인 활성화 중 오류",
+    "causeKo": "플러그인의 onEnable 에서 예외가 났습니다. 설정 오류·의존성 불일치가 흔한 원인입니다.",
+    "fixes": [
+      { "labelKo": "해당 플러그인 비활성화 후 재기동", "action": { "type": "DisablePlugin", "capture": "plugin" }, "recommended": false },
+      { "labelKo": "호환성 엔진으로 재질의", "action": { "type": "ReResolve", "capture": "plugin" }, "recommended": true }
+    ]
+  },
+  {
+    "key": "watchdog",
+    "pattern": "Watchdog.*(thread dump|stopped responding|not responded)",
+    "category": "performance",
+    "captures": [],
+    "priority": 70,
+    "titleKo": "서버가 응답하지 않습니다 (Watchdog)",
+    "causeKo": "메인 스레드가 멈췄습니다. 스레드 덤프에 나오는 플러그인 패키지가 범인일 가능성이 높습니다.",
+    "fixes": [
+      { "labelKo": "스택에서 원인 플러그인 지목", "action": { "type": "BlamePluginFromStack" }, "recommended": true }
+    ]
+  },
+  {
+    "key": "cant_keep_up",
+    "pattern": "Can't keep up!.*?(\\d+)ms",
+    "category": "performance",
+    "captures": ["ms"],
+    "priority": 40,
+    "titleKo": "서버 TPS 저하",
+    "causeKo": "틱 처리가 밀리고 있습니다. 엔티티·청크 과다 또는 무거운 플러그인이 원인입니다.",
+    "fixes": [
+      { "labelKo": "프로파일러로 원인 찾기", "action": { "type": "SuggestJmxProfile" }, "recommended": true }
+    ]
+  },
+  {
+    "key": "invalid_pack_format",
+    "pattern": "(?i)(Invalid|Unsupported) pack.?format",
+    "category": "pack",
+    "captures": [],
+    "priority": 80,
+    "titleKo": "팩 포맷이 맞지 않습니다",
+    "causeKo": "리소스팩/데이터팩의 pack_format 이 이 MC 버전과 다릅니다.",
+    "fixes": [
+      { "labelKo": "pack_format 리넘버링 제안", "action": { "type": "SuggestRenumber" }, "recommended": true }
+    ]
+  },
+  {
+    "key": "library_download_failed",
+    "pattern": "(Failed to download|ConnectException).*librar",
+    "category": "network",
+    "captures": [],
+    "priority": 70,
+    "titleKo": "라이브러리 다운로드 실패",
+    "causeKo": "서버가 기동에 필요한 라이브러리를 내려받지 못했습니다. 네트워크·프록시·방화벽 문제입니다.",
+    "fixes": [
+      { "labelKo": "미러로 재시도", "action": { "type": "RetryWithMirror" }, "recommended": true }
+    ]
+  },
+  {
+    "key": "incompatible_server_version",
+    "pattern": "This server is running .* which is not compatible",
+    "category": "plugin",
+    "captures": [],
+    "priority": 70,
+    "titleKo": "서버 버전과 플러그인 API 가 맞지 않습니다",
+    "causeKo": "플러그인이 요구하는 API 버전과 코어 버전이 다릅니다.",
+    "fixes": [
+      { "labelKo": "호환성 엔진으로 재질의", "action": { "type": "ReResolve" }, "recommended": true }
+    ]
+  },
+  {
+    "key": "java_not_found",
+    "pattern": "'java' is not recognized|java: command not found",
+    "category": "runtime",
+    "captures": [],
+    "priority": 100,
+    "titleKo": "Java 를 찾지 못했습니다",
+    "causeKo": "start.bat 이 가리키는 Java 실행 파일이 없습니다. 런타임이 삭제되었거나 경로가 바뀌었습니다.",
+    "fixes": [
+      { "labelKo": "런타임 복구", "action": { "type": "RepairRuntime" }, "recommended": true }
+    ]
+  },
+  {
+    "key": "world_version_mismatch",
+    "pattern": "(?i)(world|level).*(newer|older) version",
+    "category": "world",
+    "captures": [],
+    "priority": 80,
+    "titleKo": "월드 버전이 서버와 다릅니다",
+    "causeKo": "월드가 다른 MC 버전으로 저장되었습니다. 상위 버전 월드는 하위 서버에서 열 수 없습니다.",
+    "fixes": [
+      { "labelKo": "스냅샷에서 월드 복원", "action": { "type": "RestoreSnapshot" }, "recommended": false },
+      { "labelKo": "서버 MC 버전 올리기", "action": { "type": "BumpMc" }, "recommended": true }
+    ]
+  },
+  {
+    "key": "linkage_error",
+    "pattern": "(NoSuchMethodError|IncompatibleClassChangeError)(?:: (.+))?",
+    "category": "plugin",
+    "captures": ["kind", "member"],
+    "priority": 75,
+    "titleKo": "라이브러리 충돌 (링크 오류)",
+    "causeKo": "플러그인이 기대하는 메서드/클래스 형태가 실제 로드된 것과 다릅니다. 대개 shaded 라이브러리 버전 충돌입니다.",
+    "fixes": [
+      { "labelKo": "shaded 라이브러리 충돌 보기", "action": { "type": "ShowShadeConflict", "capture": "member" }, "recommended": true }
+    ]
+  }
+]

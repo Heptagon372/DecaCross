@@ -1,0 +1,13 @@
+{
+  "name": "branching_error_reporting",
+  "origin": "PubGrub 문서 'Branching error reporting'",
+  "packages": {
+    "foo": { "1.0.0": { "a": "^1.0.0", "b": "^1.0.0" }, "1.1.0": { "x": "^1.0.0", "y": "^1.0.0" } },
+    "a": { "1.0.0": { "b": "^2.0.0" } },
+    "b": { "1.0.0": {}, "2.0.0": {} },
+    "x": { "1.0.0": { "y": "^2.0.0" } },
+    "y": { "1.0.0": {}, "2.0.0": {} }
+  },
+  "root": { "foo": "^1.0.0" },
+  "expect": { "noSolution": true, "mentions": ["root", "foo", "a", "b", "x", "y"] }
+}

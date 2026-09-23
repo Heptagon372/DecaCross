@@ -1,0 +1,11 @@
+{
+  "name": "diamond",
+  "origin": "Dart pub backtracking_test 'diamond dependency graph' 재구성",
+  "packages": {
+    "a": { "1.0.0": { "c": "^1.0.0" } },
+    "b": { "1.0.0": { "c": "^1.0.0" } },
+    "c": { "1.0.0": {}, "1.5.0": {}, "2.0.0": {} }
+  },
+  "root": { "a": "*", "b": "*" },
+  "expect": { "solution": { "a": "1.0.0", "b": "1.0.0", "c": "1.5.0" } }
+}

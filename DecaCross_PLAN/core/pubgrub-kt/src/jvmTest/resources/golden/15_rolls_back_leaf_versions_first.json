@@ -1,0 +1,11 @@
+{
+  "name": "rolls_back_leaf_versions_first",
+  "origin": "Dart pub backtracking_test 'rolls back leaf versions first' 재구성",
+  "packages": {
+    "a": { "2.0.0": { "b": ">=2.0.0" }, "1.0.0": { "b": ">=1.0.0" } },
+    "b": { "2.0.0": { "c": "^2.0.0" }, "1.0.0": {} },
+    "c": { "1.0.0": {} }
+  },
+  "root": { "a": "*" },
+  "expect": { "solution": { "a": "1.0.0", "b": "1.0.0" } }
+}

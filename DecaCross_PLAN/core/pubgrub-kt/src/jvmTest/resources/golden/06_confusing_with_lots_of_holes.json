@@ -1,0 +1,13 @@
+{
+  "name": "confusing_with_lots_of_holes",
+  "origin": "pubgrub-rs tests/examples.rs::confusing_with_lots_of_holes — baz 는 충돌과 무관하므로 트리에 없어야 한다",
+  "packages": {
+    "foo": {
+      "1.0.0": { "bar": "*" }, "2.0.0": { "bar": "*" }, "3.0.0": { "bar": "*" },
+      "4.0.0": { "bar": "*" }, "5.0.0": { "bar": "*" }
+    },
+    "baz": { "1.0.0": {} }
+  },
+  "root": { "foo": "*", "baz": "*" },
+  "expect": { "noSolution": true, "mentions": ["root", "foo", "bar"] }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "merged_dependency_ranges",
+  "origin": "자체 — 여러 버전이 같은 의존성을 가질 때 하나의 진술로 병합",
+  "packages": {
+    "foo": { "1.0.0": { "bar": "^1.0.0" }, "1.1.0": { "bar": "^1.0.0" }, "1.2.0": { "bar": "^1.0.0" } },
+    "bar": { "2.0.0": {} }
+  },
+  "root": { "foo": "*" },
+  "expect": { "noSolution": true, "mentions": ["root", "foo", "bar"] }
+}
