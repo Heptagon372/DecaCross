@@ -84,6 +84,12 @@ class Daemon(
         }
     }
 
+    private val fixApplier = kr.decacross.daemon.diagnosis.FixApplier(registry, runtimeInstaller) { id ->
+        manager.status(id)?.state?.let { it != kr.decacross.daemon.process.ServerState.STOPPED && it != kr.decacross.daemon.process.ServerState.CRASHED && it != kr.decacross.daemon.process.ServerState.CRASH_LOOP } ?: false
+    }
+
+    suspend fun applyFix(id: String, action: kr.decacross.daemon.diagnosis.FixActionDto): kr.decacross.daemon.diagnosis.FixOutcome = fixApplier.apply(id, action)
+
     fun casGc(): Long {
         val referenced = registry.list().flatMap { s ->
             val m = Path.of(s.dir).resolve(".decacross/manifest.json")

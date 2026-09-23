@@ -63,7 +63,7 @@ fun Route.uiRoutes(d: Daemon) {
             val id = call.id()
             val s = d.registry.get(id) ?: return@get call.notFound()
             val st = d.manager.status(id) ?: return@get call.notFound()
-            call.respond(ServerDetail(s, st, d.manager.recentLines(id)))
+            call.respond(ServerDetail(s, st, d.manager.recentLines(id), d.manager.diagnoses(id)))
         }
         post("/servers/{id}/start") {
             when (val r = d.manager.start(call.id())) {
@@ -118,6 +118,16 @@ fun Route.uiRoutes(d: Daemon) {
                     lines.chunkedTimeout(50.milliseconds, 200).collect { batch -> sendSerialized<StreamFrame>(StreamFrame.Log(batch)) }
                 }
             }
+            val diagJob = launch {
+                while (true) {
+                    val flow = d.manager.diagnosisFlow(id)
+                    if (flow == null) {
+                        delay(500)
+                        continue
+                    }
+                    flow.collect { sendSerialized<StreamFrame>(StreamFrame.DiagnosisFrame(it)) }
+                }
+            }
             try {
                 for (frame in incoming) {
                     if (frame is Frame.Text) {
@@ -128,6 +138,7 @@ fun Route.uiRoutes(d: Daemon) {
             } finally {
                 statusJob.cancel()
                 logJob.cancel()
+                diagJob.cancel()
             }
         }
 
@@ -181,8 +192,19 @@ fun Route.uiRoutes(d: Daemon) {
         }
 
         // ── 진단 (06) ──────────────────────────────────────
-        get("/servers/{id}/diagnosis") { call.respond(HttpStatusCode.NotImplemented, ErrorDto("06 단계")) }
-        post("/servers/{id}/fix") { call.respond(HttpStatusCode.NotImplemented, ErrorDto("06 단계")) }
+        get("/servers/{id}/diagnosis") {
+            val id = call.id()
+            if (d.registry.get(id) == null) return@get call.notFound()
+            call.respond(d.manager.diagnoses(id))
+        }
+        post("/servers/{id}/fix") {
+            val req = call.receive<FixRequest>()
+            when (val r = d.applyFix(call.id(), req.action)) {
+                is kr.decacross.daemon.diagnosis.FixOutcome.Applied -> call.respond(FixResult(r.messageKo, r.restartRequired))
+                is kr.decacross.daemon.diagnosis.FixOutcome.Rejected -> call.respond(HttpStatusCode.Conflict, ErrorDto(r.reasonKo))
+                is kr.decacross.daemon.diagnosis.FixOutcome.Unsupported -> call.respond(HttpStatusCode.NotImplemented, ErrorDto(r.reasonKo))
+            }
+        }
         post("/servers/{id}/bisect") { call.respond(HttpStatusCode.NotImplemented, ErrorDto("Phase 2 (F-46)")) }
     }
 }

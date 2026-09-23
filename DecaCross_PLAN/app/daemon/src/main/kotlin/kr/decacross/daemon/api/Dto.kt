@@ -19,7 +19,18 @@ data class ServerSummary(
 )
 
 @Serializable
-data class ServerDetail(val server: InstalledServer, val status: ServerStatus, val recentLines: List<String>)
+data class ServerDetail(
+    val server: InstalledServer,
+    val status: ServerStatus,
+    val recentLines: List<String>,
+    val diagnoses: List<kr.decacross.daemon.diagnosis.Diagnosis> = emptyList(),
+)
+
+@Serializable
+data class FixRequest(val action: kr.decacross.daemon.diagnosis.FixActionDto)
+
+@Serializable
+data class FixResult(val appliedKo: String, val restartRequired: Boolean = false)
 
 @Serializable
 data class StopRequest(val force: Boolean = false)
@@ -72,6 +83,11 @@ sealed interface StreamFrame {
     @Serializable
     @kotlinx.serialization.SerialName("shutdown")
     data class Shutdown(val phase: String) : StreamFrame
+
+    /** 06: 새 진단 카드 */
+    @Serializable
+    @kotlinx.serialization.SerialName("diagnosis")
+    data class DiagnosisFrame(val diagnosis: kr.decacross.daemon.diagnosis.Diagnosis) : StreamFrame
 }
 
 /** WS 프레임 (설치 스트림). */

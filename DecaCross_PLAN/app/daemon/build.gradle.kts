@@ -8,9 +8,8 @@ plugins {
 dependencies {
     implementation(project(":core:compat-engine"))
     implementation(project(":core:dcx"))
-    // TODO(06): logparse / jvm-analysis 는 진단 카드 단계에서 연결한다 (두 모듈이 병행 구현 중이라 잠시 분리)
-    // implementation(project(":core:logparse"))
-    // implementation(project(":core:jvm-analysis"))
+    implementation(project(":core:logparse"))
+    implementation(project(":core:jvm-analysis"))
 
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.serialization.json)

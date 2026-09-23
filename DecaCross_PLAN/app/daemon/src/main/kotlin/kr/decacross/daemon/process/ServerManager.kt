@@ -2,11 +2,15 @@ package kr.decacross.daemon.process
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
+import kr.decacross.daemon.diagnosis.Diagnosis
+import kr.decacross.daemon.diagnosis.DiagnosisEngine
 import kr.decacross.daemon.install.Config
 import kr.decacross.daemon.install.InstalledServer
 import kr.decacross.daemon.store.ServerRegistry
@@ -54,6 +58,10 @@ class ServerManager(
 
     inner class Managed(val server: InstalledServer, val process: ServerProcess) {
         val state = MutableStateFlow(ServerState.STARTING)
+
+        /** 06: 로그 → 진단 카드. 새 카드는 [diagnoses] 로 흘러 WS 프레임이 된다. */
+        val diagnosis = DiagnosisEngine(Path.of(server.dir), server.port)
+        val diagnoses = MutableSharedFlow<Diagnosis>(replay = 64, extraBufferCapacity = 64, onBufferOverflow = BufferOverflow.DROP_OLDEST)
         val players = LinkedHashSet<String>()
         val recent = ArrayDeque<String>(RECENT_LINES)
         val crashLoop = CrashLoop()
@@ -84,6 +92,19 @@ class ServerManager(
     fun lines(id: String): SharedFlow<String>? = managed[id]?.process?.lines
 
     fun recentLines(id: String): List<String> = managed[id]?.snapshot().orEmpty()
+
+    /** 현재까지의 진단 카드. 실행 이력이 없으면 마지막 logs/latest.log 를 분석한다. */
+    fun diagnoses(id: String): List<Diagnosis> {
+        managed[id]?.let { return it.diagnosis.all() }
+        val server = registry.get(id) ?: return emptyList()
+        val latest = Path.of(server.dir).resolve("logs/latest.log")
+        if (!Files.isRegularFile(latest)) return emptyList()
+        val engine = DiagnosisEngine(Path.of(server.dir), server.port)
+        engine.analyze(Files.readAllLines(latest).takeLast(RECENT_LINES))
+        return engine.all()
+    }
+
+    fun diagnosisFlow(id: String): SharedFlow<Diagnosis>? = managed[id]?.diagnoses
 
     fun status(id: String): ServerStatus? {
         val server = registry.get(id) ?: return null
@@ -169,6 +190,7 @@ class ServerManager(
         }
         JOIN.find(line)?.let { m.players += it.groupValues[1] }
         LEAVE.find(line)?.let { m.players -= it.groupValues[1] }
+        runCatching { m.diagnosis.feed(line) }.getOrNull()?.let { m.diagnoses.tryEmit(it) }
     }
 
     companion object {

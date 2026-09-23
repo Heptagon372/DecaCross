@@ -93,6 +93,14 @@ object Config {
         }
     }
 
+    /** 설치 후 Java/RAM 이 바뀌었을 때(06 fix 등) 스크립트만 다시 쓴다. */
+    fun writeStartScripts(dir: Path, javaExe: String, ramMb: Int, coreJar: String, displayName: String) {
+        val mc = kr.decacross.compat.model.McVersion(kr.decacross.compat.model.McOrdinal(0), "", kotlin.time.Instant.fromEpochSeconds(0), false, 0, 0, null, null)
+        val core = kr.decacross.compat.model.CoreBuild(kr.decacross.compat.model.CoreKey.PAPER, mc.ordinal, "", kr.decacross.compat.model.Channel.STABLE, "", "", 0)
+        val spec = InstallSpec(name = displayName, mc = mc, core = core, javaExe = Path.of(javaExe), ramMb = ramMb, acceptEula = true, displayName = displayName)
+        writeStartScripts(dir, spec, coreJar)
+    }
+
     fun writeStartScripts(dir: Path, spec: InstallSpec, coreJar: String) {
         Files.writeString(dir.resolve("start.bat"), startBat(spec, coreJar))
         val sh = dir.resolve("start.sh")
