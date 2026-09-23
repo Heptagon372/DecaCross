@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://decacross.kr/schema/dcx-1.1.schema.json",
+  "title": "DecaCross recipe (.dcx) v1.1",
+  "description": "단일 진실 소스. Kotlin(@Serializable)과 TS(json-schema-to-typescript) 타입은 여기서 생성한다. 08 단계에서 설계서 §7 예시를 정규화해 확정.",
+  "type": "object",
+  "required": ["dcx", "id", "name", "target", "content"],
+  "properties": {
+    "dcx": { "const": "1.1" },
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,63}$" },
+    "name": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "description": { "type": "string" },
+    "target": {
+      "type": "object",
+      "required": ["minecraft", "core"],
+      "properties": {
+        "minecraft": { "type": "string" },
+        "core": {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": { "type": "string", "enum": ["paper", "purpur", "folia", "spigot", "vanilla", "fabric", "neoforge", "forge"] },
+            "build": { "type": ["string", "integer"] }
+          }
+        },
+        "java": {
+          "type": "object",
+          "properties": {
+            "feature": { "type": "integer" },
+            "distribution": { "type": "string", "enum": ["temurin"] },
+            "image": { "type": "string", "enum": ["jre", "jdk"] }
+          }
+        }
+      }
+    },
+    "content": { "type": "array", "items": { "type": "object" } }
+  }
+}

@@ -1,0 +1,56 @@
+# Gradle / Kotlin
+.gradle/
+build/
+**/build/
+.kotlin/
+kotlin-js-store/
+local.properties
+*.class
+*.hprof
+
+# ★ jar 는 원칙적으로 커밋하지 않는다 (라이선스 — 분석한 jar 는 즉시 폐기).
+#   예외: Gradle wrapper, 테스트 픽스처
+**/*.jar
+!gradle/wrapper/gradle-wrapper.jar
+!**/fixtures/**/*.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.fleet/
+
+# Node / Next.js (web/)
+node_modules/
+.next/
+out/
+dist/
+.turbo/
+*.tsbuildinfo
+next-env.d.ts
+
+# 환경변수 — 절대 커밋 금지
+.env
+.env.*
+!.env.example
+
+# Supabase 로컬
+.supabase/
+
+# 수집기 / verifier 임시 파일 (분석 후 폐기되는 jar)
+app/collector/.tmp/
+verifier/.tmp/
+
+# 로컬 DB 스냅샷
+*.sqlite
+*.sqlite-journal
+*.db
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 로그
+*.log
+logs/

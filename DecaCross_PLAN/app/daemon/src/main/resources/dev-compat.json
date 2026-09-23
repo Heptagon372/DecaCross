@@ -1,0 +1,1273 @@
+{
+ "mcVersions": [
+  {
+   "ordinal": 1000,
+   "label": "1.0",
+   "releasedAt": "2011-11-17T22:00:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1010,
+   "label": "1.1",
+   "releasedAt": "2012-01-11T22:00:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1020,
+   "label": "1.2.1",
+   "releasedAt": "2012-02-29T22:00:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1030,
+   "label": "1.2.2",
+   "releasedAt": "2012-02-29T22:00:01+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1040,
+   "label": "1.2.3",
+   "releasedAt": "2012-03-01T22:00:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1050,
+   "label": "1.2.4",
+   "releasedAt": "2012-03-21T22:00:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1060,
+   "label": "1.2.5",
+   "releasedAt": "2012-03-29T22:00:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1070,
+   "label": "1.3.1",
+   "releasedAt": "2012-07-31T22:00:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1080,
+   "label": "1.3.2",
+   "releasedAt": "2012-08-15T22:00:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1090,
+   "label": "1.4.2",
+   "releasedAt": "2012-11-24T22:00:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1100,
+   "label": "1.4.4",
+   "releasedAt": "2012-12-13T22:00:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1110,
+   "label": "1.4.5",
+   "releasedAt": "2012-12-19T22:00:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1120,
+   "label": "1.4.6",
+   "releasedAt": "2012-12-19T22:00:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1130,
+   "label": "1.4.7",
+   "releasedAt": "2012-12-27T22:00:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1140,
+   "label": "1.5.1",
+   "releasedAt": "2013-03-20T10:00:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1150,
+   "label": "1.5.2",
+   "releasedAt": "2013-04-25T15:45:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1160,
+   "label": "1.6.1",
+   "releasedAt": "2013-06-28T14:48:41+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1170,
+   "label": "1.6.2",
+   "releasedAt": "2013-07-05T13:09:02+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1180,
+   "label": "1.6.4",
+   "releasedAt": "2013-09-19T15:52:37+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1190,
+   "label": "1.7.2",
+   "releasedAt": "2013-10-25T13:00:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1200,
+   "label": "1.7.3",
+   "releasedAt": "2013-12-06T13:55:34+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1210,
+   "label": "1.7.4",
+   "releasedAt": "2013-12-09T12:28:10+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1220,
+   "label": "1.7.5",
+   "releasedAt": "2014-02-26T09:22:17+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1230,
+   "label": "1.7.6",
+   "releasedAt": "2014-04-09T07:52:06+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1240,
+   "label": "1.7.7",
+   "releasedAt": "2014-04-09T07:52:16+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1250,
+   "label": "1.7.8",
+   "releasedAt": "2014-04-09T07:58:16+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1260,
+   "label": "1.7.9",
+   "releasedAt": "2014-04-14T13:29:23+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1270,
+   "label": "1.7.10",
+   "releasedAt": "2014-05-14T17:29:23+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1280,
+   "label": "1.8",
+   "releasedAt": "2014-09-02T08:24:35+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1290,
+   "label": "1.8.1",
+   "releasedAt": "2014-11-24T14:13:31+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1300,
+   "label": "1.8.2",
+   "releasedAt": "2015-02-19T15:47:29+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1310,
+   "label": "1.8.3",
+   "releasedAt": "2015-02-20T14:00:09+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1320,
+   "label": "1.8.4",
+   "releasedAt": "2015-04-17T11:37:50+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1330,
+   "label": "1.8.5",
+   "releasedAt": "2015-05-22T11:15:28+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1340,
+   "label": "1.8.6",
+   "releasedAt": "2015-05-25T10:31:19+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1350,
+   "label": "1.8.7",
+   "releasedAt": "2015-06-05T10:10:44+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1360,
+   "label": "1.8.8",
+   "releasedAt": "2015-07-27T10:31:28+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1370,
+   "label": "1.8.9",
+   "releasedAt": "2015-12-03T09:24:39+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1380,
+   "label": "1.9",
+   "releasedAt": "2016-02-29T13:49:54+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1390,
+   "label": "1.9.1",
+   "releasedAt": "2016-03-30T13:43:07+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1400,
+   "label": "1.9.2",
+   "releasedAt": "2016-03-30T15:23:55+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1410,
+   "label": "1.9.3",
+   "releasedAt": "2016-05-10T08:33:35+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1420,
+   "label": "1.9.4",
+   "releasedAt": "2016-05-10T10:17:16+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1430,
+   "label": "1.10",
+   "releasedAt": "2016-06-08T13:06:18+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1440,
+   "label": "1.10.1",
+   "releasedAt": "2016-06-22T10:13:22+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1450,
+   "label": "1.10.2",
+   "releasedAt": "2016-06-23T09:17:32+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1460,
+   "label": "1.11",
+   "releasedAt": "2016-11-14T14:34:40+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1470,
+   "label": "1.11.1",
+   "releasedAt": "2016-12-20T14:05:34+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1480,
+   "label": "1.11.2",
+   "releasedAt": "2016-12-21T09:29:12+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1490,
+   "label": "1.12",
+   "releasedAt": "2017-06-02T13:50:27+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1500,
+   "label": "1.12.1",
+   "releasedAt": "2017-08-03T12:40:39+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1510,
+   "label": "1.12.2",
+   "releasedAt": "2017-09-18T08:39:46+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1520,
+   "label": "1.13",
+   "releasedAt": "2018-07-18T15:11:46+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1530,
+   "label": "1.13.1",
+   "releasedAt": "2018-08-22T14:03:42+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1540,
+   "label": "1.13.2",
+   "releasedAt": "2018-10-22T11:41:07+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1550,
+   "label": "1.14",
+   "releasedAt": "2019-04-23T14:52:44+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1560,
+   "label": "1.14.1",
+   "releasedAt": "2019-05-13T11:10:12+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1570,
+   "label": "1.14.2",
+   "releasedAt": "2019-05-27T11:48:25+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1580,
+   "label": "1.14.3",
+   "releasedAt": "2019-06-24T12:52:52+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1590,
+   "label": "1.14.4",
+   "releasedAt": "2019-07-19T09:25:47+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1600,
+   "label": "1.15",
+   "releasedAt": "2019-12-09T13:13:38+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1610,
+   "label": "1.15.1",
+   "releasedAt": "2019-12-16T10:29:47+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1620,
+   "label": "1.15.2",
+   "releasedAt": "2020-01-17T10:03:52+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1630,
+   "label": "1.16",
+   "releasedAt": "2020-06-23T16:20:52+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1640,
+   "label": "1.16.1",
+   "releasedAt": "2020-06-24T10:31:40+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1650,
+   "label": "1.16.2",
+   "releasedAt": "2020-08-11T10:13:46+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1660,
+   "label": "1.16.3",
+   "releasedAt": "2020-09-10T13:42:37+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1670,
+   "label": "1.16.4",
+   "releasedAt": "2020-10-29T15:49:37+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1680,
+   "label": "1.16.5",
+   "releasedAt": "2021-01-14T16:05:32+00:00",
+   "isSnapshot": false,
+   "javaMin": 8,
+   "javaRecommended": 8,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1690,
+   "label": "1.17",
+   "releasedAt": "2021-06-08T11:00:40+00:00",
+   "isSnapshot": false,
+   "javaMin": 16,
+   "javaRecommended": 16,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1700,
+   "label": "1.17.1",
+   "releasedAt": "2021-07-06T12:01:34+00:00",
+   "isSnapshot": false,
+   "javaMin": 16,
+   "javaRecommended": 16,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1710,
+   "label": "1.18",
+   "releasedAt": "2021-11-30T09:16:29+00:00",
+   "isSnapshot": false,
+   "javaMin": 17,
+   "javaRecommended": 17,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1720,
+   "label": "1.18.1",
+   "releasedAt": "2021-12-10T08:23:00+00:00",
+   "isSnapshot": false,
+   "javaMin": 17,
+   "javaRecommended": 17,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1730,
+   "label": "1.18.2",
+   "releasedAt": "2022-02-28T10:42:45+00:00",
+   "isSnapshot": false,
+   "javaMin": 17,
+   "javaRecommended": 17,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1740,
+   "label": "1.19",
+   "releasedAt": "2022-06-07T09:42:18+00:00",
+   "isSnapshot": false,
+   "javaMin": 17,
+   "javaRecommended": 17,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1750,
+   "label": "1.19.1",
+   "releasedAt": "2022-07-27T09:25:33+00:00",
+   "isSnapshot": false,
+   "javaMin": 17,
+   "javaRecommended": 17,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1760,
+   "label": "1.19.2",
+   "releasedAt": "2022-08-05T11:57:05+00:00",
+   "isSnapshot": false,
+   "javaMin": 17,
+   "javaRecommended": 17,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1770,
+   "label": "1.19.3",
+   "releasedAt": "2022-12-07T08:17:18+00:00",
+   "isSnapshot": false,
+   "javaMin": 17,
+   "javaRecommended": 17,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1780,
+   "label": "1.19.4",
+   "releasedAt": "2023-03-14T12:56:18+00:00",
+   "isSnapshot": false,
+   "javaMin": 17,
+   "javaRecommended": 17,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1790,
+   "label": "1.20",
+   "releasedAt": "2023-06-02T08:36:17+00:00",
+   "isSnapshot": false,
+   "javaMin": 17,
+   "javaRecommended": 17,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1800,
+   "label": "1.20.1",
+   "releasedAt": "2023-06-12T13:25:51+00:00",
+   "isSnapshot": false,
+   "javaMin": 17,
+   "javaRecommended": 17,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1810,
+   "label": "1.20.2",
+   "releasedAt": "2023-09-20T09:02:57+00:00",
+   "isSnapshot": false,
+   "javaMin": 17,
+   "javaRecommended": 17,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1820,
+   "label": "1.20.3",
+   "releasedAt": "2023-12-04T12:10:32+00:00",
+   "isSnapshot": false,
+   "javaMin": 17,
+   "javaRecommended": 17,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1830,
+   "label": "1.20.4",
+   "releasedAt": "2023-12-07T12:56:20+00:00",
+   "isSnapshot": false,
+   "javaMin": 17,
+   "javaRecommended": 17,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1840,
+   "label": "1.20.5",
+   "releasedAt": "2024-04-23T11:54:12+00:00",
+   "isSnapshot": false,
+   "javaMin": 21,
+   "javaRecommended": 21,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1850,
+   "label": "1.20.6",
+   "releasedAt": "2024-04-29T12:40:45+00:00",
+   "isSnapshot": false,
+   "javaMin": 21,
+   "javaRecommended": 21,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1860,
+   "label": "1.21",
+   "releasedAt": "2024-06-13T08:24:03+00:00",
+   "isSnapshot": false,
+   "javaMin": 21,
+   "javaRecommended": 21,
+   "rpFormat": "34",
+   "dpFormat": "48"
+  },
+  {
+   "ordinal": 1870,
+   "label": "1.21.1",
+   "releasedAt": "2024-08-08T12:24:45+00:00",
+   "isSnapshot": false,
+   "javaMin": 21,
+   "javaRecommended": 21,
+   "rpFormat": "34",
+   "dpFormat": "48"
+  },
+  {
+   "ordinal": 1880,
+   "label": "1.21.2",
+   "releasedAt": "2024-10-22T09:58:55+00:00",
+   "isSnapshot": false,
+   "javaMin": 21,
+   "javaRecommended": 21,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1890,
+   "label": "1.21.3",
+   "releasedAt": "2024-10-23T12:28:15+00:00",
+   "isSnapshot": false,
+   "javaMin": 21,
+   "javaRecommended": 21,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1900,
+   "label": "1.21.4",
+   "releasedAt": "2024-12-03T10:12:57+00:00",
+   "isSnapshot": false,
+   "javaMin": 21,
+   "javaRecommended": 21,
+   "rpFormat": null,
+   "dpFormat": "61"
+  },
+  {
+   "ordinal": 1910,
+   "label": "1.21.5",
+   "releasedAt": "2025-03-25T12:14:58+00:00",
+   "isSnapshot": false,
+   "javaMin": 21,
+   "javaRecommended": 21,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1920,
+   "label": "1.21.6",
+   "releasedAt": "2025-06-17T11:10:28+00:00",
+   "isSnapshot": false,
+   "javaMin": 21,
+   "javaRecommended": 21,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1930,
+   "label": "1.21.7",
+   "releasedAt": "2025-06-30T09:32:16+00:00",
+   "isSnapshot": false,
+   "javaMin": 21,
+   "javaRecommended": 21,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1940,
+   "label": "1.21.8",
+   "releasedAt": "2025-07-17T12:04:02+00:00",
+   "isSnapshot": false,
+   "javaMin": 21,
+   "javaRecommended": 21,
+   "rpFormat": null,
+   "dpFormat": "81"
+  },
+  {
+   "ordinal": 1950,
+   "label": "1.21.9",
+   "releasedAt": "2025-09-30T11:58:43+00:00",
+   "isSnapshot": false,
+   "javaMin": 21,
+   "javaRecommended": 21,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1960,
+   "label": "1.21.10",
+   "releasedAt": "2025-10-07T09:17:23+00:00",
+   "isSnapshot": false,
+   "javaMin": 21,
+   "javaRecommended": 21,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1970,
+   "label": "1.21.11",
+   "releasedAt": "2025-12-09T12:23:30+00:00",
+   "isSnapshot": false,
+   "javaMin": 21,
+   "javaRecommended": 21,
+   "rpFormat": null,
+   "dpFormat": null
+  },
+  {
+   "ordinal": 1980,
+   "label": "26.1",
+   "releasedAt": "2026-03-24T12:11:04+00:00",
+   "isSnapshot": false,
+   "javaMin": 25,
+   "javaRecommended": 25,
+   "rpFormat": null,
+   "dpFormat": "101.1"
+  },
+  {
+   "ordinal": 1990,
+   "label": "26.1.1",
+   "releasedAt": "2026-04-01T09:06:36+00:00",
+   "isSnapshot": false,
+   "javaMin": 25,
+   "javaRecommended": 25,
+   "rpFormat": null,
+   "dpFormat": "101.1"
+  },
+  {
+   "ordinal": 2000,
+   "label": "26.1.2",
+   "releasedAt": "2026-04-09T10:12:23+00:00",
+   "isSnapshot": false,
+   "javaMin": 25,
+   "javaRecommended": 25,
+   "rpFormat": null,
+   "dpFormat": "101.1"
+  },
+  {
+   "ordinal": 2010,
+   "label": "26.2",
+   "releasedAt": "2026-06-16T12:03:33+00:00",
+   "isSnapshot": false,
+   "javaMin": 25,
+   "javaRecommended": 25,
+   "rpFormat": null,
+   "dpFormat": "107.1"
+  },
+  {
+   "ordinal": 2020,
+   "label": "26.3",
+   "releasedAt": "2026-09-15T11:23:02+00:00",
+   "isSnapshot": false,
+   "javaMin": 25,
+   "javaRecommended": 25,
+   "rpFormat": null,
+   "dpFormat": "121.0"
+  }
+ ],
+ "coreBuilds": [
+  {
+   "core": "PAPER",
+   "mc": 2020,
+   "build": "6",
+   "channel": "EXPERIMENTAL",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/5b8bd066914becf73ffbacee4352f3804a7c6cecab8e0855ff43815e3700c86f/paper-26.3-6.jar",
+   "sha256": "5b8bd066914becf73ffbacee4352f3804a7c6cecab8e0855ff43815e3700c86f",
+   "size": 63712878
+  },
+  {
+   "core": "PAPER",
+   "mc": 2010,
+   "build": "124",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/274bbcb9807ad79a479617ce695a7c0686e652a8d1cabfd0e288d92a3ea29593/paper-26.2-124.jar",
+   "sha256": "274bbcb9807ad79a479617ce695a7c0686e652a8d1cabfd0e288d92a3ea29593",
+   "size": 64521995
+  },
+  {
+   "core": "PAPER",
+   "mc": 2000,
+   "build": "74",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/1d70b1dab9cf4a6de615209a536f3a45a2186240253c428213ce2188ab95e5f7/paper-26.1.2-74.jar",
+   "sha256": "1d70b1dab9cf4a6de615209a536f3a45a2186240253c428213ce2188ab95e5f7",
+   "size": 52893229
+  },
+  {
+   "core": "PAPER",
+   "mc": 1970,
+   "build": "132",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba/paper-1.21.11-132.jar",
+   "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba",
+   "size": 54846016
+  },
+  {
+   "core": "PAPER",
+   "mc": 1960,
+   "build": "130",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/158703f75a26f842ea656b3dc6d75bf3d1ec176b97a2c36384d0b80b3871af53/paper-1.21.10-130.jar",
+   "sha256": "158703f75a26f842ea656b3dc6d75bf3d1ec176b97a2c36384d0b80b3871af53",
+   "size": 54475623
+  },
+  {
+   "core": "PAPER",
+   "mc": 1950,
+   "build": "59",
+   "channel": "EXPERIMENTAL",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/aec002e77c7566e49494fdf05430b96078ffd1d7430e652d4f338fef951e7a10/paper-1.21.9-59.jar",
+   "sha256": "aec002e77c7566e49494fdf05430b96078ffd1d7430e652d4f338fef951e7a10",
+   "size": 53440323
+  },
+  {
+   "core": "PAPER",
+   "mc": 1940,
+   "build": "60",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/8de7c52c3b02403503d16fac58003f1efef7dd7a0256786843927fa92ee57f1e/paper-1.21.8-60.jar",
+   "sha256": "8de7c52c3b02403503d16fac58003f1efef7dd7a0256786843927fa92ee57f1e",
+   "size": 52811717
+  },
+  {
+   "core": "PAPER",
+   "mc": 1930,
+   "build": "32",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/83838188699cb2837e55b890fb1a1d39ad0710285ed633fbf9fc14e9f47ce078/paper-1.21.7-32.jar",
+   "sha256": "83838188699cb2837e55b890fb1a1d39ad0710285ed633fbf9fc14e9f47ce078",
+   "size": 52771702
+  },
+  {
+   "core": "PAPER",
+   "mc": 1910,
+   "build": "114",
+   "channel": "EXPERIMENTAL",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/2ae6ae22adf417699746e0f89fc2ef6cb6ee050a5f6608cee58f0535d60b509e/paper-1.21.5-114.jar",
+   "sha256": "2ae6ae22adf417699746e0f89fc2ef6cb6ee050a5f6608cee58f0535d60b509e",
+   "size": 51427274
+  },
+  {
+   "core": "PAPER",
+   "mc": 1900,
+   "build": "232",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/5ee4f542f628a14c644410b08c94ea42e772ef4d29fe92973636b6813d4eaffc/paper-1.21.4-232.jar",
+   "sha256": "5ee4f542f628a14c644410b08c94ea42e772ef4d29fe92973636b6813d4eaffc",
+   "size": 51437498
+  },
+  {
+   "core": "PAPER",
+   "mc": 1890,
+   "build": "83",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/87e973e1d338e869e7fdbc4b8fadc1579d7bb0246a0e0cf6e5700ace6c8bc17e/paper-1.21.3-83.jar",
+   "sha256": "87e973e1d338e869e7fdbc4b8fadc1579d7bb0246a0e0cf6e5700ace6c8bc17e",
+   "size": 50931273
+  },
+  {
+   "core": "PAPER",
+   "mc": 1870,
+   "build": "133",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9/paper-1.21.1-133.jar",
+   "sha256": "39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9",
+   "size": 49394394
+  },
+  {
+   "core": "PAPER",
+   "mc": 1860,
+   "build": "130",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/ab9bb1afc3cea6978a0c03ce8448aa654fe8a9c4dddf341e7cbda1b0edaa73f5/paper-1.21-130.jar",
+   "sha256": "ab9bb1afc3cea6978a0c03ce8448aa654fe8a9c4dddf341e7cbda1b0edaa73f5",
+   "size": 49049109
+  },
+  {
+   "core": "PAPER",
+   "mc": 1850,
+   "build": "151",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/4b011f5adb5f6c72007686a223174fce82f31aeb4b34faf4652abc840b47e640/paper-1.20.6-151.jar",
+   "sha256": "4b011f5adb5f6c72007686a223174fce82f31aeb4b34faf4652abc840b47e640",
+   "size": 45826876
+  },
+  {
+   "core": "PAPER",
+   "mc": 1830,
+   "build": "499",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b/paper-1.20.4-499.jar",
+   "sha256": "cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b",
+   "size": 42781488
+  },
+  {
+   "core": "PAPER",
+   "mc": 1810,
+   "build": "318",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/ba340a835ac40b8563aa7eda1cd6479a11a7623409c89a2c35cd9d7490ed17a7/paper-1.20.2-318.jar",
+   "sha256": "ba340a835ac40b8563aa7eda1cd6479a11a7623409c89a2c35cd9d7490ed17a7",
+   "size": 41741453
+  },
+  {
+   "core": "PAPER",
+   "mc": 1800,
+   "build": "196",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/234a9b32098100c6fc116664d64e36ccdb58b5b649af0f80bcccb08b0255eaea/paper-1.20.1-196.jar",
+   "sha256": "234a9b32098100c6fc116664d64e36ccdb58b5b649af0f80bcccb08b0255eaea",
+   "size": 43230582
+  },
+  {
+   "core": "PAPER",
+   "mc": 1780,
+   "build": "550",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/e587d78cba3e99ef8c4bc24cf20cc3bdbbe89e33b0b572070446af4eb6be5ccf/paper-1.19.4-550.jar",
+   "sha256": "e587d78cba3e99ef8c4bc24cf20cc3bdbbe89e33b0b572070446af4eb6be5ccf",
+   "size": 42666406
+  },
+  {
+   "core": "PAPER",
+   "mc": 1730,
+   "build": "388",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/0578f18f4d632b494b468ec56b3b414b5b56fea087ee7d39cf6dcdf4c9d01f05/paper-1.18.2-388.jar",
+   "sha256": "0578f18f4d632b494b468ec56b3b414b5b56fea087ee7d39cf6dcdf4c9d01f05",
+   "size": 34829667
+  },
+  {
+   "core": "PAPER",
+   "mc": 1700,
+   "build": "411",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/6cc1ee2f94253ce10b5374ed85fffc735a97d8f1b64db293683dfa24dd3cc05f/paper-1.17.1-411.jar",
+   "sha256": "6cc1ee2f94253ce10b5374ed85fffc735a97d8f1b64db293683dfa24dd3cc05f",
+   "size": 61886260
+  },
+  {
+   "core": "PAPER",
+   "mc": 1680,
+   "build": "794",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/e67da4851d08cde378ab2b89be58849238c303351ed2482181a99c2c2b489276/paper-1.16.5-794.jar",
+   "sha256": "e67da4851d08cde378ab2b89be58849238c303351ed2482181a99c2c2b489276",
+   "size": 53944842
+  },
+  {
+   "core": "PAPER",
+   "mc": 1620,
+   "build": "393",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/bd2dd6f2cc489cf9e2bb800cb4fb6d63e9d293945d3ac10b09dd9c6098fa9f34/paper-1.15.2-393.jar",
+   "sha256": "bd2dd6f2cc489cf9e2bb800cb4fb6d63e9d293945d3ac10b09dd9c6098fa9f34",
+   "size": 45026753
+  },
+  {
+   "core": "PAPER",
+   "mc": 1590,
+   "build": "245",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/bd8ec5cdb22370d37816a6de26798df3d2b0d6f9c7c96c88ca45a1303fea50e8/paper-1.14.4-245.jar",
+   "sha256": "bd8ec5cdb22370d37816a6de26798df3d2b0d6f9c7c96c88ca45a1303fea50e8",
+   "size": 43972138
+  },
+  {
+   "core": "PAPER",
+   "mc": 1540,
+   "build": "657",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/11e828d0565ab76a0a0e180c056364a95de44958cfd6a6af3f9b1dc70b03e9cd/paper-1.13.2-657.jar",
+   "sha256": "11e828d0565ab76a0a0e180c056364a95de44958cfd6a6af3f9b1dc70b03e9cd",
+   "size": 44991089
+  },
+  {
+   "core": "PAPER",
+   "mc": 1510,
+   "build": "1620",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/3a2041807f492dcdc34ebb324a287414946e3e05ec3df6fd03f5b5f7d9afc210/paper-1.12.2-1620.jar",
+   "sha256": "3a2041807f492dcdc34ebb324a287414946e3e05ec3df6fd03f5b5f7d9afc210",
+   "size": 40979699
+  },
+  {
+   "core": "PAPER",
+   "mc": 1360,
+   "build": "445",
+   "channel": "STABLE",
+   "downloadUrl": "https://fill-data.papermc.io/v1/objects/7ff6d2cec671ef0d95b3723b5c92890118fb882d73b7f8fa0a2cd31d97c55f86/paper-1.8.8-445.jar",
+   "sha256": "7ff6d2cec671ef0d95b3723b5c92890118fb882d73b7f8fa0a2cd31d97c55f86",
+   "size": 19520829
+  }
+ ],
+ "content": [],
+ "contentVersions": [],
+ "confidence": []
+}
