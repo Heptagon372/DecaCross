@@ -1,29 +1,49 @@
 package kr.decacross.compat.resolve
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import kr.decacross.compat.model.Capability
 import kr.decacross.compat.model.CoreKey
 import kr.decacross.compat.model.McOrdinal
 
 /** 도메인 → PubGrub 패키지 매핑 (명세 §5). */
+@Serializable
 public sealed interface Pkg {
+    @Serializable
+    @SerialName("root")
     public data object Root : Pkg
 
+    @Serializable
+    @SerialName("mc")
     public data object Mc : Pkg
 
+    @Serializable
+    @SerialName("java")
     public data object Java : Pkg
 
+    @Serializable
+    @SerialName("core")
     public data class Core(val key: CoreKey) : Pkg
 
+    @Serializable
+    @SerialName("content")
     public data class Content(val slug: String) : Pkg
 
+    @Serializable
+    @SerialName("api")
     public data class Api(val kind: ApiKind) : Pkg
 
+    @Serializable
+    @SerialName("nms")
     public data object Nms : Pkg
 
     /** ★ 배타 제약. 같은 Capability 를 제공하는 패키지는 하나만 선택된다. */
+    @Serializable
+    @SerialName("provides")
     public data class Provides(val cap: Capability) : Pkg
 }
 
+@Serializable
 public enum class ApiKind { BUKKIT, FABRIC, FORGE }
 
 /**

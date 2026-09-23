@@ -49,6 +49,8 @@ data class InstallRequest(
     val acceptEula: Boolean,
     val allowExperimental: Boolean = false,
     val properties: Map<String, String> = emptyMap(),
+    /** 07: 플러그인 슬러그. 비어 있지 않으면 resolve() 로 의존성까지 확정한 뒤 설치한다. */
+    val plugins: List<String> = emptyList(),
 )
 
 @Serializable

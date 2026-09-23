@@ -10,6 +10,7 @@ import kr.decacross.compat.db.InMemoryCompatDb
 import kr.decacross.compat.model.Arch
 import kr.decacross.compat.model.Channel
 import kr.decacross.compat.model.Os
+import kr.decacross.compat.resolve
 import kr.decacross.daemon.api.InstallRequest
 import kr.decacross.daemon.api.UiToken
 import kr.decacross.daemon.install.Fetcher
@@ -76,9 +77,56 @@ class Daemon(
                     return@submit
                 }
             }
+            // 07: 플러그인이 있으면 엔진으로 의존성까지 확정. 충돌이면 한국어 설명 + fix 를 그대로 전달한다.
+            var plugins = emptyList<kr.decacross.compat.model.ContentVersion>()
+            var javaExe = java.exe
+            if (req.plugins.isNotEmpty()) {
+                val outcome = resolve(
+                    kr.decacross.compat.ResolveRequest(
+                        mc = kr.decacross.compat.McSelector.Exact(req.mc),
+                        core = req.core,
+                        wants = req.plugins.map { kr.decacross.compat.Want(it, kr.decacross.compat.model.ContentKind.PLUGIN) },
+                        os = currentOs(),
+                        arch = currentArch(),
+                        ramMb = systemMemoryMb().toInt(),
+                        allowExperimental = req.allowExperimental,
+                        hostOverheadMb = hostOverheadMb(),
+                    ),
+                    db,
+                )
+                when (outcome) {
+                    is kr.decacross.compat.ResolveOutcome.Conflict -> {
+                        val e = outcome.explanation
+                        val text = buildString {
+                            append(e.headlineKo)
+                            e.causeChain.forEach { append("\n  · ").append(it.textKo) }
+                            e.fixes.forEachIndexed { i, f -> append("\n  ").append(i + 1).append(") ").append(f.labelKo).append(if (f.recommended) " (권장)" else "") }
+                        }
+                        emit(InstallEvent.Failed(InstallStage.RESOLVE, InstallError.Io(text)))
+                        return@submit
+                    }
+
+                    is kr.decacross.compat.ResolveOutcome.Ok -> {
+                        val plan = outcome.plan
+                        plugins = plan.items.map { it.content }
+                        plan.items.filter { it.autoAdded }.forEach { emit(InstallEvent.Message("자동 추가: ${it.content.slug} ${it.content.version} — ${it.reason ?: "의존성"}")) }
+                        plan.warnings.forEach { emit(InstallEvent.Message("⚠ ${it.textKo}")) }
+                        if (plan.java.feature != mc.javaRecommended) {
+                            when (val r2 = runtimeInstaller.ensureRuntime(plan.java.feature, currentOs(), currentArch())) {
+                                is EnsureResult.Ok -> javaExe = r2.info.exe
+
+                                is EnsureResult.Failed -> {
+                                    emit(InstallEvent.Failed(InstallStage.RESOLVE, InstallError.Io(r2.messageKo)))
+                                    return@submit
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             val spec = InstallSpec(
-                name = req.name, mc = mc, core = build, javaExe = java.exe, ramMb = req.ramMb,
-                acceptEula = req.acceptEula, port = req.port, properties = req.properties,
+                name = req.name, mc = mc, core = build, javaExe = javaExe, ramMb = req.ramMb,
+                acceptEula = req.acceptEula, port = req.port, properties = req.properties, plugins = plugins,
             )
             pipeline.run(spec).collect { emit(it) }
         }
@@ -89,6 +137,9 @@ class Daemon(
     }
 
     suspend fun applyFix(id: String, action: kr.decacross.daemon.diagnosis.FixActionDto): kr.decacross.daemon.diagnosis.FixOutcome = fixApplier.apply(id, action)
+
+    /** POST /api/resolve — 엔진을 그대로 노출. 웹 위저드(08)도 같은 엔진을 쓴다 (판정 로직 단일화, D2). */
+    fun resolveRequest(req: kr.decacross.compat.ResolveRequest): kr.decacross.compat.ResolveOutcome = resolve(req, db)
 
     fun casGc(): Long {
         val referenced = registry.list().flatMap { s ->

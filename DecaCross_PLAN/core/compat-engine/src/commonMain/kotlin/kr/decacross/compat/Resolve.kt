@@ -1,5 +1,7 @@
 package kr.decacross.compat
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import kr.decacross.compat.db.CompatDb
 import kr.decacross.compat.explain.Explainer
 import kr.decacross.compat.model.Arch
@@ -138,6 +140,7 @@ private fun buildPlan(req: ResolveRequest, db: CompatDb, c: Candidates, selected
     )
 }
 
+@Serializable
 public data class ResolveRequest(
     val mc: McSelector = McSelector.Any,
     val core: CoreKey? = null,
@@ -152,19 +155,29 @@ public data class ResolveRequest(
     val hostOverheadMb: Int = 0,
 )
 
+@Serializable
 public sealed interface McSelector {
     /** "1.21.8" */
+    @Serializable
+    @SerialName("exact")
     public data class Exact(val label: String) : McSelector
 
     /** "1.21" → 1.21..1.21.8 */
+    @Serializable
+    @SerialName("family")
     public data class Family(val prefix: String) : McSelector
 
+    @Serializable
+    @SerialName("latest")
     public data object Latest : McSelector
 
     /** 엔진이 고름 — 입문자 경로 */
+    @Serializable
+    @SerialName("any")
     public data object Any : McSelector
 }
 
+@Serializable
 public data class Want(
     val slug: String,
     val kind: ContentKind,
@@ -173,12 +186,18 @@ public data class Want(
     val pinned: Boolean = false,
 )
 
+@Serializable
 public sealed interface ResolveOutcome {
+    @Serializable
+    @SerialName("ok")
     public data class Ok(val plan: Plan) : ResolveOutcome
 
+    @Serializable
+    @SerialName("conflict")
     public data class Conflict(val explanation: Explanation) : ResolveOutcome
 }
 
+@Serializable
 public data class Plan(
     val mc: McVersion,
     val core: CoreBuild,
@@ -191,6 +210,7 @@ public data class Plan(
     val recommendedRamMb: Int,
 )
 
+@Serializable
 public data class PlanItem(
     val content: ContentVersion,
     /** 사용자가 고른 게 아니라 의존성으로 자동 추가됨. UI 에서 구분 표시할 것. */
@@ -200,12 +220,15 @@ public data class PlanItem(
     val confidence: Confidence,
 )
 
+@Serializable
 public data class Warning(val textKo: String, val subject: String? = null)
 
+@Serializable
 public enum class Confidence { GREEN, YELLOW, ORANGE, RED }
 
 // ── 실패 설명 ───────────────────────────────────────────
 
+@Serializable
 public data class Explanation(
     /** "26.3에서는 ProtocolLib을 쓸 수 없습니다." */
     val headlineKo: String,
@@ -215,8 +238,10 @@ public data class Explanation(
     val fixes: List<Fix>,
 )
 
+@Serializable
 public data class CauseNode(val textKo: String, val subject: Pkg? = null)
 
+@Serializable
 public data class Fix(
     val labelKo: String,
     val action: FixAction,
@@ -224,16 +249,29 @@ public data class Fix(
     val recommended: Boolean = false,
 )
 
+@Serializable
 public sealed interface FixAction {
+    @Serializable
+    @SerialName("bump_content")
     public data class BumpContent(val slug: String, val to: String) : FixAction
 
+    @Serializable
+    @SerialName("change_mc")
     public data class ChangeMc(val to: String) : FixAction
 
+    @Serializable
+    @SerialName("change_core")
     public data class ChangeCore(val to: CoreKey) : FixAction
 
+    @Serializable
+    @SerialName("change_java")
     public data class ChangeJava(val to: Int) : FixAction
 
+    @Serializable
+    @SerialName("remove_content")
     public data class RemoveContent(val slugs: List<String>) : FixAction
 
+    @Serializable
+    @SerialName("replace_content")
     public data class ReplaceContent(val from: String, val to: String) : FixAction
 }

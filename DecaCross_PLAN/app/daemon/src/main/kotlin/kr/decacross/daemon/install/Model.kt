@@ -25,6 +25,11 @@ data class InstallSpec(
     val properties: Map<String, String> = emptyMap(),
     /** 실행 스크립트 title 등에 쓰는 표시 이름 (기본 = name) */
     val displayName: String = name,
+    /**
+     * 07: resolve() 가 확정한 플러그인 목록. `plugins/<slug>-<version>.jar` 로 배치된다.
+     * ★ 항상 원본 URL(fileUrl)에서 받는다 — redistributable=false 콘텐츠를 우리가 미러링하지 않는다.
+     */
+    val plugins: List<kr.decacross.compat.model.ContentVersion> = emptyList(),
 )
 
 /** 진행 이벤트. 나중에 WS 로 그대로 흘려보낸다 (05). */

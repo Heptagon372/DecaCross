@@ -56,6 +56,15 @@ class InstallPipeline(
             Files.createDirectories(paths.staging)
             staging = Atomic.newStaging(paths.staging)
             if (!cached) fetchCore(spec, stage)
+            // 플러그인 (07): 원본 URL → CAS → 스테이징 plugins/
+            val pluginEntries = ArrayList<ManifestEntry>()
+            for (cv in spec.plugins) {
+                val url = cv.fileUrl ?: throw Abort(stage, InstallError.Network(cv.slug, "다운로드 URL 이 없습니다 (${cv.slug} ${cv.version})"))
+                val fileName = "${cv.slug}-${cv.version}.jar"
+                val sha = fetchPlugin(cv.slug, url, cv.sha256, cv.size, fileName, stage)
+                cas.linkInto(sha, staging.resolve("plugins").resolve(fileName))
+                pluginEntries += ManifestEntry("plugins/$fileName", sha, Files.size(staging.resolve("plugins").resolve(fileName)))
+            }
 
             // ── VERIFY ─────────────────────────────────────────────
             stage = enter(InstallStage.VERIFY)
@@ -76,7 +85,7 @@ class InstallPipeline(
             stage = enter(InstallStage.CONFIG)
             Config.writeServerProperties(staging, Config.defaultProperties(spec))
             Config.writeStartScripts(staging, spec, coreJar)
-            val manifest = InstallManifest(listOf(ManifestEntry(coreJar, spec.core.sha256.lowercase(), spec.core.size)))
+            val manifest = InstallManifest(listOf(ManifestEntry(coreJar, spec.core.sha256.lowercase(), spec.core.size)) + pluginEntries)
             Files.writeString(staging.resolve(".decacross/manifest.json"), json.encodeToString(InstallManifest.serializer(), manifest))
 
             // ── EULA ───────────────────────────────────────────────
@@ -137,6 +146,40 @@ class InstallPipeline(
         // ★ 불일치는 재시도하지 않는다 — 변조 의심. 즉시 중단.
         cas.put(tmp, spec.core.sha256.lowercase(), actual)
             ?: throw Abort(InstallStage.VERIFY, InstallError.HashMismatch(coreJarName(spec), spec.core.sha256, actual))
+    }
+
+    /**
+     * 플러그인 jar 를 받아 CAS 에 넣고 sha256 을 돌려준다.
+     * 소스가 sha256 을 주면(Hangar) 대조하고, 안 주면(Modrinth: sha1/sha512 만) 받은 뒤 계산한 값을 쓴다 — 그 사실을 메시지로 남긴다.
+     */
+    private suspend fun ProducerScope<InstallEvent>.fetchPlugin(
+        slug: String,
+        url: String,
+        expectedSha: String?,
+        size: Long?,
+        fileName: String,
+        stage: InstallStage,
+    ): String {
+        val expected = expectedSha?.lowercase()?.takeIf { it.length == 64 }
+        if (expected != null && cas.has(expected)) {
+            send(InstallEvent.Message("$fileName — 캐시 히트"))
+            return expected
+        }
+        Files.createDirectories(paths.cacheTmp)
+        val tmp = paths.cacheTmp.resolve((expected ?: "$slug-${System.nanoTime()}") + ".plugin.download")
+        try {
+            fetcher.download(listOf(url), tmp, size) { done, total -> send(InstallEvent.Progress(stage, done, total, fileName)) }
+        } catch (e: IOException) {
+            throw Abort(stage, InstallError.Network(url, e.cause?.message ?: e.message ?: "네트워크 오류"))
+        }
+        val actual = sha256(tmp)
+        if (expected == null) send(InstallEvent.Message("$fileName — 소스가 sha256 을 제공하지 않아 다운로드 후 계산: ${actual.take(12)}…"))
+        if (!isValidZip(tmp)) {
+            Files.deleteIfExists(tmp)
+            throw Abort(InstallStage.VERIFY, InstallError.CorruptArchive(fileName))
+        }
+        cas.put(tmp, expected ?: actual, actual) ?: throw Abort(InstallStage.VERIFY, InstallError.HashMismatch(fileName, expected ?: actual, actual))
+        return expected ?: actual
     }
 
     companion object {

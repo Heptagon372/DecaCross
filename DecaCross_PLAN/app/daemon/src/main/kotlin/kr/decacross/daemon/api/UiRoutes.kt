@@ -142,6 +142,12 @@ fun Route.uiRoutes(d: Daemon) {
             }
         }
 
+        // ── 호환성 판정 (07) ───────────────────────────────
+        post("/resolve") {
+            val req = call.receive<kr.decacross.compat.ResolveRequest>()
+            call.respond(d.resolveRequest(req))
+        }
+
         // ── 설치 ───────────────────────────────────────────
         post("/install") {
             val req = call.receive<InstallRequest>()

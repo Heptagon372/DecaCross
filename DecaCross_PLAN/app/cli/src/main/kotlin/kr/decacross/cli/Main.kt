@@ -266,6 +266,67 @@ class CasCmd : CliktCommand(name = "cas") {
     }
 }
 
+/**
+ * `resolve --mc 1.21.8 --plugins essentialsx,worldguard` — 엔진 판정 결과를 한국어로 출력 (07 데모/디버깅).
+ * 데이터는 데몬의 dev 스냅샷(수집기 출력)을 쓴다.
+ */
+class Resolve : CliktCommand(name = "resolve") {
+    private val mc by option("--mc", help = "MC 버전 (없으면 엔진이 고름)")
+    private val core by option("--core").enum<CoreKey> { it.name.lowercase() }.default(CoreKey.PAPER)
+    private val plugins by option("--plugins", help = "쉼표 구분 슬러그. `slug@version` 으로 버전 고정").default("")
+    private val experimental by option("--experimental").flag()
+
+    override fun run() {
+        val db = DevCompatFixture.db()
+        val wants = plugins.split(',').map { it.trim() }.filter { it.isNotEmpty() }.map { spec ->
+            val (slug, ver) = if ('@' in spec) spec.substringBefore('@') to spec.substringAfter('@') else spec to null
+            kr.decacross.compat.Want(slug, kr.decacross.compat.model.ContentKind.PLUGIN, ver)
+        }
+        val req = kr.decacross.compat.ResolveRequest(
+            mc = mc?.let { kr.decacross.compat.McSelector.Exact(it) } ?: kr.decacross.compat.McSelector.Any,
+            core = core,
+            wants = wants,
+            os = kr.decacross.daemon.runtime.RuntimeInstaller.currentOs(),
+            arch = kr.decacross.daemon.runtime.RuntimeInstaller.currentArch(),
+            ramMb = 16 * 1024,
+            allowExperimental = experimental,
+        )
+        val t0 = System.nanoTime()
+        val outcome = kr.decacross.compat.resolve(req, db)
+        val ms = (System.nanoTime() - t0) / 1_000_000.0
+        when (outcome) {
+            is kr.decacross.compat.ResolveOutcome.Ok -> {
+                val p = outcome.plan
+                echo("✔ ${p.mc.label} · ${p.core.core.name.lowercase()} build ${p.core.build} (${p.core.channel.name.lowercase()}) · Java ${p.java.feature} · 신호등 ${light(p.confidence)} · score ${"%.2f".format(p.score)} · ${"%.1f".format(ms)}ms")
+                for (it in p.items) {
+                    echo("  ${light(it.confidence)} ${it.content.slug} ${it.content.version}" + (if (it.autoAdded) "  (자동 추가: ${it.reason ?: "의존성"})" else ""))
+                }
+                p.warnings.forEach { echo("  ⚠ ${it.textKo}") }
+                echo("  다운로드 ≈ ${p.estimatedDownloadBytes / 1_048_576}MB · 권장 RAM ${p.recommendedRamMb}MB")
+            }
+
+            is kr.decacross.compat.ResolveOutcome.Conflict -> {
+                val e = outcome.explanation
+                echo("❌ ${e.headlineKo}  (${"%.1f".format(ms)}ms)")
+                e.causeChain.forEach { echo("   ${it.textKo}") }
+                echo("")
+                e.fixes.forEachIndexed { i, f ->
+                    echo("   ${"①②③④⑤⑥⑦⑧⑨".getOrNull(i) ?: "${i + 1})"} ${f.labelKo}" + (if (f.recommended) "  (권장)" else ""))
+                    f.sideEffectsKo.forEach { echo("      — $it") }
+                }
+                throw ProgramResult(1)
+            }
+        }
+    }
+
+    private fun light(c: kr.decacross.compat.Confidence) = when (c) {
+        kr.decacross.compat.Confidence.GREEN -> "🟢"
+        kr.decacross.compat.Confidence.YELLOW -> "🟡"
+        kr.decacross.compat.Confidence.ORANGE -> "🟠"
+        kr.decacross.compat.Confidence.RED -> "🔴"
+    }
+}
+
 class ListServers : CliktCommand(name = "list") {
     override fun run() {
         val paths = DecaPaths.detect()
@@ -303,5 +364,5 @@ internal fun readServers(paths: DecaPaths): List<InstalledServer> {
 
 fun main(args: Array<String>) =
     DecaCross()
-        .subcommands(Lookup(), Create(), ListServers(), Start(), RuntimeCmd().subcommands(RuntimeList(), RuntimeEnsure()), CasCmd())
+        .subcommands(Lookup(), Resolve(), Create(), ListServers(), Start(), RuntimeCmd().subcommands(RuntimeList(), RuntimeEnsure()), CasCmd())
         .main(args)
