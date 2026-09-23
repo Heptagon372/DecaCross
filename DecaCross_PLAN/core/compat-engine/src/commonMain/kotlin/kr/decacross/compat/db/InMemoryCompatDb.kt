@@ -48,6 +48,8 @@ public class InMemoryCompatDb(
     /** 전체 MC 버전 (ordinal 오름차순). 프루닝·UI 목록용. */
     public fun allMc(): List<McVersion> = mcSorted
 
+    override fun mcAll(allowSnapshot: Boolean): List<McVersion> = mcSorted.filter { allowSnapshot || !it.isSnapshot }
+
     override fun mcByLabel(label: String): McVersion? = mcByLabel[label]
 
     override fun mcLatest(allowSnapshot: Boolean): McVersion? = mcSorted.lastOrNull { allowSnapshot || !it.isSnapshot }

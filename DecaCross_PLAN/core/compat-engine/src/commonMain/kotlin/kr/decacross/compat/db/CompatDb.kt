@@ -22,6 +22,12 @@ public interface CompatDb {
     /** "1.21" → [1.21, 1.21.1, …]. 라벨 접두사 매칭이되 정렬은 ordinal. */
     public fun mcInFamily(prefix: String): List<McVersion>
 
+    /**
+     * 전체 MC 버전 (ordinal 오름차순). `McSelector.Any` 와 fix 후보 탐색에 필요하다.
+     * (명세 §3 인터페이스에 없던 메서드 — "엔진이 고름" 경로를 위해 추가. 명세 반영 제안.)
+     */
+    public fun mcAll(allowSnapshot: Boolean = false): List<McVersion>
+
     public fun coreBuilds(core: CoreKey, mc: McOrdinal, stableOnly: Boolean = true): List<CoreBuild>
 
     public fun content(slug: String): Content?

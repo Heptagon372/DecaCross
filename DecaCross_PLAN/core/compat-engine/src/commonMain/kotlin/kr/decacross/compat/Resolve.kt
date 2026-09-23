@@ -1,15 +1,26 @@
 package kr.decacross.compat
 
 import kr.decacross.compat.db.CompatDb
+import kr.decacross.compat.explain.Explainer
 import kr.decacross.compat.model.Arch
 import kr.decacross.compat.model.ContentKind
 import kr.decacross.compat.model.ContentVersion
 import kr.decacross.compat.model.CoreBuild
 import kr.decacross.compat.model.CoreKey
+import kr.decacross.compat.model.DepKind
+import kr.decacross.compat.model.DepTarget
 import kr.decacross.compat.model.JavaSpec
 import kr.decacross.compat.model.McVersion
 import kr.decacross.compat.model.Os
+import kr.decacross.compat.resolve.Candidates
+import kr.decacross.compat.resolve.DecaProvider
+import kr.decacross.compat.resolve.LooseVersion
 import kr.decacross.compat.resolve.Pkg
+import kr.decacross.compat.resolve.PostCheck
+import kr.decacross.compat.resolve.Score
+import kr.decacross.compat.resolve.Ver
+import kr.decacross.compat.resolve.recommendedRamMb
+import kr.decacross.pubgrub.SolverResult
 
 /**
  * 호환성 판정 진입점. 5단계 파이프라인(정규화 → 프루닝 → PubGrub → 사후검사 → 점수)을 돌린다.
@@ -20,8 +31,112 @@ import kr.decacross.compat.resolve.Pkg
  * - I3 같은 Capability 제공자가 2개 이상 선택되지 않음
  * - I4 `plan.java.feature >= plan.mc.javaMin`
  * - I5 `recommendedRamMb` 계산에 `hostOverheadMb` 가 반영됨
+ * - I6 콘텐츠 30개 입력 시 50ms 미만 (JIT 예열 후)
  */
-public fun resolve(req: ResolveRequest, db: CompatDb): ResolveOutcome = TODO("07")
+public fun resolve(req: ResolveRequest, db: CompatDb): ResolveOutcome = resolveInternal(req, db, withFixes = true)
+
+private fun resolveInternal(req: ResolveRequest, db: CompatDb, withFixes: Boolean): ResolveOutcome {
+    val c = Candidates.build(req, db)
+
+    // 프루닝 단계에서 이미 답이 나오는 경우 — 솔버를 돌릴 필요가 없다
+    if (c.unknownSlugs.isNotEmpty() || c.emptySlugs.isNotEmpty()) {
+        if (!withFixes) return ResolveOutcome.Conflict(Explanation("불가", emptyList(), listOf(Fix("-", FixAction.RemoveContent(emptyList())))))
+        return pruneConflict(req, db, c)
+    }
+
+    val provider = DecaProvider(c)
+    return when (val r = kr.decacross.pubgrub.resolve(provider, Pkg.Root, Ver.Unit)) {
+        is SolverResult.Solution -> ResolveOutcome.Ok(buildPlan(req, db, c, r.selected))
+
+        is SolverResult.NoSolution -> {
+            if (!withFixes) {
+                ResolveOutcome.Conflict(Explanation("불가", emptyList(), listOf(Fix("-", FixAction.RemoveContent(emptyList())))))
+            } else {
+                val explainer = Explainer(req, db, c) { r2 -> resolveInternal(r2, db, withFixes = false) }
+                ResolveOutcome.Conflict(explainer.explain(r.tree))
+            }
+        }
+    }
+}
+
+private fun pruneConflict(req: ResolveRequest, db: CompatDb, c: Candidates): ResolveOutcome {
+    val causes = ArrayList<CauseNode>()
+    c.unknownSlugs.forEach { causes += CauseNode("'$it' 콘텐츠를 찾을 수 없습니다 (슬러그 확인 또는 수집 필요)", Pkg.Content(it)) }
+    c.emptySlugs.forEach { (slug, why) -> causes += CauseNode("${c.contents[slug]?.name ?: slug}: $why", Pkg.Content(slug)) }
+    val bad = (c.unknownSlugs + c.emptySlugs.keys).distinct()
+    val fixes = ArrayList<Fix>()
+    val nonPinnedBad = bad.filter { s -> req.wants.none { it.slug == s && it.pinned } }
+    if (nonPinnedBad.isNotEmpty()) {
+        val without = req.copy(wants = req.wants.filter { it.slug !in nonPinnedBad })
+        if (resolveInternal(without, db, withFixes = false) is ResolveOutcome.Ok) {
+            fixes += Fix("${nonPinnedBad.joinToString(", ")} 제외", FixAction.RemoveContent(nonPinnedBad), recommended = true)
+        }
+    }
+    // MC 를 바꾸면 되는 경우 (지원 범위 밖)
+    if (req.mc is McSelector.Exact && c.emptySlugs.isNotEmpty()) {
+        for (v in db.mcAll(req.allowSnapshots).sortedByDescending { it.ordinal }) {
+            if (fixes.size >= 3) break
+            if (v.label == (req.mc as McSelector.Exact).label) continue
+            if (resolveInternal(req.copy(mc = McSelector.Exact(v.label)), db, withFixes = false) is ResolveOutcome.Ok) {
+                fixes += Fix("마크 버전을 ${v.label} 로 바꾸기 — 요청한 ${req.wants.size}개 전부 호환", FixAction.ChangeMc(v.label), recommended = fixes.isEmpty())
+            }
+        }
+    }
+    if (fixes.isEmpty()) fixes += Fix("문제 콘텐츠 전부 제외", FixAction.RemoveContent(bad), recommended = true)
+    val headline = when {
+        c.unknownSlugs.isNotEmpty() -> "${c.unknownSlugs.joinToString(", ")} 을(를) 찾을 수 없습니다."
+        else -> "${c.emptySlugs.keys.joinToString(", ") { c.contents[it]?.name ?: it }} 을(를) 이 구성에서 쓸 수 없습니다."
+    }
+    return ResolveOutcome.Conflict(Explanation(headline, causes, fixes))
+}
+
+private fun buildPlan(req: ResolveRequest, db: CompatDb, c: Candidates, selected: Map<Pkg, Ver>): Plan {
+    val mcOrdinal = (selected[Pkg.Mc] as Ver.Mc).o
+    val mc: McVersion = c.mcByOrdinal.getValue(mcOrdinal)
+    val core: CoreBuild = c.buildsByMc.getValue(mcOrdinal)
+    val javaFeature = (selected[Pkg.Java] as? Ver.Java)?.feature ?: mc.javaRecommended
+    val wantSlugs = req.wants.map { it.slug }.toSet()
+
+    val chosen: Map<String, ContentVersion> = selected.entries
+        .mapNotNull { (p, v) -> if (p is Pkg.Content && v is Ver.Sem) p.slug to v else null }
+        .associate { (slug, v) -> slug to c.versionsBySlug.getValue(slug).first { LooseVersion(it.version) == v.v } }
+
+    // 자동 추가 사유: 누가 이걸 REQUIRE 하는가
+    fun reasonFor(slug: String): String? =
+        chosen.entries.firstOrNull { (other, cv) -> other != slug && cv.deps.any { it.kind == DepKind.REQUIRE && (it.target as? DepTarget.Slug)?.value == slug } }
+            ?.let { (other, _) -> "${c.contents[other]?.name ?: other} 가 필요로 함" }
+
+    val items = chosen.entries.sortedBy { it.key }.map { (slug, cv) ->
+        PlanItem(
+            content = cv,
+            autoAdded = slug !in wantSlugs,
+            reason = if (slug !in wantSlugs) reasonFor(slug) else null,
+            confidence = db.confidenceOf(slug, cv.version, mcOrdinal, core.core),
+        )
+    }
+    val kinds = c.contents.mapValues { it.value.kind }
+    val warnings = PostCheck.run(mc, core.core, items.map { it.content }, kinds)
+    val confidences = items.map { it.confidence }
+    val score = Score.compute(
+        wantsTotal = req.wants.size,
+        wantsSatisfied = req.wants.count { it.slug in chosen },
+        itemConfidences = confidences,
+        chosenMc = mcOrdinal,
+        candidateMcs = c.mcs.map { it.ordinal },
+        coreChannel = core.channel,
+    )
+    return Plan(
+        mc = mc,
+        core = core,
+        java = JavaSpec(javaFeature),
+        items = items,
+        warnings = warnings,
+        confidence = Score.overall(confidences),
+        score = score,
+        estimatedDownloadBytes = core.size + items.sumOf { it.content.size ?: 0L },
+        recommendedRamMb = recommendedRamMb(req.ramMb, req.hostOverheadMb),
+    )
+}
 
 public data class ResolveRequest(
     val mc: McSelector = McSelector.Any,
@@ -29,6 +144,7 @@ public data class ResolveRequest(
     val wants: List<Want> = emptyList(),
     val os: Os,
     val arch: Arch,
+    /** 이 PC 의 전체 메모리(MB). 권장 RAM 계산의 입력이다. */
     val ramMb: Int,
     val allowSnapshots: Boolean = false,
     val allowExperimental: Boolean = false,
