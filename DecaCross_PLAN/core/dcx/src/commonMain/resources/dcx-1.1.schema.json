@@ -1,38 +1,158 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://decacross.kr/schema/dcx-1.1.schema.json",
-  "title": "DecaCross recipe (.dcx) v1.1",
-  "description": "단일 진실 소스. Kotlin(@Serializable)과 TS(json-schema-to-typescript) 타입은 여기서 생성한다. 08 단계에서 설계서 §7 예시를 정규화해 확정.",
+  "title": "DcxRecipe",
+  "description": "DecaCross 서버 레시피 (.dcx) v1.1 — 단일 진실 소스. Kotlin(@Serializable DcxRecipe)과 TS(web/src/types/dcx.ts)는 이 스키마와 1:1 이다.",
   "type": "object",
+  "additionalProperties": false,
   "required": ["dcx", "id", "name", "target", "content"],
   "properties": {
     "dcx": { "const": "1.1" },
     "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,63}$" },
     "name": { "type": "string", "minLength": 1, "maxLength": 80 },
-    "description": { "type": "string" },
+    "description": { "type": "string", "maxLength": 2000 },
+    "author": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["handle"],
+      "properties": {
+        "handle": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "verified": { "type": "boolean", "default": false }
+      }
+    },
+    "license": { "type": "string" },
     "target": {
       "type": "object",
+      "additionalProperties": false,
       "required": ["minecraft", "core"],
       "properties": {
-        "minecraft": { "type": "string" },
+        "minecraft": { "type": "string", "description": "MC 라벨. 비교는 서수로 한다" },
         "core": {
           "type": "object",
+          "additionalProperties": false,
           "required": ["type"],
           "properties": {
             "type": { "type": "string", "enum": ["paper", "purpur", "folia", "spigot", "vanilla", "fabric", "neoforge", "forge"] },
-            "build": { "type": ["string", "integer"] }
+            "build": { "type": "string", "description": "\"latest-stable\" 같은 정책 또는 고정 빌드 번호 문자열", "default": "latest-stable" }
           }
         },
         "java": {
           "type": "object",
+          "additionalProperties": false,
           "properties": {
-            "feature": { "type": "integer" },
-            "distribution": { "type": "string", "enum": ["temurin"] },
-            "image": { "type": "string", "enum": ["jre", "jdk"] }
+            "feature": { "type": "integer", "minimum": 8 },
+            "distribution": { "type": "string", "enum": ["temurin"], "default": "temurin" },
+            "image": { "type": "string", "enum": ["jre", "jdk"], "default": "jre" }
           }
         }
       }
     },
-    "content": { "type": "array", "items": { "type": "object" } }
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "memory": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "min": { "type": "string", "pattern": "^[0-9]+[GgMm]$" },
+            "max": { "type": "string", "pattern": "^[0-9]+[GgMm]$" },
+            "auto": { "type": "boolean", "default": true }
+          }
+        },
+        "flags": { "type": "string", "enum": ["aikar", "none"], "default": "aikar" },
+        "extra_args": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "variables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "label"],
+        "properties": {
+          "key": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]{0,31}$" },
+          "label": { "type": "string" },
+          "type": { "type": "string", "enum": ["string", "number", "bool"], "default": "string" },
+          "default": { "type": ["string", "number", "boolean"] }
+        }
+      }
+    },
+    "content": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind"],
+        "properties": {
+          "kind": { "type": "string", "enum": ["plugin", "mod", "script", "resourcepack", "datapack", "world", "modelpack"] },
+          "source": { "type": "string", "enum": ["modrinth", "hangar", "spigot", "url", "bundled"] },
+          "slug": { "type": "string" },
+          "version": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "license": { "type": "string" },
+          "trust": { "type": "string", "enum": ["official", "external"], "description": "external = 공식 저장소 밖 파일. 설치 다이얼로그에서 명시 경고" },
+          "when": { "type": "string", "description": "조건부 포함: \"KEY == value\" / \"KEY != value\"" },
+          "path": { "type": "string" },
+          "bundled": { "type": "boolean" },
+          "file": { "type": "string" },
+          "pack_format": { "type": "string", "description": "\"auto\" 또는 \"34\"/\"88.0\" 형식 문자열" },
+          "serve": { "type": "string", "enum": ["auto", "none"] },
+          "target": { "type": "string" }
+        }
+      }
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "server.properties": {
+          "type": "object",
+          "additionalProperties": { "type": ["string", "number", "boolean"] }
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path"],
+            "properties": {
+              "path": { "type": "string" },
+              "bundled": { "type": "boolean" },
+              "patch": { "type": "object", "additionalProperties": true }
+            }
+          }
+        }
+      }
+    },
+    "network": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "expose": { "type": "string", "enum": ["tunnel", "port", "local"], "default": "tunnel" },
+        "port": { "type": "integer", "minimum": 1024, "maximum": 65535, "default": 25565 }
+      }
+    },
+    "compat": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "resolved_at": { "type": "string", "format": "date-time" },
+        "engine": { "type": "string" },
+        "status": { "type": "string", "enum": ["green", "yellow", "orange", "red"] },
+        "verified_installs": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["alg", "key_id", "value"],
+      "properties": {
+        "alg": { "type": "string", "enum": ["ed25519"] },
+        "key_id": { "type": "string" },
+        "value": { "type": "string" }
+      }
+    }
   }
 }

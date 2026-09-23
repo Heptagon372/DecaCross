@@ -1,4 +1,4 @@
-// app:collector — 수집 배치 (Kotlin/JVM). 외부 API → DB. 분석한 jar 는 즉시 폐기.
+// app:collector — 수집 배치 (Kotlin/JVM). 외부 API → 스냅샷 JSON(CompatFixture) / Postgres. 분석한 jar 는 즉시 폐기.
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.serialization)
@@ -16,6 +16,15 @@ dependencies {
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
+
+    // CLI 플래그
+    implementation(libs.clikt)
+
+    // 선택: DATABASE_URL 이 있을 때만 쓰는 Postgres 싱크 (db/PostgresSink.kt 한 곳에만)
+    implementation(libs.exposed.core)
+    implementation(libs.exposed.jdbc)
+    implementation(libs.exposed.json)
+    implementation(libs.postgresql)
 
     implementation(libs.logback.classic)
 

@@ -6,8 +6,9 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":core:compat-engine"))
-    implementation(project(":core:dcx"))
+    // DTO 가 CoreKey/ResolveOutcome 등을 노출하므로 api 로 (UI·CLI 가 따로 의존을 추가하지 않게)
+    api(project(":core:compat-engine"))
+    api(project(":core:dcx"))
     implementation(project(":core:logparse"))
     implementation(project(":core:jvm-analysis"))
 

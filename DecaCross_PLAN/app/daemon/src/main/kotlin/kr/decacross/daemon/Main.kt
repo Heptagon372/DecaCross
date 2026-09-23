@@ -13,6 +13,7 @@ import io.ktor.server.websocket.WebSockets
 import io.ktor.server.websocket.pingPeriod
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
+import kr.decacross.daemon.api.bridgeRoutes
 import kr.decacross.daemon.api.uiRoutes
 import kr.decacross.daemon.paths.DecaPaths
 import org.slf4j.LoggerFactory
@@ -30,7 +31,7 @@ val daemonJson: Json = Json {
     classDiscriminator = "type"
 }
 
-fun Application.daemonModule(d: Daemon) {
+fun Application.daemonModule(d: Daemon, port: Int = DAEMON_PORTS.first) {
     install(ContentNegotiation) { json(daemonJson) }
     install(WebSockets) {
         pingPeriod = 15.seconds
@@ -38,7 +39,8 @@ fun Application.daemonModule(d: Daemon) {
     }
     routing {
         uiRoutes(d)
-        // 08: bridgeRoutes(d) — 별도 트리. UI 핸들러 재사용 금지.
+        // 08: 브리지는 별도 트리 (/ping, /install). UI 핸들러 재사용 금지 (불변식 15).
+        bridgeRoutes(d, port)
     }
 }
 
@@ -49,7 +51,7 @@ fun startDaemon(paths: DecaPaths = DecaPaths.detect(), port: Int? = null): Pair<
     val log = LoggerFactory.getLogger("decacross.daemon")
     val d = Daemon.create(paths)
     val chosen = port ?: pickPort() ?: error("데몬 포트($DAEMON_PORTS)를 하나도 열 수 없습니다")
-    val server = embeddedServer(CIO, host = "127.0.0.1", port = chosen) { daemonModule(d) }
+    val server = embeddedServer(CIO, host = "127.0.0.1", port = chosen) { daemonModule(d, chosen) }
     server.start(wait = false)
     Files.createDirectories(paths.appData)
     Files.writeString(

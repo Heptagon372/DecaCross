@@ -31,6 +31,7 @@ import kr.decacross.daemon.runtime.EnsureResult
 import kr.decacross.daemon.runtime.RuntimeInstaller
 import kr.decacross.daemon.store.DevCompatFixture
 import kr.decacross.daemon.store.ServerRegistry
+import kr.decacross.dcx.evaluate
 import java.lang.management.ManagementFactory
 import java.nio.file.Files
 import java.nio.file.Path
@@ -56,6 +57,35 @@ class Daemon(
     val cas = Cas(paths.cacheBlobs)
     val runtimeInstaller = RuntimeInstaller(paths, client, fetcher)
     val installJobs = InstallJobs(scope)
+
+    /** 08: 웹 브리지가 넣은 설치 요청. 사용자가 네이티브 다이얼로그에서 승인하기 전엔 파일을 쓰지 않는다. */
+    val pendingInstalls = kr.decacross.daemon.install.PendingInstalls()
+
+    /** 대기 중인 .dcx 설치를 승인 → 설치 잡. 레시피의 변수 값은 UI 가 묻고 [vars] 로 넘긴다. */
+    fun approvePending(id: String, vars: Map<String, String>, acceptEula: Boolean, ramMb: Int?): InstallJob? {
+        val p = pendingInstalls.take(id) ?: return null
+        val r = p.recipe
+        val ev = r.evaluate(vars)
+        val core = runCatching { kr.decacross.compat.model.CoreKey.valueOf(r.target.core.type.uppercase()) }.getOrDefault(kr.decacross.compat.model.CoreKey.PAPER)
+        val ram = ramMb ?: r.runtime?.memory?.max?.let { parseMem(it) } ?: 2048
+        val req = InstallRequest(
+            name = ev.vars["SERVER_NAME"]?.takeIf { it.isNotBlank() } ?: r.name,
+            mc = r.target.minecraft,
+            core = core,
+            ramMb = ram,
+            port = r.network?.port ?: 25565,
+            acceptEula = acceptEula,
+            properties = ev.serverProperties,
+            plugins = ev.content.filter { it.kind == "plugin" && it.slug != null && it.source != "url" }.mapNotNull { it.slug },
+        )
+        return submitInstall(req)
+    }
+
+    private fun parseMem(s: String): Int? {
+        val m = Regex("^(\\d+)([GgMm])$").find(s.trim()) ?: return null
+        val n = m.groupValues[1].toInt()
+        return if (m.groupValues[2].lowercase() == "g") n * 1024 else n
+    }
     private val pipeline = InstallPipeline(paths, fetcher, cas)
     private val json = Json { ignoreUnknownKeys = true }
 

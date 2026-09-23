@@ -50,6 +50,9 @@ public class InMemoryCompatDb(
 
     override fun mcAll(allowSnapshot: Boolean): List<McVersion> = mcSorted.filter { allowSnapshot || !it.isSnapshot }
 
+    /** 전체 콘텐츠 (검색 API 용). */
+    public fun allContent(): List<Content> = contentBySlug.values.toList()
+
     override fun mcByLabel(label: String): McVersion? = mcByLabel[label]
 
     override fun mcLatest(allowSnapshot: Boolean): McVersion? = mcSorted.lastOrNull { allowSnapshot || !it.isSnapshot }

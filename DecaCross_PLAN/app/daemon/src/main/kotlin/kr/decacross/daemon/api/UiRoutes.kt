@@ -75,10 +75,23 @@ fun Route.uiRoutes(d: Daemon) {
             val req = runCatching { call.receive<StopRequest>() }.getOrDefault(StopRequest())
             when (val r = d.manager.stop(call.id(), force = req.force)) {
                 null -> call.respond(HttpStatusCode.Conflict, ErrorDto("실행 중이 아닙니다"))
-                is ShutdownResult.Graceful -> call.respond(mapOf("result" to "graceful", "exitCode" to r.exitCode))
-                is ShutdownResult.Terminated -> call.respond(mapOf("result" to "terminated", "exitCode" to r.exitCode))
-                is ShutdownResult.Killed -> call.respond(mapOf("result" to "killed", "warningKo" to "강제 종료됨 — 월드 손상 가능"))
+                is ShutdownResult.Graceful -> call.respond(StopResult("graceful", r.exitCode))
+                is ShutdownResult.Terminated -> call.respond(StopResult("terminated", r.exitCode))
+                is ShutdownResult.Killed -> call.respond(StopResult("killed", r.exitCode, "강제 종료됨 — 월드 손상 가능"))
             }
+        }
+
+        // ── 08: 브리지 설치 대기열 (네이티브 확인 다이얼로그) ─────
+        get("/pending") { call.respond(d.pendingInstalls.list()) }
+        post("/pending/{id}/approve") {
+            val req = call.receive<ApproveRequest>()
+            if (!req.acceptEula) return@post call.respond(HttpStatusCode.BadRequest, ErrorDto("EULA 동의가 필요합니다"))
+            val job = d.approvePending(call.parameters["id"].orEmpty(), req.vars, req.acceptEula, req.ramMb)
+                ?: return@post call.respond(HttpStatusCode.NotFound, ErrorDto("대기 중인 요청이 없거나 만료됨"))
+            call.respond(HttpStatusCode.Accepted, JobRef(job.id))
+        }
+        post("/pending/{id}/reject") {
+            if (d.pendingInstalls.take(call.parameters["id"].orEmpty()) != null) call.respond(HttpStatusCode.NoContent) else call.notFound()
         }
         post("/servers/{id}/command") {
             val req = call.receive<CommandRequest>()

@@ -36,6 +36,13 @@ data class FixResult(val appliedKo: String, val restartRequired: Boolean = false
 data class StopRequest(val force: Boolean = false)
 
 @Serializable
+data class StopResult(val result: String, val exitCode: Int? = null, val warningKo: String? = null)
+
+/** 브리지 대기열 승인. 레시피 변수 값 + EULA 동의(필수) + RAM 재지정. */
+@Serializable
+data class ApproveRequest(val acceptEula: Boolean, val vars: Map<String, String> = emptyMap(), val ramMb: Int? = null)
+
+@Serializable
 data class CommandRequest(val line: String)
 
 @Serializable
