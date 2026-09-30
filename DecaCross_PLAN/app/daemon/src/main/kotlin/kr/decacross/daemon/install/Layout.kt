@@ -62,14 +62,26 @@ data class ManifestFile(
     val origin: FileOrigin,
 )
 
-/** 파일 출처. */
+/**
+ * 파일 출처.
+ *
+ * # 불변식
+ * - ★ 매니페스트의 sha256 을 "지금도 같아야 하는 값" 으로 읽어도 되는 것은 [DOWNLOADED]·[GENERATED] 뿐이다.
+ *   [GENERATED_MUTABLE] 은 **첫 기동 때 서버가 다시 쓴다** — 검사기(04+ doctor/repair)는 건너뛰어야 한다.
+ */
 @Serializable
 enum class FileOrigin {
     /** 카탈로그에서 받아 sha256 을 검증한 파일 (코어 jar) */
     DOWNLOADED,
 
-    /** 런처가 만든 파일 (server.properties, start.bat, start.sh, launch.json, 동의한 경우 eula.txt) */
+    /** 런처가 만들고 그대로 남는 파일 (start.bat, start.sh, .decacross/launch.json, 동의한 경우 eula.txt) */
     GENERATED,
+
+    /**
+     * 런처가 만들지만 **서버가 첫 기동 때 덮어쓰는** 파일 (`server.properties`).
+     * 기록된 sha256·크기는 "설치 직후" 의 값이지 무결성 기준이 아니다 (verify03 F6).
+     */
+    GENERATED_MUTABLE,
 }
 
 /**

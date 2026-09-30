@@ -51,7 +51,8 @@ data class JavaCandidate(
  * # 불변식
  * - [javaPath] 는 후보의 **절대경로 그대로**다 (`toRealPath` 는 중복 판정 키로만 쓴다 — `latest\jdk-25` 같은 링크를 풀어 두면
  *   JDK 업데이트 뒤 start.bat 이 깨진다, critique windows #9). 실제로 `-version` 이 성공했다.
- * - 런처 번들 런타임(명세 §8 `internalRoot/jre`, (05) jpackage 런타임) 아래의 Java 는 후보에서 제외한다 (불변식 9).
+ * - 런처 번들 런타임 아래의 Java 는 후보에서 제외한다 (불변식 9). 제외 목록은 호출자가 넣는다:
+ *   명세 §8 `internalRoot/jre` 는 CLI 가 항상, (05) jpackage 앱 이미지 런타임은 [appImageRuntimeRoot] 가 넣는다.
  */
 data class JavaSelection(
     val javaPath: Path,
@@ -118,6 +119,27 @@ private val UNPARSEABLE_PATH: Path = Path.of("")
 
 /** 조사 대상 하나. [path] 가 null 이면 경로 형식 오류. */
 private class JavaTarget(val origin: JavaOrigin, val path: Path?, val text: String)
+
+/**
+ * jpackage 앱 이미지로 띄웠을 때 **런처 자신의** 번들 런타임 (`java.home`). 그 밖에서는 null.
+ *
+ * # 불변식
+ * - ★ 불변식 9(번들 JRE 로 마크 서버를 실행하지 마라)의 나머지 절반이다. `internalRoot/jre` 만 제외하면
+ *   (05) 의 jlink 런타임은 그대로 후보로 남는다 — 그 런타임은 모듈이 빠져 있고 런처 업데이트 때 바뀐다.
+ * - ★ `jpackage.app-path` 가 있을 때만 값을 낸다. 개발·Gradle 실행에서 `java.home` 은 멀쩡한 서버용 JDK 라
+ *   제외하면 오히려 쓸 수 있는 Java 를 잃는다.
+ *
+ * @param properties 시스템 속성 조회 (테스트가 가짜를 넣는다)
+ */
+fun appImageRuntimeRoot(properties: (String) -> String? = { name -> System.getProperty(name) }): Path? {
+    if (properties("jpackage.app-path").isNullOrBlank()) return null
+    val home = properties("java.home")?.takeIf { it.isNotBlank() } ?: return null
+    return try {
+        Path.of(home).toAbsolutePath().normalize()
+    } catch (e: InvalidPathException) {
+        null
+    }
+}
 
 /**
  * 시스템 Java 탐색 (03 임시, 04 에서 교체).
@@ -319,11 +341,14 @@ class ProcessJavaVersionProbe(private val timeout: Duration = PROBE_TIMEOUT) : J
                 // 닫기 실패는 무시한다 (읽기·대기 결과로 판정한다)
             }
             val drained = drainOnDaemonThread(process)
-            val exited = withTimeoutOrNull(timeout) { process.onExit().await() }
-            if (exited == null) {
-                process.destroyForcibly()
-                return@withContext null
+            // ★ 취소도 자식을 죽인다: `finally` 가 없으면 취소가 이 대기에서 터질 때 `java -version` 프로세스가
+            //   주인 없이 남는다 (제한 시간 경로만 죽이는 것으로는 부족하다 — verify03 F6).
+            val exited = try {
+                withTimeoutOrNull(timeout) { process.onExit().await() }
+            } finally {
+                if (process.isAlive) process.destroyForcibly()
             }
+            if (exited == null) return@withContext null
             // 프로세스가 끝났으면 파이프도 곧 EOF 다
             withTimeoutOrNull(DRAIN_AFTER_EXIT) { drained.await() }
         }

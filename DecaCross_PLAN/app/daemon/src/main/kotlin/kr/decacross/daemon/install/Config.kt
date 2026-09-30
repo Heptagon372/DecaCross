@@ -150,10 +150,15 @@ fun renderServerProperties(settings: ServerSettings, serverName: String): ByteAr
  * #EULA accepted via DecaCross (<INTERACTIVE_PROMPT|CLI_FLAG|UI_DIALOG>)
  * eula=true
  * ```
- * ASCII, LF. ★ 부르는 곳은 파이프라인 EULA 단계, ServerCatalog.kt 의 [writeEulaAccepted], CLI `start` 의 동의 경로, 테스트뿐이다
- * (merge_wps2.py 가 다른 호출을 거부한다, critique B2).
+ * ASCII, LF.
+ *
+ * # 불변식
+ * - ★ 부르는 곳은 파이프라인 EULA 단계와 ServerCatalog.kt 의 [writeEulaAccepted] 뿐이다 (critique B2).
+ *   그래서 `internal` 이다 — 다른 모듈(CLI·(05) UI)은 [writeEulaAccepted] 를 거쳐야 한다.
+ * - ★ 이 규칙은 `EulaCallSiteTest` 가 소스를 훑어 강제한다. 예전 주석이 가리키던 `merge_wps2.py` 는
+ *   레포에 없는 파일이었다 — "스크립트가 막아 준다" 는 거짓 안전감이었다 (verify03 F2).
  */
-fun renderEulaTxt(channel: ConsentChannel, acceptedAt: Instant): ByteArray {
+internal fun renderEulaTxt(channel: ConsentChannel, acceptedAt: Instant): ByteArray {
     val text = buildString {
         append("#By changing the setting below to TRUE you are indicating your agreement to our EULA (")
         append(MINECRAFT_EULA_URL)

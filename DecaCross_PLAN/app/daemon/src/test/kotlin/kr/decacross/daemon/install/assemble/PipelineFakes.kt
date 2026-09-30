@@ -11,6 +11,7 @@ import kr.decacross.daemon.install.ArtifactFetcher
 import kr.decacross.daemon.install.ArtifactVerifier
 import kr.decacross.daemon.install.ConsentChannel
 import kr.decacross.daemon.install.DirectoryMover
+import kr.decacross.daemon.install.DiscardOutcome
 import kr.decacross.daemon.install.DiskSpaceProbe
 import kr.decacross.daemon.install.EulaAnswer
 import kr.decacross.daemon.install.EulaNotice
@@ -89,9 +90,14 @@ internal class FakeFetcher(private val partialDir: Path, private val bytes: Byte
         }
     }
 
-    override suspend fun discard(item: FetchItem) {
+    /** null 이 아니면 지우지 않고 이 결과를 돌려준다 (정리 실패를 사용자에게 알리는지 보는 시나리오). */
+    var discardOutcome: DiscardOutcome? = null
+
+    override suspend fun discard(item: FetchItem): DiscardOutcome {
         discardCalls++
+        discardOutcome?.let { return it }
         Files.deleteIfExists(partialDir.resolve(item.sha256 + ".part"))
+        return DiscardOutcome.Deleted
     }
 }
 

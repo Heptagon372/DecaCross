@@ -35,6 +35,7 @@ import kr.decacross.daemon.install.ServerSettings
 import kr.decacross.daemon.install.UA_CONTACT_ENV
 import kr.decacross.daemon.install.buildDaemonUserAgent
 import kr.decacross.daemon.install.defaultServerName
+import kr.decacross.daemon.install.findServer
 import kr.decacross.daemon.install.loadLaunchProfiles
 import kr.decacross.daemon.paths.DecaPaths
 import kr.decacross.daemon.paths.PathsResolution
@@ -43,6 +44,7 @@ import kr.decacross.daemon.paths.hostEnvironment
 import kr.decacross.daemon.process.CompiledConsolePatterns
 import kr.decacross.daemon.runtime.JavaLocator
 import kr.decacross.daemon.runtime.SystemJavaLocator
+import kr.decacross.daemon.runtime.appImageRuntimeRoot
 import kr.decacross.daemon.store.DevCompatFixture
 import java.nio.file.Path
 import kotlin.coroutines.coroutineContext
@@ -100,6 +102,8 @@ class CreateCommand(
     private val envProvider: (Os) -> Map<String, String> = { os -> hostEnvironment(os) },
     private val pathsResolver: PathsResolver = PathsResolver.SYSTEM,
     private val dbProvider: () -> CompatDb = { DevCompatFixture.db() },
+    /** 호환성 데이터 출처 한 줄 안내 (null 이면 아무 말도 하지 않는다). 04 에서 실제 DB 로 바뀌면 사라진다. */
+    private val dbNoticeKo: () -> String? = { DevCompatFixture.snapshotNoticeKo() },
     private val profilesLoader: () -> LaunchProfilesLoad = { loadLaunchProfiles() },
     private val environmentFactory: (DecaPaths, String) -> InstallEnvironment = { paths, ua -> DefaultEnvironment(paths, ua) },
     private val javaLocatorFactory: (Map<String, String>, Os, List<Path>) -> JavaLocator =
@@ -109,7 +113,9 @@ class CreateCommand(
     private val hooks: ShutdownHookRegistrar = ShutdownHookRegistrar.SYSTEM,
 ) : CliktCommand(name = "create") {
     private val mc by option("--mc", help = "MC 버전 라벨 (예: 1.21.8)").required()
-    private val core by option("--core", help = "서버 코어 (paper|purpur|folia)")
+    // 03~04 의 데이터 소스는 dev-compat.json 스냅샷이고 거기에는 Paper 빌드만 있다 (docs/04_설계결정_03설치.md D-03-1).
+    // 없는 것을 있다고 말하지 않으려고 도움말에 적어 둔다 — purpur/folia 는 04 의 SqlDelightCompatDb 부터 실제로 풀린다.
+    private val core by option("--core", help = "서버 코어 (paper|purpur|folia — 지금 스냅샷에는 paper 만 있습니다)")
         .enum<CoreKey> { it.name.lowercase() }
         .default(CoreKey.PAPER)
     private val ramMb by option("--ram", help = "서버 메모리 (4G / 4096M / 4096)")
@@ -152,6 +158,8 @@ class CreateCommand(
                 is PathsResolution.Resolved -> resolution.paths
             }
         paths.serversRoot.noticeKo?.let { io.out(it) }
+        // 임시 데이터는 매번 자기 정체를 밝힌다 (docs/04_설계결정_03설치.md D-03-1)
+        dbNoticeKo()?.let { io.out(it) }
         val userAgent = buildDaemonUserAgent(env[UA_CONTACT_ENV] ?: DEFAULT_UA_CONTACT)
         if (userAgent == null) {
             io.out("[실패] $UA_CONTACT_ENV 값을 User-Agent 에 쓸 수 없습니다 (괄호·제어문자 불가)")
@@ -178,7 +186,8 @@ class CreateCommand(
         )
         val renderer = EventRenderer(io)
         environmentFactory(paths, userAgent).use { environment ->
-            val excludedRoots = listOf(paths.internalRoot.resolve("jre"))
+            // 불변식 9: 번들 런타임 두 갈래를 모두 뺀다 — 명세 §8 의 internalRoot/jre 와 (05) jpackage 앱 이미지 런타임
+            val excludedRoots = listOfNotNull(paths.internalRoot.resolve("jre"), appImageRuntimeRoot())
             val flow = environment.flow(
                 dbProvider(),
                 javaLocatorFactory(env, hostOs, excludedRoots),
@@ -187,7 +196,14 @@ class CreateCommand(
             )
             when (collectInstall(flow, request, renderer)) {
                 CollectOutcome.CANCELLED -> {
-                    renderer.renderCancelled()
+                    // ★ 취소가 커밋 지점 뒤에 들어왔으면 서버는 이미 있다 (Atomic.kt 의 커밋 지점). 그때
+                    //   "다시 실행하면 이어받습니다" 는 거짓말이다 — 그 재실행은 PLAN 에서 ServerExists 로 죽는다.
+                    val committed = withContext(Dispatchers.IO) { findServer(paths.serversRoot.path, request.serverName) }
+                    if (committed != null && committed.problemKo == null) {
+                        renderer.renderCancelledAfterCommit(committed.name, committed.dir)
+                    } else {
+                        renderer.renderCancelled()
+                    }
                     return ExitCodes.CANCELLED
                 }
 

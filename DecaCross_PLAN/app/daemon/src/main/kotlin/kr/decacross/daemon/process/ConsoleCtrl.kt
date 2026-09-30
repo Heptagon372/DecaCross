@@ -84,11 +84,14 @@ object WindowsConsoleCtrl {
                 // 헬퍼는 stdin 을 읽지 않는다 — 닫기 실패는 무시한다
             }
         }
-        val exited = withTimeoutOrNull(timeout) { process.onExit().await() }
-        if (exited == null) {
-            process.destroyForcibly()
-            return InterruptResult.Failed("헬퍼 시간 초과")
+        // ★ 취소도 헬퍼를 죽인다: `finally` 가 없으면 취소가 이 대기에서 터질 때 헬퍼 JVM 이 주인 없이 남는다
+        //   (지금 호출자는 ShutdownCoordinator 의 NonCancellable 안이지만, 이 함수는 public 이고 detach 경로도 있다 — verify03 F6).
+        val exited = try {
+            withTimeoutOrNull(timeout) { process.onExit().await() }
+        } finally {
+            if (process.isAlive) process.destroyForcibly()
         }
+        if (exited == null) return InterruptResult.Failed("헬퍼 시간 초과")
         val code = exited.exitValue()
         if (code == 0) return InterruptResult.Sent
         val reason = HELPER_EXIT_REASONS[code]

@@ -56,7 +56,8 @@ import kotlin.time.Clock
  *   (`.staging` 과 이 설치가 만든 빈 서버 루트는 롤백이 지운다).
  * - EULA 동의 없이 `eula=true` 를 쓰지 않는다. 동의 거부는 롤백이다 (설계서 §4.1 EULA → FAILED).
  * - 다운로드는 스테이징 밖에 남는다 → 실패·거부·취소 뒤 재실행은 받지 않고 재검증만 한다.
- *   성공(READY) 뒤에는 캐시 조각을 지운다 (CAS 는 04 — critique m12, SCP-F2).
+ *   성공(READY) 뒤에는 캐시 조각을 지운다 (CAS 는 04 — critique m12, SCP-F2). ★ 지우지 못하면
+ *   [InstallEvent.Warning] 으로 알린다 — 조용히 넘어가면 "지웠다" 는 불변식이 거짓이 돼도 아무도 모른다.
  * - 취소(CancellationException)도 롤백한다 (`NonCancellable`), 사건은 더 내보내지 않는다. 롤백은 설치당 한 번만 돈다.
  * - [env] 는 Windows 에서 이름 대소문자를 무시하는 맵이어야 한다 ([hostEnvironment]).
  */
@@ -96,6 +97,8 @@ class InstallPipeline(
         var rolledBack = false // 롤백은 설치당 한 번 (critique A6)
         val createdDirs = ArrayList<Path>() // 이 설치가 만든 디렉터리 (롤백 때 비어 있으면 삭제)
         val swept = ArrayList<Path>() // LAYOUT 스윕이 치운 이전 설치의 잔해 (롤백 안내가 이것을 밝힌다)
+        var committed: StagingArea? = null // 커밋이 끝난 순간 채워진다 (취소가 커밋 결과를 삼켜도 남는 표시)
+        var plannedItems: List<FetchItem> = emptyList() // 커밋 뒤 정리(캐시 조각 discard)가 취소 경로에서도 같은 목록을 본다
 
         suspend fun rollbackOnce(): RollbackReport? {
             if (rolledBack) return null
@@ -161,6 +164,7 @@ class InstallPipeline(
 
                 is StageResult.Ok -> planned.value
             }
+            plannedItems = plan.items
             for (index in leftovers.size until warnings.size) send(InstallEvent.Warning(warnings[index]))
             send(InstallEvent.Planned(plan))
             if (!interaction.confirmPlan(plan)) {
@@ -254,6 +258,9 @@ class InstallPipeline(
                     return@channelFlow
                 }
             }
+            // ★ 03 단계의 계획은 코어 jar 한 개다 (buildPlan 이 `items = listOf(item)`). 07 이 플러그인을 같은 계획에
+            //   넣기 시작하면 여기서 멈춰야 한다 — 조용히 첫 항목만 배치하면 파일이 빠진 서버가 그대로 커밋된다.
+            check(plan.items.size == 1) { "03 단계 계획은 코어 jar 한 개다 (받은 항목 ${plan.items.size}개)" }
             val placed = withContext(Dispatchers.IO) { placeArtifact(staging, fetched[0].file, plan.launch.jarFileName) }
             if (placed is LayoutIoResult.Failed) {
                 failAndRollback(InstallFailure.LocalIo(placed.path, placed.detail))
@@ -318,15 +325,19 @@ class InstallPipeline(
                 failAndRollback(it)
                 return@channelFlow
             }
-            when (val commit = committer.commit(staging.dir, plan.serverDir, installId)) {
+            val commitOutcome = committer.commit(staging.dir, plan.serverDir, installId) {
+                // ★ 커밋 지점. 여기서부터 사용자 폴더에 서버가 있으므로 이 뒤의 취소는 롤백이 아니다.
+                //   `withContext` 의 결과는 취소되면 버려지지만 이 표시는 남는다 — 그래야 취소가
+                //   "롤백했다" 고 말하면서 완성된 서버를 남기는 일이 없다.
+                committed = staging
+                rolledBack = true
+                area = null
+            }
+            when (val commit = commitOutcome) {
                 is CommitResult.Committed -> {
-                    // 커밋 뒤의 취소가 커밋된 서버를 건드리지 않게 한다
-                    rolledBack = true
-                    area = null
-                    withContext(NonCancellable) {
-                        withContext(Dispatchers.IO) { cleanupAfterCommit(staging) }
-                        for (item in plan.items) fetcher.discard(item)
-                    }
+                    val cleanupWarnings = withContext(NonCancellable) { finishAfterCommit(staging, plan.items) }
+                    committed = null // 정리는 끝났다 — 아래 send 중 취소가 와도 catch 가 같은 정리를 되풀이하지 않는다
+                    for (message in cleanupWarnings) send(InstallEvent.Warning(message))
                     send(InstallEvent.Ready(InstalledServer(request.serverName, commit.target, plan.launch, manifest)))
                 }
 
@@ -341,6 +352,10 @@ class InstallPipeline(
                 }
             }
         } catch (e: CancellationException) {
+            // 커밋이 끝난 뒤의 취소: 서버 폴더는 그대로 두고 잠금·빈 스테이징·캐시 조각만 치운다 (롤백은 돌지 않는다).
+            // ★ 정상 경로와 **같은** 정리를 해야 한다 — 여기서 discard 를 빠뜨리면 취소만으로 D-I8 이 깨진다.
+            val done = committed
+            if (done != null) withContext(NonCancellable) { finishAfterCommit(done, plannedItems) }
             rollbackOnce()
             throw e
         } catch (e: Exception) {
@@ -542,7 +557,12 @@ class InstallPipeline(
                 return StageResult.Fail(InstallFailure.LocalIo(file, e.toString()))
             }
             val path = relative.toString().replace('\\', '/')
-            val origin = if (path == plan.launch.jarFileName) FileOrigin.DOWNLOADED else FileOrigin.GENERATED
+            // MUTABLE_RUNTIME_FILES: 서버가 첫 기동 때 다시 쓰는 파일이라 무결성 기준이 아니다 (verify03 F6)
+            val origin = when {
+                path == plan.launch.jarFileName -> FileOrigin.DOWNLOADED
+                path in MUTABLE_RUNTIME_FILES -> FileOrigin.GENERATED_MUTABLE
+                else -> FileOrigin.GENERATED
+            }
             entries.add(ManifestFile(path, sha256, size, origin))
         }
         return StageResult.Ok(
@@ -558,6 +578,33 @@ class InstallPipeline(
                 files = entries,
             ),
         )
+    }
+
+    /**
+     * 커밋 뒤 정리 한 벌. ★ 정상 경로와 취소 경로가 **같은 함수**를 부른다 (한쪽만 고치면 취소가 조각을 남긴다).
+     * 호출자가 `NonCancellable` 안에서 부른다.
+     *
+     * @return 사용자에게 알릴 경고 (지우지 못한 캐시 조각). 취소 경로에서는 내보낼 곳이 없어 버려진다.
+     */
+    private suspend fun finishAfterCommit(area: StagingArea, items: List<FetchItem>): List<String> {
+        withContext(Dispatchers.IO) { cleanupAfterCommit(area) }
+        val warnings = ArrayList<String>()
+        for (item in items) {
+            when (val outcome = fetcher.discard(item)) {
+                DiscardOutcome.Deleted -> Unit
+
+                is DiscardOutcome.Locked -> warnings.add(
+                    "캐시 조각을 지우지 못했습니다 (다른 프로세스가 ${outcome.lockFile} 를 쓰는 중입니다). " +
+                        "설치는 끝났고, 조각은 7일 뒤 자동으로 정리됩니다",
+                )
+
+                is DiscardOutcome.Failed -> warnings.add(
+                    "캐시 조각을 지우지 못했습니다 (${outcome.path}): ${outcome.detailKo}. " +
+                        "설치는 끝났고, 조각은 7일 뒤 자동으로 정리됩니다",
+                )
+            }
+        }
+        return warnings
     }
 
     /** 커밋 뒤 정리: 잠금 해제 → 잠금 파일 삭제 → 빈 `.staging` 삭제 (전부 최선 노력). */
@@ -581,6 +628,15 @@ internal const val START_BAT_FILE_NAME: String = "start.bat"
 
 /** POSIX 실행 스크립트. */
 internal const val START_SH_FILE_NAME: String = "start.sh"
+
+/**
+ * 매니페스트에서 [FileOrigin.GENERATED_MUTABLE] 로 기록할 파일 (서버 폴더 기준 상대경로, 구분자 `/`).
+ *
+ * 마인크래프트 서버는 첫 기동 때 `server.properties` 를 자기 형식(타임스탬프 주석 + 전체 키)으로 다시 쓴다.
+ * 그래서 설치 직후의 해시는 **한 번이라도 돌린 서버에서는 반드시 어긋난다** — 무결성 기준으로 쓰면
+ * 돌아간 서버 100%가 "손상" 으로 보고된다 (verify03 F6).
+ */
+private val MUTABLE_RUNTIME_FILES: Set<String> = setOf(SERVER_PROPERTIES_FILE_NAME)
 
 private const val MIB: Long = 1024L * 1024L
 

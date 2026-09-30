@@ -160,9 +160,10 @@ sealed interface CommitResult {
  *    (백오프 동안 대상 **파일**이 생기면 Windows `ATOMIC_MOVE` 가 조용히 덮어쓰므로 첫 시도 전에만 보면 안 된다 — critique windows #11)
  * 2. [DirectoryMover.moveAtomically]
  *    - `AccessDeniedException`/`FileSystemException` → [MoveRetryPolicy] 로 재시도 (다음 시도 전에 1 을 다시 본다)
- *    - `AtomicMoveNotSupportedException` 이면 복사 폴백: `createDirectory(target)` → `.decacross/INCOMPLETE`(installId) 기록
- *      → 트리 복사 → 크기 대조(+jar sha256) → 표식 삭제(**커밋 지점**) → 스테이징 삭제(실패해도 성공 처리, 스윕이 치움).
- *      도중 실패 시 대상 트리 삭제 후 [CommitResult.Failed]
+ *    - 이동이 성공하면 **그 자리에서** [onCommitted] 를 부른다 (커밋 지점). 취소가 결과를 삼켜도 호출자는 커밋을 안다.
+ *    - `AtomicMoveNotSupportedException` 이면 복사 폴백(★ 전체가 `NonCancellable`): `createDirectory(target)` →
+ *      `.decacross/INCOMPLETE`(installId) 기록 → 트리 복사 → 크기 대조(+jar sha256) → 표식 삭제(**커밋 지점**) →
+ *      스테이징 삭제(실패해도 성공 처리, 스윕이 치움). 도중 실패 시 대상 트리 삭제 후 [CommitResult.Failed]
  * 3. 그 밖의 `IOException` → [CommitResult.Failed]
  */
 class StagingCommitter internal constructor(
@@ -175,8 +176,19 @@ class StagingCommitter internal constructor(
         retry: MoveRetryPolicy = MoveRetryPolicy(),
     ) : this(mover, retry, TreeFileCopier.NIO)
 
-    /** 스테이징 → [target]. 블로킹 I/O 는 `Dispatchers.IO` 에서, 백오프는 `delay`. */
-    suspend fun commit(stagingDir: Path, target: Path, installId: String): CommitResult {
+    /**
+     * 스테이징 → [target]. 블로킹 I/O 는 `Dispatchers.IO` 에서, 백오프는 `delay`.
+     *
+     * @param onCommitted 커밋 지점(이동 성공 / 복사 폴백의 표식 삭제)에서 **즉시** 불린다. ★ 호출자는 이것으로
+     *   "이미 커밋됐다" 를 안다: 취소되면 `withContext` 가 돌려주는 값이 버려져 [CommitResult.Committed] 가
+     *   호출자에게 닿지 않지만, 사용자 폴더에는 완성된 서버가 있다. 블로킹 작업을 하면 안 된다 (표시만).
+     */
+    suspend fun commit(
+        stagingDir: Path,
+        target: Path,
+        installId: String,
+        onCommitted: (CommitMode) -> Unit = {},
+    ): CommitResult {
         val absoluteTarget = target.toAbsolutePath()
         val parent = absoluteTarget.parent ?: return CommitResult.Failed("대상의 부모 디렉터리가 없습니다: $target")
         val name = absoluteTarget.fileName?.toString() ?: return CommitResult.Failed("대상 이름이 없습니다: $target")
@@ -192,6 +204,7 @@ class StagingCommitter internal constructor(
             val outcome = withContext(NonCancellable + Dispatchers.IO) {
                 try {
                     mover.moveAtomically(stagingDir, target)
+                    onCommitted(CommitMode.ATOMIC_MOVE)
                     MoveOutcome.Done
                 } catch (e: AtomicMoveNotSupportedException) {
                     MoveOutcome.NotSupported
@@ -205,7 +218,7 @@ class StagingCommitter internal constructor(
             when (outcome) {
                 MoveOutcome.Done -> return CommitResult.Committed(target, CommitMode.ATOMIC_MOVE)
 
-                MoveOutcome.NotSupported -> return copyFallback(stagingDir, target, installId)
+                MoveOutcome.NotSupported -> return copyFallback(stagingDir, target, installId, onCommitted)
 
                 is MoveOutcome.Fatal -> return CommitResult.Failed(outcome.detail)
 
@@ -220,32 +233,42 @@ class StagingCommitter internal constructor(
     }
 
     /** `AtomicMoveNotSupportedException` 전용 폴백 (SCP-I10). 표식 삭제가 커밋 지점이다. */
-    private suspend fun copyFallback(stagingDir: Path, target: Path, installId: String): CommitResult {
-        val creation = withContext(Dispatchers.IO) {
+    private suspend fun copyFallback(
+        stagingDir: Path,
+        target: Path,
+        installId: String,
+        onCommitted: (CommitMode) -> Unit,
+    ): CommitResult {
+        // ★ 폴백 전체가 **한 개의 취소되지 않는 블록**이다. 쪼개면 `withContext` 가 호출자를 재개할 때 취소를 던져
+        //   다음 단계가 통째로 건너뛰어진다. 그래서 세 군데가 각각 이렇게 샜다:
+        //   1) 생성 ~ 표식 기록 사이의 취소 → 표식 없는 빈 폴더가 사용자 서버 루트에 남는다. 그 폴더는
+        //      listServers·findLeftovers·sweepStaging 이 전부 못 보면서 findNameClash 에는 걸려
+        //      이후 create 를 계속 ServerExists 로 막는다 (손으로 지워야 한다).
+        //   2) 복사 실패 뒤 정리의 취소 → 반쯤 복사된 대상이 그대로 남는다.
+        //   3) 커밋 지점 직후 스테이징 삭제의 취소 → `.staging/{id}/` 에 52MB 트리가 통째로 남는다
+        //      (cleanupAfterCommit 은 빈 스테이징 루트만 지우므로 다음 설치의 스윕 전까지 자가 치유되지 않는다).
+        return withContext(NonCancellable + Dispatchers.IO) {
             try {
                 Files.createDirectory(target)
-                null
             } catch (e: FileAlreadyExistsException) {
-                CommitResult.TargetExists(target)
+                return@withContext CommitResult.TargetExists(target)
             } catch (e: IOException) {
-                CommitResult.Failed(e.toString())
+                return@withContext CommitResult.Failed(e.toString())
             }
+            val problem = copyTree(stagingDir, target, installId, onCommitted)
+            if (problem != null) {
+                // 커밋 지점 전 실패 → 만들던 대상을 지운다 (사용자 폴더에 반쯤 만든 서버를 남기지 않는다)
+                deleteTreeWithRetries(target)
+                return@withContext CommitResult.Failed(problem)
+            }
+            // 커밋 지점 이후: 스테이징 삭제 실패는 성공을 막지 않는다 (다음 설치의 스윕이 치운다)
+            deleteTreeWithRetries(stagingDir, attempts = 2)
+            CommitResult.Committed(target, CommitMode.COPY_FALLBACK)
         }
-        if (creation != null) return creation
-        // ★ 복사 폴백도 커밋 지점(표식 삭제)을 품고 있다 — 같은 이유로 취소되지 않는다
-        val problem = withContext(NonCancellable + Dispatchers.IO) { copyTree(stagingDir, target, installId) }
-        if (problem != null) {
-            // 커밋 지점 전 실패 → 만들던 대상을 지운다 (사용자 폴더에 반쯤 만든 서버를 남기지 않는다)
-            withContext(Dispatchers.IO) { deleteTreeWithRetries(target) }
-            return CommitResult.Failed(problem)
-        }
-        // 커밋 지점 이후: 스테이징 삭제 실패는 성공을 막지 않는다 (다음 설치의 스윕이 치운다)
-        withContext(Dispatchers.IO) { deleteTreeWithRetries(stagingDir, attempts = 2) }
-        return CommitResult.Committed(target, CommitMode.COPY_FALLBACK)
     }
 
     /** 표식 기록 → 트리 복사 → 크기(+jar sha256) 대조 → 표식 삭제. 실패 이유를 돌려주고, 성공이면 null. */
-    private fun copyTree(stagingDir: Path, target: Path, installId: String): String? {
+    private fun copyTree(stagingDir: Path, target: Path, installId: String, onCommitted: (CommitMode) -> Unit): String? {
         val marker = target.resolve(META_DIR_NAME).resolve(INCOMPLETE_MARKER_NAME)
         when (val written = writeFileAtomically(marker, installId.toByteArray(Charsets.UTF_8))) {
             is LayoutIoResult.Failed -> return "INCOMPLETE 표식을 쓰지 못했습니다: ${written.detail}"
@@ -296,6 +319,7 @@ class StagingCommitter internal constructor(
         }
         return try {
             Files.delete(marker)
+            onCommitted(CommitMode.COPY_FALLBACK)
             null
         } catch (e: IOException) {
             "INCOMPLETE 표식을 지우지 못했습니다: $e"

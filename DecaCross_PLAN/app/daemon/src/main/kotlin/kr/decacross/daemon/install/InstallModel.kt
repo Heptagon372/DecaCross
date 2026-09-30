@@ -53,7 +53,13 @@ data class ServerSettings(
 /** RESOLVE 결과 (07 의 `resolve()` 전까지의 임시 판정, SCP-I9). */
 data class InstallTarget(val mc: McVersion, val build: CoreBuild)
 
-/** PLAN 결과. 사용자에게 보여줄 요약과 이후 단계가 쓰는 확정값. */
+/**
+ * PLAN 결과. 사용자에게 보여줄 요약과 이후 단계가 쓰는 확정값.
+ *
+ * # 알려진 이탈 (docs/04_설계결정_03설치.md D-03-3)
+ * - 설계서 §4.1 은 PLAN 이 "다운로드 목록·총 용량·**소요 시간**" 을 낸다고 했지만 여기엔 시간 필드가 없다.
+ *   대역폭 이력이 없어 첫 실행에서 의미 있는 값이 안 나온다 — 지금은 FETCH 진행 줄에서 실측 처리량으로만 낸다.
+ */
 data class InstallPlan(
     val installId: String,
     val target: InstallTarget,

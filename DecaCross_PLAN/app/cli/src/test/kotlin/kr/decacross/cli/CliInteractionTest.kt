@@ -14,6 +14,7 @@ import kr.decacross.daemon.install.EulaNotice
 import kr.decacross.daemon.install.MINECRAFT_EULA_URL
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import kotlin.time.Duration.Companion.seconds
@@ -21,10 +22,13 @@ import kotlin.time.Duration.Companion.seconds
 class CliInteractionTest {
     private val notice = EulaNotice(MINECRAFT_EULA_URL, "paper-1.21.8", "1.21.8")
 
-    /** 질문이 출력된 **뒤에** [answer] 를 넣는다. null 이면 답 없이 입력을 끝낸다(EOF). */
+    /**
+     * 질문이 출력된 **뒤에** [answer] 를 넣는다. null 이면 답 없이 입력을 끝낸다(EOF).
+     * 파이프로 몰아주므로 터미널 판정은 명시적으로 `true` 를 준다 — 판정 자체는 아래 비대화형 시험이 본다.
+     */
     private fun answerAfterQuestion(answer: String?): Pair<EulaAnswer, List<String>> = runBlocking {
         PipedIo().use { piped ->
-            val interaction = CliInteraction(acceptEulaFlag = false, io = piped.io)
+            val interaction = CliInteraction(acceptEulaFlag = false, io = piped.io, interactive = { true })
             val asked = async { interaction.requestEulaConsent(notice) }
             withTimeout(10.seconds) {
                 while (piped.lines.none { it == EULA_QUESTION }) delay(5)
@@ -86,7 +90,7 @@ class CliInteractionTest {
         // ★ 회귀: 비우기(drainBuffered)와 질문 출력 사이에 읽힌 줄이 동의가 됐다.
         //   `echo y | decacross create …` 의 결과가 스레드 타이밍에 따라 달라지면 안 된다.
         PipedIo().use { piped ->
-            val interaction = CliInteraction(acceptEulaFlag = false, io = piped.io)
+            val interaction = CliInteraction(acceptEulaFlag = false, io = piped.io, interactive = { true })
             val asked = async { interaction.requestEulaConsent(notice) }
             piped.writeLine("y") // 질문이 나오기 전 (파이프에 이미 들어와 있던 입력과 같은 모양)
             withTimeout(10.seconds) {
@@ -105,9 +109,35 @@ class CliInteractionTest {
     fun `질문 전에 입력된 y 는 버려지고 그 뒤 EOF 는 거부다`() = runBlocking {
         val recording = RecordingIo("y\n")
         assertTrue(recording.io.awaitInputEnd(5_000), "입력이 모두 들어와 있어야 한다")
-        val answer = CliInteraction(acceptEulaFlag = false, io = recording.io).requestEulaConsent(notice)
+        val answer = CliInteraction(acceptEulaFlag = false, io = recording.io, interactive = { true })
+            .requestEulaConsent(notice)
         val declined = assertNotNull(answer as? EulaAnswer.Declined, "질문 전에 친 줄은 동의가 아니다: $answer")
         assertTrue(declined.reasonKo.contains("EOF"), declined.reasonKo)
         assertTrue(recording.text().contains("질문 전에 입력된 줄 1개는 무시했습니다"), recording.text())
+    }
+
+    @Test
+    fun `비대화형 입력이면 질문하지도 읽지도 않고 거부한다`() = runBlocking {
+        // ★ 회귀 (verify03 F1): 순번 검사는 질문 **전에** 들어온 줄만 막는다. 질문을 보고 나서 y 를 넣는 래퍼
+        //   (`(sleep 60; echo y) | decacross create …`)는 통과해 INTERACTIVE_PROMPT 로 기록됐다.
+        PipedIo().use { piped ->
+            val interaction = CliInteraction(acceptEulaFlag = false, io = piped.io, interactive = { false })
+            val asked = async { interaction.requestEulaConsent(notice) }
+            piped.writeLine("y") // 질문이 나온 뒤처럼 늦게 넣어도 동의가 되면 안 된다
+            val answer = withTimeout(10.seconds) { asked.await() }
+            val declined = assertNotNull(answer as? EulaAnswer.Declined, "비대화형은 거부여야 한다: $answer")
+            assertTrue(declined.reasonKo.contains("비대화형"), declined.reasonKo)
+            assertTrue(declined.reasonKo.contains("--accept-eula"), declined.reasonKo)
+            assertFalse(piped.lines.any { it == EULA_QUESTION }, "묻지 않는다: ${piped.lines}")
+        }
+        Unit
+    }
+
+    @Test
+    fun `비대화형이어도 명령줄 플래그는 그대로 동의다`() = runBlocking {
+        val recording = RecordingIo()
+        val answer = CliInteraction(acceptEulaFlag = true, io = recording.io, interactive = { false })
+            .requestEulaConsent(notice)
+        assertEquals(EulaAnswer.Accepted(ConsentChannel.CLI_FLAG), answer)
     }
 }

@@ -39,6 +39,7 @@ import kr.decacross.daemon.runtime.JavaLocateResult
 import kr.decacross.daemon.runtime.JavaLocator
 import kr.decacross.daemon.runtime.JavaRequirement
 import kr.decacross.daemon.runtime.SystemJavaLocator
+import kr.decacross.daemon.runtime.appImageRuntimeRoot
 import kr.decacross.daemon.store.DevCompatFixture
 import java.nio.file.Files
 import java.nio.file.InvalidPathException
@@ -235,7 +236,8 @@ class StartCommand(
             io.out("  해결: 호환성 데이터를 갱신한 뒤 다시 시도하세요")
             return JavaOverrideResult(null, ExitCodes.INPUT)
         }
-        val locator = javaLocatorFactory(env, hostOs, listOf(paths.internalRoot.resolve("jre")))
+        // 불변식 9: 번들 런타임 두 갈래를 모두 뺀다 (CreateCommand 와 같은 목록)
+        val locator = javaLocatorFactory(env, hostOs, listOfNotNull(paths.internalRoot.resolve("jre"), appImageRuntimeRoot()))
         val requirement = JavaRequirement(mc.javaMin, mc.javaRecommended)
         val selected =
             when (val result = locator.locate(requirement, override)) {
