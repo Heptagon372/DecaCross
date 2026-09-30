@@ -16,6 +16,7 @@ import kotlinx.coroutines.yield
 import kotlinx.serialization.json.Json
 import kr.decacross.daemon.install.ConsentChannel
 import kr.decacross.daemon.install.DirectoryMover
+import kr.decacross.daemon.install.DiscardOutcome
 import kr.decacross.daemon.install.DiskSpaceProbe
 import kr.decacross.daemon.install.EulaAnswer
 import kr.decacross.daemon.install.FetchError
@@ -118,7 +119,17 @@ class PipelineTest {
             FileOrigin.DOWNLOADED,
             manifest.files.single { it.path == "paper-1.21.8.jar" }.origin,
         )
-        assertTrue(manifest.files.filter { it.path != "paper-1.21.8.jar" }.all { it.origin == FileOrigin.GENERATED })
+        // ★ server.properties 는 서버가 첫 기동 때 다시 쓴다 → 무결성 기준이 아니라고 표시한다 (verify03 F6)
+        assertEquals(
+            FileOrigin.GENERATED_MUTABLE,
+            manifest.files.single { it.path == "server.properties" }.origin,
+        )
+        assertTrue(
+            manifest.files
+                .filter { it.path != "paper-1.21.8.jar" && it.path != "server.properties" }
+                .all { it.origin == FileOrigin.GENERATED },
+            manifest.files.toString(),
+        )
 
         val launch = Json.decodeFromString(
             LaunchSpec.serializer(),
@@ -423,6 +434,12 @@ class PipelineTest {
         assertTrue(Files.isRegularFile(serverDir.resolve("paper-1.21.8.jar")), "커밋된 서버가 온전해야 한다")
         assertTrue(Files.isRegularFile(serverDir.resolve(META_DIR_NAME).resolve(MANIFEST_FILE_NAME)))
         assertFalse(Files.exists(fixture.paths.stagingRoot), "스테이징은 남지 않는다")
+        // ★ 회귀 (verify03 F4): 취소 경로도 **정상 경로와 같은** 정리를 해야 한다 — 캐시 조각까지 (D-I8)
+        assertEquals(1, fixture.fetcher.discardCalls, "커밋 뒤 취소도 캐시 조각을 지운다")
+        assertFalse(
+            Files.exists(fixture.paths.partialDir.resolve("${fixture.jarSha256}.part")),
+            "취소가 이어받기 조각을 남기면 안 된다",
+        )
     }
 
     // ── PLAN 의 메모리 판정 (환경 탐침은 주입한다) ────────────────
@@ -478,6 +495,24 @@ class PipelineTest {
         val half = Files.createDirectories(fixture.serversRoot.resolve("demo").resolve(META_DIR_NAME))
         Files.writeString(half.resolve(INCOMPLETE_MARKER_NAME), "gone-1")
         Files.writeString(fixture.serversRoot.resolve("demo").resolve("paper-1.21.8.jar"), "반쯤 복사된 파일")
+    }
+
+    @Test
+    fun `캐시 조각을 지우지 못하면 성공해도 경고로 알린다`() {
+        // ★ 회귀 (verify03 F1): discard 실패가 조용히 삼켜져, 성공한 설치가 52MB 조각을 남겨도
+        //   사용자도 테스트도 알 수 없었다. 이제 Ready 앞에 [주의] 가 붙는다.
+        val fixture = PipelineFixture("discard-warn")
+        val lockFile = fixture.paths.partialDir.resolve("${fixture.jarSha256}.lock")
+        fixture.fetcher.discardOutcome = DiscardOutcome.Locked(lockFile)
+
+        val events = runBlocking { fixture.pipeline().run(fixture.request()).toList() }
+
+        assertTrue(events.last() is InstallEvent.Ready, "설치 자체는 성공이다: ${summary(events)}")
+        val warning = events.filterIsInstance<InstallEvent.Warning>()
+            .lastOrNull { it.messageKo.contains("캐시 조각") }
+            ?: fail("캐시 정리 실패를 알리지 않았다: ${events.filterIsInstance<InstallEvent.Warning>()}")
+        assertTrue(warning.messageKo.contains(lockFile.toString()), warning.messageKo)
+        assertEquals(1, fixture.fetcher.discardCalls)
     }
 
     private fun assertRolledBack(

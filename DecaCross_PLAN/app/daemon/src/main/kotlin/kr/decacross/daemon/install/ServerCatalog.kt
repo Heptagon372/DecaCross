@@ -100,7 +100,11 @@ fun isEulaAccepted(serverDir: Path): Boolean {
 
 /**
  * 동의한 사용자를 위해 eula.txt 를 [renderEulaTxt] 로 원자적 교체. ★ 호출자는 명시적 동의([EulaAnswer.Accepted])를 받은 뒤에만 부른다.
- * 허용 호출 위치: CLI `start` 의 동의 경로, (05) 데몬의 동의 다이얼로그, 테스트(임시 디렉터리). merge_wps2.py 가 그 밖의 호출을 거부한다.
+ *
+ * # 불변식
+ * - ★ 허용 호출 위치: CLI `start` 의 동의 경로, (05) 데몬의 동의 다이얼로그, 테스트(임시 디렉터리).
+ * - ★ `EulaCallSiteTest` 가 app 아래 모든 모듈의 main 소스를 훑어 이 목록을 강제한다 (새 호출처가 생기면 실패한다).
+ *   예전 주석이 가리키던 `merge_wps2.py` 는 레포에 없는 파일이었다 (verify03 F2).
  */
 fun writeEulaAccepted(serverDir: Path, channel: ConsentChannel, acceptedAt: Instant): LayoutIoResult =
     writeFileAtomically(serverDir.resolve(EULA_FILE_NAME), renderEulaTxt(channel, acceptedAt))

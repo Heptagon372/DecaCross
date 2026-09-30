@@ -114,21 +114,22 @@ internal class PartialStore(private val dir: Path) {
         }
     }
 
-    /** `.part` 와 `.part.json` 삭제 (`.lock` 은 남긴다). 던지지 않는다. ★ 호출자가 이미 잠금을 쥐고 있어야 한다. */
-    fun deleteFiles(item: FetchItem) {
-        deleteQuietly(partFile(item))
-        deleteQuietly(metaFile(item))
-    }
+    /**
+     * `.part` 와 `.part.json` 삭제 (`.lock` 은 남긴다). 던지지 않는다. ★ 호출자가 이미 잠금을 쥐고 있어야 한다.
+     *
+     * @return 지우지 **못한** 경로들 (빈 목록 = 둘 다 사라졌다). 호출자가 이걸 버리면 실패가 조용해진다.
+     */
+    fun deleteFiles(item: FetchItem): List<Path> = listOfNotNull(deleteQuietly(partFile(item)), deleteQuietly(metaFile(item)))
 
     /**
      * `{sha256}.lock` 삭제. 던지지 않는다.
      *
      * # 불변식
      * - ★ 잠금을 **놓은 뒤에** 부른다 (Windows 는 열린 파일을 지우지 못한다). 지우지 못해도 다음 스윕이 다시 본다.
+     *
+     * @return 파일이 사라졌으면 true
      */
-    fun deleteLockFile(sha256: String) {
-        deleteQuietly(lockFile(sha256))
-    }
+    fun deleteLockFile(sha256: String): Boolean = deleteQuietly(lockFile(sha256)) == null
 
     /**
      * `{sha}.lock` 을 잡는다. 다른 프로세스(또는 같은 JVM 의 다른 잠금)가 쥐고 있으면 null.
@@ -227,15 +228,18 @@ internal class PartialStore(private val dir: Path) {
         }
     }
 
-    private fun deleteQuietly(path: Path) {
+    /** 조용히 지운다. 성공하면 null, 실패하면 그 경로 (호출자가 보고할 수 있게 — 삼키지 않는다). */
+    private fun deleteQuietly(path: Path): Path? =
         try {
             Files.deleteIfExists(path)
+            null
         } catch (e: IOException) {
             // 지우지 못해도 다음 실행이 다시 시도한다
+            path
         } catch (e: SecurityException) {
             // 권한 문제도 마찬가지
+            path
         }
-    }
 
     private fun closeQuietly(channel: FileChannel?) {
         try {

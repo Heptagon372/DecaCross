@@ -202,6 +202,37 @@ class SystemJavaLocatorTest {
         Unit
     }
 
+    /**
+     * ★ 불변식 9 의 나머지 절반 (verify03 F5): (05) jpackage 앱 이미지의 런타임(`java.home`)도 후보에서 빠진다.
+     * 지금까지 제외 목록에는 `internalRoot/jre` 뿐이었고, 앱 이미지 런타임을 막는 것은 아무것도 없었다.
+     */
+    @Test
+    fun appImageRuntimeIsExcludedOnlyWhenPackaged() = runBlocking {
+        val bundled = javaExe("app-runtime", "21.0.4", parent = root.resolve("app-image"))
+        val runtimeHome = bundled.parent.parent
+
+        // 개발·Gradle 실행: jpackage 속성이 없으므로 java.home 은 멀쩡한 서버용 JDK 다 → 제외하지 않는다
+        assertEquals(
+            null,
+            appImageRuntimeRoot { name -> if (name == "java.home") runtimeHome.toString() else null },
+            "jpackage 로 띄운 것이 아니면 java.home 을 빼면 안 된다",
+        )
+
+        val packaged = appImageRuntimeRoot { name ->
+            when (name) {
+                "jpackage.app-path" -> root.resolve("app-image").resolve("DecaCross.exe").toString()
+                "java.home" -> runtimeHome.toString()
+                else -> null
+            }
+        } ?: fail("jpackage 로 띄웠으면 런타임 경로를 내야 한다")
+
+        val env = mapOf("Path" to bin(bundled))
+        val result = notFound(locator(env, excludedRoots = listOf(packaged)).locate(JavaRequirement(21, 21), null))
+        assertEquals(1, result.candidates.size)
+        assertEquals("런처 번들 런타임(불변식 9)", result.candidates.first().problemKo)
+        Unit
+    }
+
     @Test
     fun notFoundListsEveryCandidateWithItsProblem() = runBlocking {
         val missing = root.resolve("없음").resolve("bin").resolve("java.exe")

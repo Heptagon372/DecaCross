@@ -114,6 +114,9 @@ internal class IntegrationFixture(name: String) : AutoCloseable {
     /** 이어받기 메타 (`{sha256}.part.json`). */
     val metaFile: Path get() = paths.partialDir.resolve("$jarSha256.part.json")
 
+    /** 프로세스 간 잠금 파일 (`{sha256}.lock`). 성공 뒤에는 이것도 남지 않는다 (D-I8). */
+    val lockFile: Path get() = paths.partialDir.resolve("$jarSha256.lock")
+
     /** 서버로 쓸 java = 테스트 JVM (가짜 서버 jar 는 이 JVM 의 class 파일 버전이다). */
     val javaPath: Path = FakeServerJar.testJava()
 

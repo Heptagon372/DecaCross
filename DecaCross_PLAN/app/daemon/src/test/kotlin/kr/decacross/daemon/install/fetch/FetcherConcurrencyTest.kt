@@ -7,11 +7,16 @@ import io.ktor.client.request.HttpResponseData
 import io.ktor.http.HeadersBuilder
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeout
 import kr.decacross.daemon.install.FetchError
 import kr.decacross.daemon.install.FetchItemEvent
 import kr.decacross.daemon.install.FetchResult
@@ -23,10 +28,12 @@ import java.nio.file.Files
 import java.nio.file.StandardOpenOption
 import java.nio.file.attribute.FileTime
 import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.atomic.AtomicReference
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertIs
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -193,6 +200,38 @@ class FetcherConcurrencyTest {
                 assertTrue(Files.notExists(metaPath(dir, item)))
                 // ★ 회귀 (D-I8): 잠금 파일도 함께 치운다 — 남기면 설치 한 번마다 0 바이트 파일이 캐시에 쌓인다
                 assertTrue(Files.notExists(lockPath), "잠금을 놓았으면 잠금 파일도 지운다: $lockPath")
+            }
+        }
+    }
+
+    @Test
+    fun `프로세스 간 잠금을 잡은 직후 취소돼도 잠금이 새지 않는다`(): Unit = runBlocking {
+        // ★ 회귀 (verify03 F3): `withContext` 는 블록이 끝난 뒤 **호출자를 재개할 때** 취소를 던진다 → 반환값이 버려진다.
+        //   `val lock = withContext(NonCancellable + IO) { store.tryLock(sha) }` 형태로 되돌리면 잡은 FileLock 이
+        //   아무에게도 닿지 못하고, (05) 데몬에서는 그 sha 가 JVM 이 사는 동안 영영 잠긴다.
+        withTempDir { dir ->
+            val bytes = randomBytes(5_000)
+            val item = testItem(bytes)
+            val engine = MockEngine { request -> serve(request, bytes) }
+            installHttpClient(TEST_UA, engine).use { client ->
+                val fetcher = Fetcher(client, dir, fastPolicy(), progressIntervalMs = 10)
+                val jobRef = AtomicReference<Job?>(null)
+                fetcher.onCrossProcessLockAcquired = {
+                    jobRef.get()?.cancel(CancellationException("테스트: 잠금을 잡은 직후 취소"))
+                }
+                var results: List<FetchResult>? = null
+                val job = launch(Dispatchers.Default, start = CoroutineStart.LAZY) {
+                    results = fetcher.fetchAll(listOf(item), RecordingListener())
+                }
+                jobRef.set(job)
+                job.start()
+                withTimeout(30_000) { job.join() }
+
+                assertTrue(job.isCancelled, "테스트가 실제로 취소를 걸었어야 한다")
+                assertNull(results, "취소는 결과가 아니다")
+                // 같은 JVM 에서 다시 잡히면(OverlappingFileLockException 이 아니면) 잠금이 풀린 것이다
+                val relocked = assertNotNull(PartialStore(dir).tryLock(item.sha256), "잠금이 샜다 — 같은 sha 를 다시 잡을 수 없다")
+                relocked.close()
             }
         }
     }

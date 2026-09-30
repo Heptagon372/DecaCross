@@ -72,6 +72,7 @@ class InstallIntegrationTest {
             // 성공 뒤에는 이어받기 조각을 남기지 않는다 (D-I8)
             assertFalse(Files.exists(fixture.partFile), "성공 뒤 .part 가 남았다")
             assertFalse(Files.exists(fixture.metaFile), "성공 뒤 .part.json 이 남았다")
+            assertFalse(Files.exists(fixture.lockFile), "성공 뒤 {sha}.lock 이 남았다")
             assertFalse(Files.exists(fixture.paths.stagingRoot), "커밋 뒤 .staging 은 남지 않는다")
             // 동의한 실행이므로 서버 폴더의 eula.txt 를 카탈로그가 "동의됨" 으로 읽는다
             assertTrue(isEulaAccepted(ready.server.dir), "eula.txt 가 동의로 읽히지 않는다")
@@ -153,6 +154,16 @@ class InstallIntegrationTest {
                 .filterIsInstance<FetchItemEvent.Completed>()
                 .single()
             assertTrue(completed.fromCache, "캐시 적중 사건이어야 한다")
+
+            // ★ 회귀 (verify03 F1): 캐시 **적중**으로 성공한 실행도 조각을 남기지 않는다 (D-I8).
+            //   happyPath_localHttp 는 새로 받은 경로만 봤는데, 사용자의 실제 설치가 지나간 경로는 바로 여기다.
+            assertFalse(Files.exists(fixture.partFile), "캐시 적중으로 성공한 뒤에도 .part 가 남았다")
+            assertFalse(Files.exists(fixture.metaFile), "캐시 적중으로 성공한 뒤에도 .part.json 이 남았다")
+            assertFalse(Files.exists(fixture.lockFile), "캐시 적중으로 성공한 뒤에도 {sha}.lock 이 남았다")
+            assertTrue(
+                second.filterIsInstance<InstallEvent.Warning>().none { it.messageKo.contains("캐시 조각") },
+                "정리에 성공했으면 경고가 없어야 한다: ${second.filterIsInstance<InstallEvent.Warning>()}",
+            )
         }
     }
 

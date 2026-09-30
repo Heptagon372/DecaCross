@@ -55,6 +55,16 @@ interface ShutdownHookRegistrar {
 const val GRADLE_RUN_LAUNCHER: String = "gradle-run"
 
 /**
+ * 표준입력이 **사람이 앉아 있는 터미널**인가 (EULA 프롬프트 경계, [CliInteraction]).
+ *
+ * # 불변식
+ * - ★ JDK 22+ 의 `System.console()` 은 파이프·리다이렉트에도 `Console` 을 돌려준다 → 반드시
+ *   [java.io.Console.isTerminal] 까지 봐야 한다. 이걸 빼면 `(sleep 60; echo y) | decacross create …` 가
+ *   "사람이 y 를 쳤다"(`INTERACTIVE_PROMPT`)로 기록된다.
+ */
+internal val SYSTEM_INTERACTIVE_STDIN: () -> Boolean = { System.console()?.isTerminal() == true }
+
+/**
  * 콘솔 인식 정규식 컴파일. 리소스가 망가져 정규식이 깨졌으면 null — 사용자에게 스택 트레이스 대신
  * `[실패]` 한 줄을 보여 주고 [ExitCodes.UNEXPECTED] 로 끝내려는 것이다 (CLI 는 예외를 밖으로 내보내지 않는다).
  */

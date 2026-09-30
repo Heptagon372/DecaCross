@@ -8,6 +8,7 @@ import kr.decacross.daemon.install.InstallPlan
 import kr.decacross.daemon.install.InstallStage
 import kr.decacross.daemon.install.InstalledServer
 import kr.decacross.daemon.install.describeKo
+import java.nio.file.Path
 
 /** 1 MiB. 진행률·크기 표시는 전부 MiB 정수로 (로캘에 따라 소수점이 달라지지 않게). */
 private const val MIB: Long = 1024L * 1024L
@@ -90,6 +91,19 @@ class EventRenderer(private val io: ConsoleIo) {
         val description = InstallFailure.Cancelled.describeKo()
         io.out("[실패] ${description.messageKo}")
         for (fix in description.fixesKo) io.out("  해결: $fix")
+    }
+
+    /**
+     * 커밋 지점 **뒤에** 들어온 취소 (verify03 F2).
+     *
+     * 이때 [renderCancelled] 의 "다시 실행하면 받은 부분부터 이어받습니다" 는 거짓이다: 서버 폴더가 이미 있으므로
+     * 그 재실행은 PLAN 에서 `ServerExists` 로 죽는다. 사용자가 실제로 할 수 있는 일을 말한다.
+     */
+    fun renderCancelledAfterCommit(name: String, dir: Path) {
+        exitCode = ExitCodes.CANCELLED
+        io.out("[실패] 설치를 취소했지만 서버는 이미 만들어진 뒤였습니다: $dir")
+        io.out("  해결: 서버는 이미 만들어졌습니다 - decacross start $name")
+        io.out("  해결: 필요 없으면 폴더를 직접 지우고 다시 만드세요")
     }
 
     private fun renderPlan(plan: InstallPlan) {

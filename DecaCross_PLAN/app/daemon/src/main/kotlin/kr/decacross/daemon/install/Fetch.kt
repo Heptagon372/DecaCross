@@ -116,6 +116,21 @@ sealed interface FetchResult {
 }
 
 /**
+ * [ArtifactFetcher.discard] 결과. ★ `Deleted` 가 아닌 값을 버리면 "성공했는데 52MB 조각이 남는" 상태를
+ * 아무도(사용자도 테스트도) 알 수 없다 — 파이프라인은 이걸 [InstallEvent.Warning] 으로 내보낸다.
+ */
+sealed interface DiscardOutcome {
+    /** `.part`·`.part.json`·`.lock` 이 모두 사라졌다 (원래 없던 경우 포함). */
+    data object Deleted : DiscardOutcome
+
+    /** 다른 프로세스가 같은 sha 를 받는 중이다. 건드리지 않았다 (7일 뒤 스윕이 본다). */
+    data class Locked(val lockFile: Path) : DiscardOutcome
+
+    /** 잠금은 잡았는데 지우지 못했다 (백신·인덱서가 쥔 핸들 등). */
+    data class Failed(val path: Path, val detailKo: String) : DiscardOutcome
+}
+
+/**
  * 재시도 정책 (SCP-I11: 소스당 1회 시도 + 3회 재시도, 새 바이트를 받은 시도는 실패로 세지 않음, 상한 12회).
  * 지연 = `min(base·2^(n-1), maxDelay) + [0, maxJitter)`, `Retry-After` 가 [maxRetryAfterMs] 이하면 그 값을 따른다.
  */
@@ -182,8 +197,12 @@ interface ArtifactFetcher {
     /**
      * 캐시 파일·메타데이터를 지운다. 무결성 실패 뒤(오염된 조각을 이어받지 않게)와 설치 성공(READY) 뒤에 부른다.
      * 같은 sha256 을 다른 프로세스가 받는 중이면(잠금을 못 잡으면) 아무것도 지우지 않는다. 던지지 않는다.
+     *
+     * # 불변식
+     * - ★ 결과를 돌려준다. 실패를 조용히 삼키면 "성공(READY) 뒤에는 캐시 조각을 지운다" 가 거짓이 돼도
+     *   사용자도 테스트도 알 수 없다 (실제로 그렇게 됐다 — verify03 F1).
      */
-    suspend fun discard(item: FetchItem)
+    suspend fun discard(item: FetchItem): DiscardOutcome
 }
 
 /**
@@ -208,6 +227,12 @@ class Fetcher(
     private val shaMutexes = ConcurrentHashMap<String, Mutex>()
 
     private val swept = AtomicBoolean(false)
+
+    /**
+     * 테스트 전용 틈: 프로세스 간 잠금을 **잡은 직후** 를 가로챈다. 그 창(잠금 취득 ~ 호출자 재개)은 밖에서는
+     * 맞출 수 없는데, 거기서 취소가 들어오면 잠금이 샌다 ([awaitCrossProcessLock] 의 ★ 참고).
+     */
+    internal var onCrossProcessLockAcquired: (() -> Unit)? = null
 
     override suspend fun fetchAll(items: List<FetchItem>, listener: FetchListener): List<FetchResult> {
         sweepOnce()
@@ -253,21 +278,40 @@ class Fetcher(
         }
     }
 
-    override suspend fun discard(item: FetchItem) {
+    override suspend fun discard(item: FetchItem): DiscardOutcome {
         val mutex = shaMutexes.computeIfAbsent(item.sha256) { Mutex() }
-        mutex.withLock {
-            withContext(NonCancellable + Dispatchers.IO) {
-                val lock = store.tryLock(item.sha256) ?: return@withContext
-                try {
-                    store.deleteFiles(item)
-                } finally {
-                    lock.close()
+        return mutex.withLock {
+            withContext(NonCancellable) {
+                // 백신·인덱서가 방금 받은 jar 를 잠깐 쥐고 있을 수 있다 → 짧게 물러섰다 다시 본다 (커밋 재시도와 같은 이유)
+                var last: DiscardOutcome = DiscardOutcome.Locked(store.lockFile(item.sha256))
+                var waitMs = DISCARD_RETRY_BASE_MS
+                for (attempt in 1..DISCARD_ATTEMPTS) {
+                    last = withContext(Dispatchers.IO) { discardOnce(item) }
+                    if (last is DiscardOutcome.Deleted) return@withContext last
+                    if (attempt < DISCARD_ATTEMPTS) {
+                        delay(waitMs)
+                        waitMs = minOf(waitMs * 2, DISCARD_RETRY_MAX_MS)
+                    }
                 }
-                // 잠금을 놓은 뒤에야 잠금 파일을 지울 수 있다 (Windows 는 열린 파일을 못 지운다 — sweepOldPartials 와 같은 순서).
-                // 남기면 설치 한 번마다 0 바이트 `{sha}.lock` 이 캐시에 영원히 쌓인다.
-                store.deleteLockFile(item.sha256)
+                last
             }
         }
+    }
+
+    /** 시도 한 번 (블로킹): 잠금 → `.part`·`.part.json` 삭제 → 잠금 해제 → 잠금 파일 삭제. */
+    private fun discardOnce(item: FetchItem): DiscardOutcome {
+        val lockPath = store.lockFile(item.sha256)
+        val lock = store.tryLock(item.sha256) ?: return DiscardOutcome.Locked(lockPath)
+        val failures = try {
+            store.deleteFiles(item)
+        } finally {
+            lock.close()
+        }
+        if (failures.isNotEmpty()) return DiscardOutcome.Failed(failures.first(), "캐시 파일을 지우지 못했습니다")
+        // 잠금을 놓은 뒤에야 잠금 파일을 지울 수 있다 (Windows 는 열린 파일을 못 지운다 — sweepOldPartials 와 같은 순서).
+        // 남기면 설치 한 번마다 0 바이트 `{sha}.lock` 이 캐시에 영원히 쌓인다.
+        if (!store.deleteLockFile(item.sha256)) return DiscardOutcome.Failed(lockPath, "잠금 파일을 지우지 못했습니다")
+        return DiscardOutcome.Deleted
     }
 
     /** 7일 지난 부분 파일 청소는 Fetcher 당 한 번 (D-I8). 실패해도 다운로드를 막지 않는다. */
@@ -302,13 +346,19 @@ class Fetcher(
     private suspend fun awaitCrossProcessLock(sha256: String): PartialLock? {
         val deadlineNanos = System.nanoTime() + CROSS_PROCESS_LOCK_WAIT_MS * 1_000_000L
         while (true) {
-            // ★ 취득은 취소되지 않는 블록에서 한다: 취소가 여기서 터지면 이미 잡은 FileLock 이 호출자에게 닿지 못해
-            //   (05) 데몬에서는 그 sha 가 JVM 이 살아 있는 동안 영영 잠긴다. 잡았는데 취소됐으면 직접 닫고 던진다.
-            val lock = withContext(NonCancellable + Dispatchers.IO) { store.tryLock(sha256) }
-            if (!currentCoroutineContext().isActive) {
-                if (lock != null) withContext(NonCancellable + Dispatchers.IO) { lock.close() }
-                currentCoroutineContext().ensureActive()
+            // ★ 잡은 잠금은 블록 **안에서** 지역 변수에 적는다: 취소되면 `withContext` 가 돌려주는 값이 버려지므로
+            //   반환값에만 기대면 잠금이 그대로 새고, (05) 데몬에서는 그 sha 가 JVM 이 사는 동안 영영 잠긴다.
+            var acquired: PartialLock? = null
+            try {
+                withContext(NonCancellable + Dispatchers.IO) {
+                    acquired = store.tryLock(sha256)
+                    if (acquired != null) onCrossProcessLockAcquired?.invoke()
+                }
+            } catch (e: CancellationException) {
+                withContext(NonCancellable + Dispatchers.IO) { acquired?.close() }
+                throw e
             }
+            val lock = acquired
             if (lock != null) return lock
             if (System.nanoTime() >= deadlineNanos) return null
             delay(CROSS_PROCESS_LOCK_POLL_MS)
@@ -642,6 +692,13 @@ class Fetcher(
         }
     }
 }
+
+/** [ArtifactFetcher.discard] 재시도 횟수 (백신·인덱서가 잠깐 쥔 핸들 대비 — [MoveRetryPolicy] 와 같은 이유). */
+private const val DISCARD_ATTEMPTS: Int = 3
+
+private const val DISCARD_RETRY_BASE_MS: Long = 50
+
+private const val DISCARD_RETRY_MAX_MS: Long = 200
 
 /** 시도 한 번의 분류 (설계 §2.11 표). */
 private sealed interface AttemptOutcome {

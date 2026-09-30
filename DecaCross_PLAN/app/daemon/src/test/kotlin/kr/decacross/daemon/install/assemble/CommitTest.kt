@@ -1,6 +1,12 @@
 package kr.decacross.daemon.install.assemble
 
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeout
 import kr.decacross.daemon.install.CommitMode
 import kr.decacross.daemon.install.CommitResult
 import kr.decacross.daemon.install.DirectoryMover
@@ -21,6 +27,8 @@ import java.nio.file.AtomicMoveNotSupportedException
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.StandardOpenOption
+import java.util.concurrent.CopyOnWriteArrayList
+import java.util.concurrent.atomic.AtomicReference
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -226,6 +234,64 @@ class CommitTest {
         val report = rollbackStaging(area, stagingRoot, emptyList())
         assertTrue(report.cleanedUp, "잠금을 푼 뒤 롤백은 깨끗하다: ${report.leftovers}")
         assertFalse(Files.exists(area.dir))
+    }
+
+    /**
+     * ★ 회귀 (verify03 F4): 복사 도중 취소가 들어와도 **표식 없는 빈 폴더/반쪽 폴더**를 사용자 서버 루트에 남기지 않는다.
+     * 그런 폴더는 `listServers`·`findLeftovers`·`sweepStaging` 이 전부 못 보면서 `findNameClash` 에만 걸려,
+     * 이후 `create` 를 계속 `ServerExists` 로 막는다 (사용자가 손으로 지워야 한다).
+     */
+    @Test
+    fun copyFallback_cancelledMidCopy_thenFails_leavesNoTarget() {
+        val (base, staging) = newCase("copy-cancel-fail")
+        val target = base.resolve("demo")
+        val jobRef = AtomicReference<Job?>(null)
+        val cancellingThenFailing = TreeFileCopier { source, destination ->
+            // 첫 복사에서 취소를 걸고, jar 에서 실패시킨다 (커밋 지점 **전** 실패 + 취소가 겹친 순간)
+            jobRef.get()?.cancel(CancellationException("테스트: 복사 도중 취소"))
+            if (source.fileName.toString() == "z.jar") throw IOException("주입된 복사 실패")
+            TreeFileCopier.NIO.copy(source, destination)
+        }
+        val mover = DirectoryMover { _, destination -> throw AtomicMoveNotSupportedException(null, destination.toString(), "주입") }
+        runBlocking {
+            val job = launch(Dispatchers.Default, start = CoroutineStart.LAZY) {
+                StagingCommitter(mover, fastRetry, cancellingThenFailing).commit(staging, target, "t-1")
+            }
+            jobRef.set(job)
+            job.start()
+            withTimeout(30_000) { job.join() }
+            assertTrue(job.isCancelled, "테스트가 실제로 취소를 걸었어야 한다")
+        }
+        assertFalse(Files.exists(target), "취소돼도 반쯤 만든 대상은 흔적 없이 지운다")
+        assertTrue(Files.isDirectory(staging), "스테이징은 남는다 (롤백이 지운다)")
+    }
+
+    /** ★ 회귀 (verify03 F5): 커밋 지점 직후의 취소가 `.staging/{id}/` 트리를 통째로 남기지 않는다. */
+    @Test
+    fun copyFallback_cancelledMidCopy_thenSucceeds_removesStaging() {
+        val (base, staging) = newCase("copy-cancel-ok")
+        val target = base.resolve("demo")
+        val jobRef = AtomicReference<Job?>(null)
+        val cancellingCopier = TreeFileCopier { source, destination ->
+            jobRef.get()?.cancel(CancellationException("테스트: 복사 도중 취소"))
+            TreeFileCopier.NIO.copy(source, destination)
+        }
+        val mover = DirectoryMover { _, destination -> throw AtomicMoveNotSupportedException(null, destination.toString(), "주입") }
+        val committedModes = CopyOnWriteArrayList<CommitMode>()
+        runBlocking {
+            val job = launch(Dispatchers.Default, start = CoroutineStart.LAZY) {
+                StagingCommitter(mover, fastRetry, cancellingCopier).commit(staging, target, "t-1") { committedModes.add(it) }
+            }
+            jobRef.set(job)
+            job.start()
+            withTimeout(30_000) { job.join() }
+            assertTrue(job.isCancelled, "테스트가 실제로 취소를 걸었어야 한다")
+        }
+        // 취소는 CommitResult 를 삼키지만 커밋 지점은 지났다 — 호출자는 onCommitted 로 안다
+        assertEquals(listOf(CommitMode.COPY_FALLBACK), committedModes.toList())
+        assertEquals("첫 번째", Files.readString(target.resolve("a.txt")))
+        assertFalse(Files.exists(target.resolve(META_DIR_NAME).resolve(INCOMPLETE_MARKER_NAME)), "표식은 커밋 지점에서 지운다")
+        assertFalse(Files.exists(staging), "커밋 지점 뒤의 취소도 스테이징을 남기지 않는다")
     }
 
     /** 잠금까지 갖춘 실제 스테이징이 필요한 경우 (`servers/.staging` 모양). */

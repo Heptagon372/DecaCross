@@ -1,4 +1,9 @@
 {
+ "snapshotDate": "2026-09-17",
+ "snapshotSources": [
+  "https://launchermeta.mojang.com/mc/game/version_manifest_v2.json",
+  "https://fill-data.papermc.io/v3"
+ ],
  "mcVersions": [
   {
    "ordinal": 1000,

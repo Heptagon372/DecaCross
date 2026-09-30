@@ -224,7 +224,11 @@ enum class ServersRootSource {
 /** 서버 루트와 그 결정 근거. [noticeKo] 가 있으면 CLI/UI 가 그대로 한 줄 보여준다. */
 data class ServersRoot(val path: Path, val source: ServersRootSource, val noticeKo: String?)
 
-/** 문서 폴더가 OneDrive 동기화 대상일 때의 정책 (SCP-I1, 사용자 결정 대기 — 기본 [AVOID]). */
+/**
+ * 문서 폴더가 OneDrive 동기화 대상일 때의 정책. 기본은 [AVOID].
+ *
+ * ★ **아직 사용자 결정 대기다** — `docs/04_설계결정_03설치.md` §5 SCP-I1. 바꾸면 서버가 생기는 자리가 달라진다.
+ */
 enum class OneDrivePolicy {
     /** 동기화 폴더에 서버를 두지 않는다: `{userHome}/DecaCross/servers` 로 대체 + 안내. */
     AVOID,
