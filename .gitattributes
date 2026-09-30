@@ -1,3 +1,13 @@
+# 줄바꿈은 저장소·워크트리 모두 LF 로 통일 (autocrlf 차이로 인한 가짜 diff·병합 충돌 방지)
+* text=auto eol=lf
+
 # Windows 배치 파일은 CRLF 가 아니면 cmd 가 줄을 잘못 읽는다
 *.bat text eol=crlf
 *.cmd text eol=crlf
+
+# 바이너리
+*.jar binary
+*.png binary
+*.jpg binary
+*.ico binary
+*.zip binary

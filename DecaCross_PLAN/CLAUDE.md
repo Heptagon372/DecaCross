@@ -126,6 +126,21 @@ scope = pubgrub | engine | dcx | logparse | analysis | daemon | ui | cli
 ```
 한 커밋에 한 가지 일만. 포맷팅과 로직 변경을 섞지 마라.
 
+## 브랜치 · 워크트리 · 병합
+
+- **main 에 직접 커밋하지 마라.** `<scope>/<짧은-설명>` 브랜치(예: `daemon/eula-callsite`)에서 작업하고 PR 로 합친다
+- **병합은 squash 만.** PR 제목이 main 의 커밋 메시지가 되므로 PR 제목도 `<scope>: <요약>` 형식. 머지되면 원격 브랜치는 자동 삭제
+- **main 은 force-push·삭제 금지** (ruleset `main-safety`). 직접 push 는 허용되지만(github_upload.bat) 쓰지 않는 게 원칙
+- **브랜치 최신화는 rebase.** `git fetch && git rebase origin/main` (`pull.rebase`, `rebase.autoStash`, `rerere` 켜져 있음). 이미 push 한 브랜치는 `git push --force-with-lease`
+- **병렬 작업은 워크트리로.** 저장소는 OneDrive 안에 있으므로 워크트리는 `.claude/worktrees/`(gitignore 됨) 에 두거나 OneDrive 밖에 만든다
+  ```
+  git worktree add .claude/worktrees/<이름> -b <scope>/<설명> origin/main
+  git worktree remove .claude/worktrees/<이름>      # 끝나면 정리
+  git worktree prune
+  ```
+- **워크트리마다 Gradle 을 동시에 돌리지 마라.** 가용 RAM 2GB — 빌드·테스트는 한 번에 한 워크트리에서만
+- **줄바꿈은 LF** (`.gitattributes`). `.bat`/`.cmd` 만 CRLF
+
 ---
 
 ## 지금 어디까지 왔나
