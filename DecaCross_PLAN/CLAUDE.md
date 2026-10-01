@@ -135,7 +135,7 @@ scope = pubgrub | engine | dcx | logparse | analysis | daemon | ui | cli
 - **브랜치 최신화는 rebase.** `git fetch && git rebase origin/main` (`pull.rebase`, `rebase.autoStash`, `rerere` 켜져 있음). 이미 push 한 브랜치는 `git push --force-with-lease`
 - **병렬 작업은 워크트리로.** 저장소는 OneDrive 안에 있으므로 워크트리는 `.claude/worktrees/`(gitignore 됨) 에 두거나 OneDrive 밖에 만든다
   ```
-  git worktree add .claude/worktrees/<이름> -b <scope>/<설명> origin/main
+  git worktree add --no-track .claude/worktrees/<이름> -b <scope>/<설명> origin/main
   git worktree remove .claude/worktrees/<이름>      # 끝나면 정리
   git worktree prune
   ```

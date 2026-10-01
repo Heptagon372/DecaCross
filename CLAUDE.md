@@ -8,7 +8,7 @@
 
 1. **시작할 때 확인** — `git fetch --prune` 후 `git status -sb`, `git worktree list`.
    - 체크아웃이 **다른 브랜치이거나 미커밋 변경이 있으면 다른 세션이 쓰는 중이다.** `git switch`/`stash`/`reset` 하지 말고
-     새 워크트리를 만든다: `git worktree add .claude/worktrees/<이름> -b <scope>/<설명> origin/main`
+     새 워크트리를 만든다: `git worktree add --no-track .claude/worktrees/<이름> -b <scope>/<설명> origin/main`
    - 앱이 만들어 준 워크트리 세션이면 그 브랜치를 그대로 쓴다. base 최신화는 `sync_with_base_branch` 도구로
    - 비어 있는 main 이면 `git switch -c <scope>/<설명>` (main 에 직접 커밋 금지)
 2. **작업 중 커밋** — 논리 단위마다 `<scope>: <요약>` 커밋 + `Co-Authored-By` 줄. 커밋 전 손댄 모듈의 테스트·ktlintCheck 를 돌린다
